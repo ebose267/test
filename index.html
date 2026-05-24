@@ -1,2853 +1,1597 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Synthova Oil — Premium 100% pure & natural palm oil, locally sourced in Nigeria. Nationwide delivery, hygienically packed, consistent quality for homes and businesses.">
-  <meta name="keywords" content="palm oil, Nigeria, premium oil, natural palm oil, bulk palm oil, Synthova, cooking oil, food supply">
-  <meta name="author" content="Synthova Oil">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://synthovaoil.com/">
-  <meta property="og:title" content="Synthova Oil — Premium Palm Oil">
-  <meta property="og:description" content="100% pure & natural palm oil. Locally sourced. Nationwide delivery.">
-  <meta property="og:image" content="https://synthovaoil.com/og-image.jpg">
-  
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://synthovaoil.com/">
-  <meta property="twitter:title" content="Synthova Oil — Premium Palm Oil">
-  <meta property="twitter:description" content="100% pure & natural palm oil. Locally sourced. Nationwide delivery.">
-  <meta property="twitter:image" content="https://synthovaoil.com/og-image.jpg">
-  
-  <!-- Schema.org Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Synthova Oil",
-    "image": "https://synthovaoil.com/logo.png",
-    "description": "Premium 100% pure & natural palm oil, locally sourced in Nigeria",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "NG"
-    },
-    "priceRange": "₦",
-    "telephone": "+2348158860731",
-    "makesOffer": {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Product",
-        "name": "Synthova Palm Oil",
-        "description": "Premium grade palm oil, hygienically packed",
-        "brand": "Synthova",
-        "offers": [
-          {
-            "@type": "Offer",
-            "price": "1600",
-            "priceCurrency": "NGN",
-            "itemCondition": "https://schema.org/NewCondition",
-            "availability": "https://schema.org/InStock",
-            "name": "75cl Bottle"
-          },
-          {
-            "@type": "Offer",
-            "price": "3000",
-            "priceCurrency": "NGN",
-            "itemCondition": "https://schema.org/NewCondition",
-            "availability": "https://schema.org/InStock",
-            "name": "150cl Bottle"
-          }
-        ]
-      }
-    }
-  }
-  </script>
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#0a0f0a">
-  <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-  
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H2ZM4RM10B"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-H2ZM4RM10B', { 'send_page_view': false });
-  </script>
-  
-  <title>Synthova Oil — Premium Palm Oil</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  <style>
-    /* ─── CSS RESET & BASE ─────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    
-    body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      min-height: 100vh;
-      overflow-x: hidden;
-      transition: background 0.35s ease, color 0.35s ease;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* ─── DESIGN TOKENS (Brand Colors) ─────────────────────────── */
-    :root {
-      /* Primary Brand Colors */
-      --gold: #c8860a;
-      --gold-lt: #e0a030;
-      --green: #4a8b3c;
-      --green-lt: #6ab55a;
-      --terracotta: #C94F1D;
-      --deep-brown: #5E2D16;
-      
-      /* Backgrounds */
-      --bg: #0a0f0a;
-      --dark: #121912;
-      --card: #1a211a;
-      --cream: #f0e8d8;
-      
-      /* Text */
-      --white: #f5f5f0;
-      --muted: #8a9a8a;
-      --placeholder: #4a5a4a;
-      
-      /* UI */
-      --border: #2d3a2d;
-      --shadow: 0 8px 32px rgba(0,0,0,0.3);
-      --shadow-hover: 0 12px 48px rgba(0,0,0,0.4);
-      --select-bg: #121912;
-      
-      /* Feedback */
-      --success: #4a8b3c;
-      --error: #c94f1d;
-      --warning: #e0a030;
-    }
-
-    /* ─── LIGHT MODE ───────────────────────────────────────────── */
-    body.light {
-      --bg: #f8f9f5;
-      --dark: #ffffff;
-      --card: #ffffff;
-      --border: #d8e0d0;
-      --gold: #b07208;
-      --gold-lt: #c8860a;
-      --green: #3d7a30;
-      --green-lt: #4a8b3c;
-      --cream: #1a2115;
-      --muted: #6a7a6a;
-      --white: #1a1810;
-      --placeholder: #a0b0a0;
-      --select-bg: #ffffff;
-      --shadow: 0 8px 32px rgba(0,0,0,0.08);
-      --shadow-hover: 0 12px 48px rgba(0,0,0,0.12);
-    }
-
-    /* ─── NOISE OVERLAY (Subtle texture) ───────────────────────── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      background-size: 200px;
-      pointer-events: none; z-index: 0; opacity: 0.6;
-    }
-
-    /* ─── ACCESSIBILITY ────────────────────────────────────────── */
-    .sr-only {
-      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-    }
-    
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-    
-    /* Focus indicators for keyboard navigation */
-    button:focus, input:focus, select:focus, textarea:focus, a:focus {
-      outline: 2px solid var(--gold);
-      outline-offset: 2px;
-    }
-    
-    button:focus:not(:focus-visible), 
-    input:focus:not(:focus-visible),
-    select:focus:not(:focus-visible),
-    textarea:focus:not(:focus-visible) {
-      outline: none;
-    }
-    
-    button:focus-visible,
-    input:focus-visible,
-    select:focus-visible,
-    textarea:focus-visible,
-    a:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 2px;
-    }
-
-    /* ─── NAVIGATION HEADER ────────────────────────────────────── */
-    .nav-header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      padding: 16px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(10, 15, 10, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      transition: background 0.35s, border-color 0.35s;
-    }
-
-    body.light .nav-header {
-      background: rgba(248, 249, 245, 0.92);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 700;
-      font-size: 1.4rem;
-      color: var(--cream);
-      text-decoration: none;
-      transition: color 0.3s;
-      min-height: 44px; /* Touch target */
-    }
-
-    .nav-logo:hover { color: var(--gold); }
-    .nav-logo:active { transform: scale(0.98); }
-
-    .nav-logo img {
-      width: 36px;
-      height: 36px;
-      object-fit: contain;
-    }
-
-    .nav-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      min-width: 44px;
-      min-height: 44px;
-      border-radius: 8px;
-      z-index: 1001;
-    }
-
-    .nav-toggle:hover { background: rgba(255,255,255,0.05); }
-    body.light .nav-toggle:hover { background: rgba(0,0,0,0.05); }
-
-    .nav-toggle span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--white);
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-
-    body.light .nav-toggle span { background: var(--cream); }
-
-    .nav-toggle.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .nav-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .nav-toggle.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
-
-    .nav-menu {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-      align-items: center;
-    }
-
-    .nav-link {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 400;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 8px 4px;
-      position: relative;
-      transition: color 0.3s;
-      min-height: 44px;
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-link:hover, .nav-link.active {
-      color: var(--gold);
-    }
-
-    .nav-link.active::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0; right: 0;
-      height: 2px;
-      background: var(--gold);
-      border-radius: 2px;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .theme-toggle, .cart-toggle {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      padding: 8px 14px;
-      display: flex; 
-      align-items: center; 
-      gap: 8px;
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow);
-      min-height: 44px;
-      min-width: 44px;
-    }
-
-    .theme-toggle:hover, .cart-toggle:hover { 
-      border-color: var(--gold); 
-      color: var(--gold); 
-      transform: translateY(-1px);
-    }
-    
-    .theme-toggle:active, .cart-toggle:active {
-      transform: translateY(0);
-    }
-
-    .cart-toggle {
-      position: relative;
-    }
-
-    .cart-count {
-      position: absolute;
-      top: -6px;
-      right: -6px;
-      background: var(--green);
-      color: white;
-      font-size: 0.65rem;
-      font-weight: 600;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid var(--card);
-    }
-
-    /* ─── PAGE VIEWS (SPA Routing) ─────────────────────────────── */
-    .page-view {
-      display: none;
-      padding-top: 90px;
-      min-height: calc(100vh - 180px);
-      animation: fadeIn 0.4s ease;
-    }
-
-    .page-view.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ─── HERO SECTION ─────────────────────────────────────────── */
-    .hero {
-      position: relative;
-      padding: 40px 24px 60px;
-      text-align: center;
-      overflow: hidden;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -80px; left: 50%; transform: translateX(-50%);
-      width: 600px; height: 300px;
-      background: radial-gradient(ellipse at center, rgba(200,134,10,0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .logo-wrap {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 28px;
-      animation: logo-entrance 1s cubic-bezier(0.22,1,0.36,1) both;
-    }
-
-    @keyframes logo-entrance {
-      from { opacity: 0; transform: translateY(-20px) scale(0.85); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .logo-img {
-      width: 140px;
-      height: 140px;
-      object-fit: contain;
-      animation: logo-float 4s ease-in-out infinite;
-      filter: drop-shadow(0 8px 32px rgba(74,139,60,0.3)) drop-shadow(0 4px 16px rgba(200,134,10,0.15));
-      transition: filter 0.3s;
-      display: block;
-    }
-
-    body.light .logo-img {
-      filter: drop-shadow(0 8px 32px rgba(74,139,60,0.25)) drop-shadow(0 4px 16px rgba(176,114,8,0.1));
-    }
-
-    @keyframes logo-float {
-      0%, 100% { transform: translateY(0px);  }
-      50%       { transform: translateY(-8px); }
-    }
-
-    .logo-wrap::before {
-      content: '';
-      position: absolute;
-      inset: -15px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(200,134,10,0.12) 0%, transparent 70%);
-      animation: halo-pulse 4s ease-in-out infinite;
-      z-index: -1;
-    }
-
-    .logo-wrap::after {
-      content: '';
-      position: absolute;
-      inset: -25px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(74,139,60,0.1) 0%, transparent 70%);
-      animation: halo-pulse 4s ease-in-out infinite 0.5s;
-      z-index: -1;
-    }
-
-    @keyframes halo-pulse {
-      0%, 100% { opacity: 0.4; transform: scale(1);    }
-      50%       { opacity: 0.8; transform: scale(1.08); }
-    }
-
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.8rem, 7vw, 5rem);
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      color: var(--cream);
-      transition: color 0.35s;
-    }
-
-    .hero h1 span { 
-      color: var(--green); 
-      font-style: italic;
-      transition: color 0.35s;
-    }
-
-    .hero-sub {
-      margin-top: 16px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: color 0.35s;
-    }
-
-    .tagline {
-      margin-top: 14px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      font-style: italic;
-      font-weight: 400;
-      color: var(--gold);
-      letter-spacing: 0.04em;
-      opacity: 0;
-      animation: tagline-fade 1.2s ease 0.6s forwards;
-    }
-
-    @keyframes tagline-fade {
-      from { opacity: 0; transform: translateY(6px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .divider {
-      display: flex; align-items: center; gap: 12px;
-      max-width: 200px; margin: 32px auto;
-    }
-    .divider::before, .divider::after {
-      content: ''; flex: 1; height: 1px; background: var(--border);
-    }
-    .divider-dot { 
-      width: 6px; 
-      height: 6px; 
-      background: linear-gradient(135deg, var(--gold), var(--green)); 
-      border-radius: 50%; 
-    }
-
-    /* ─── PRODUCT GRID ─────────────────────────────────────────── */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px;
-      max-width: 1100px;
-      margin: 0 auto 40px;
-      padding: 0 24px;
-    }
-
-    .product-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .product-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-hover);
-      border-color: var(--gold);
-    }
-
-    .product-card.featured::before {
-      content: 'BEST VALUE';
-      position: absolute;
-      top: 16px;
-      right: -32px;
-      background: var(--green);
-      color: white;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      padding: 4px 40px;
-      transform: rotate(45deg);
-      text-transform: uppercase;
-      z-index: 2;
-    }
-
-    .product-image {
-      width: 180px;
-      height: 180px;
-      margin: 0 auto 20px;
-      background: linear-gradient(135deg, rgba(200,134,10,0.15), rgba(74,139,60,0.15));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid var(--border);
-    }
-
-    .product-image svg {
-      width: 90px;
-      height: 90px;
-      stroke: var(--gold);
-      fill: none;
-      stroke-width: 1.2;
-    }
-
-    .product-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: var(--cream);
-      margin-bottom: 8px;
-    }
-
-    .product-desc {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 16px;
-      min-height: 48px;
-    }
-
-    .product-price {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--gold);
-      margin: 12px 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-    }
-
-    .product-price span {
-      font-size: 1rem;
-      color: var(--muted);
-      font-weight: 400;
-    }
-
-    .btn-add {
-      background: linear-gradient(135deg, var(--green) 0%, var(--green-lt) 100%);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      padding: 12px 28px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      margin-top: 8px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 44px;
-      min-width: 44px;
-    }
-
-    .btn-add:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(74,139,60,0.35);
-    }
-
-    .btn-add:active { transform: translateY(0); }
-
-    .btn-add svg {
-      width: 16px;
-      height: 16px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
-    }
-
-    /* ─── TRUST BADGES ─────────────────────────────────────────── */
-    .trust-badges {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 24px;
-    }
-
-    .trust-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      max-width: 180px;
-      text-align: center;
-    }
-
-    .trust-icon {
-      width: 56px;
-      height: 56px;
-      border: 2px solid var(--green);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(74,139,60,0.08);
-    }
-
-    .trust-icon svg {
-      width: 26px;
-      height: 26px;
-      stroke: var(--green);
-      fill: none;
-      stroke-width: 1.8;
-    }
-
-    .trust-text {
-      font-size: 0.85rem;
-      color: var(--muted);
-      font-weight: 400;
-    }
-
-    /* ─── ABOUT SECTION ────────────────────────────────────────── */
-    .about-section {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px 24px 60px;
-    }
-
-    .about-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--cream);
-      text-align: center;
-      margin-bottom: 32px;
-    }
-
-    .about-content {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px;
-      line-height: 1.8;
-      color: var(--white);
-      font-size: 1.05rem;
-      box-shadow: var(--shadow);
-    }
-
-    .about-content p { margin-bottom: 18px; }
-
-    .about-highlight {
-      color: var(--gold);
-      font-weight: 500;
-    }
-
-    /* ─── TESTIMONIALS ─────────────────────────────────────────── */
-    .testimonials-section {
-      max-width: 900px;
-      margin: 0 auto 60px;
-      padding: 0 24px;
-    }
-
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--cream);
-      text-align: center;
-      margin-bottom: 32px;
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-    }
-
-    .testimonial-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-      transition: transform 0.3s ease;
-    }
-
-    .testimonial-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--gold);
-    }
-
-    .testimonial-stars {
-      color: var(--gold);
-      margin-bottom: 12px;
-      font-size: 1.1rem;
-      letter-spacing: 2px;
-    }
-
-    .testimonial-text {
-      font-style: italic;
-      color: var(--white);
-      margin-bottom: 16px;
-      line-height: 1.6;
-    }
-
-    .testimonial-author {
-      font-weight: 500;
-      color: var(--green-lt);
-      font-size: 0.95rem;
-    }
-
-    /* ─── FAQ ACCORDION ────────────────────────────────────────── */
-    .faq-section {
-      max-width: 800px;
-      margin: 0 auto 60px;
-      padding: 0 24px;
-    }
-
-    .faq-item {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      margin-bottom: 12px;
-      overflow: hidden;
-      transition: border-color 0.3s;
-    }
-
-    .faq-item:hover {
-      border-color: var(--gold);
-    }
-
-    .faq-question {
-      padding: 18px 24px;
-      font-weight: 500;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--cream);
-      font-size: 1.05rem;
-      min-height: 44px;
-    }
-
-    .faq-question::after {
-      content: '+';
-      font-size: 1.4rem;
-      color: var(--green);
-      transition: transform 0.3s;
-      flex-shrink: 0;
-    }
-
-    .faq-item.active .faq-question::after {
-      transform: rotate(45deg);
-    }
-
-    .faq-answer {
-      padding: 0 24px;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.35s ease;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .faq-item.active .faq-answer {
-      padding: 0 24px 20px;
-      max-height: 500px;
-    }
-
-    /* ─── CART & CHECKOUT ──────────────────────────────────────── */
-    .cart-container, .checkout-container {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 20px 24px 60px;
-    }
-
-    .cart-title, .checkout-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--cream);
-      text-align: center;
-      margin-bottom: 32px;
-    }
-
-    .cart-empty {
-      text-align: center;
-      padding: 40px 20px;
-      color: var(--muted);
-    }
-
-    .cart-empty svg {
-      width: 64px;
-      height: 64px;
-      stroke: var(--muted);
-      margin-bottom: 20px;
-      opacity: 0.7;
-    }
-
-    .cart-items {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-
-    .cart-item {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 16px;
-      padding: 20px;
-      background: var(--dark);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      align-items: center;
-    }
-
-    .cart-item-info h4 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      color: var(--cream);
-      margin-bottom: 4px;
-    }
-
-    .cart-item-price {
-      color: var(--gold);
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    .cart-item-qty {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .qty-btn {
-      width: 32px;
-      height: 32px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      border-radius: 8px;
-      color: var(--white);
-      font-weight: 500;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
-      min-height: 32px;
-      min-width: 32px;
-    }
-
-    .qty-btn:hover {
-      border-color: var(--green);
-      background: rgba(74,139,60,0.1);
-    }
-
-    .qty-btn:active {
-      transform: scale(0.95);
-    }
-
-    .qty-display {
-      min-width: 24px;
-      text-align: center;
-      font-weight: 500;
-    }
-
-    .cart-item-remove {
-      background: none;
-      border: none;
-      color: var(--muted);
-      cursor: pointer;
-      padding: 4px;
-      border-radius: 6px;
-      transition: all 0.2s;
-      min-height: 32px;
-      min-width: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .cart-item-remove:hover {
-      color: var(--terracotta);
-      background: rgba(201,79,29,0.1);
-    }
-
-    .cart-summary {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px;
-      margin-top: 20px;
-    }
-
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px dashed var(--border);
-    }
-
-    .summary-row:last-child {
-      border-bottom: none;
-      padding-top: 16px;
-      margin-top: 8px;
-      font-weight: 600;
-      font-size: 1.2rem;
-      color: var(--gold);
-    }
-
-    .summary-label { color: var(--muted); }
-    .summary-value { font-weight: 500; }
-
-    .btn-checkout {
-      width: 100%;
-      padding: 16px;
-      background: linear-gradient(135deg, var(--green) 0%, var(--green-lt) 100%);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 44px;
-    }
-
-    .btn-checkout:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(74,139,60,0.4);
-    }
-
-    .btn-checkout:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    /* ─── CHECKOUT FORM ────────────────────────────────────────── */
-    .checkout-form {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px;
-      margin-top: 20px;
-    }
-
-    .form-section {
-      margin-bottom: 28px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .form-section:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .section-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 18px;
-      display: flex; 
-      align-items: center; 
-      gap: 10px;
-      font-weight: 500;
-    }
-    
-    .section-label::after {
-      content: ''; 
-      flex: 1; 
-      height: 1px; 
-      background: var(--border);
-    }
-
-    .field-group { 
-      display: grid; 
-      gap: 18px; 
-    }
-    
-    .field-row { 
-      display: grid; 
-      grid-template-columns: 1fr 1fr; 
-      gap: 14px; 
-    }
-
-    @media (max-width: 520px) {
-      .field-row { grid-template-columns: 1fr; }
-    }
-
-    .field { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 7px; 
-    }
-
-    label {
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 500;
-      transition: color 0.35s;
-    }
-
-    input, select, textarea {
-      background: var(--dark);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--white);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 300;
-      padding: 12px 14px;
-      transition: border-color 0.2s, box-shadow 0.2s, background 0.35s, color 0.35s;
-      outline: none;
-      width: 100%;
-      min-height: 44px;
-    }
-
-    input::placeholder, textarea::placeholder { color: var(--placeholder); }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(74,139,60,0.12);
-    }
-
-    /* Validation styles */
-    input:invalid:not(:placeholder-shown),
-    select:invalid:not([value=""]),
-    textarea:invalid:not(:placeholder-shown) {
-      border-color: var(--terracotta);
-    }
-    
-    input:invalid:not(:placeholder-shown):focus,
-    select:invalid:not([value=""]):focus,
-    textarea:invalid:not(:placeholder-shown):focus {
-      box-shadow: 0 0 0 3px rgba(201,79,29,0.12);
-    }
-
-    select {
-      appearance: none;
-      background-image: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a9a8a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-      padding-right: 36px;
-      cursor: pointer;
-    }
-
-    select option { background: var(--select-bg); color: var(--white); }
-
-    textarea { resize: vertical; min-height: 90px; }
-
-    .delivery-calc {
-      background: rgba(74,139,60,0.08);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
-    }
-
-    .delivery-calc-title {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--green-lt);
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .delivery-calc-row {
-      display: flex;
-      gap: 12px;
-      margin-top: 10px;
-    }
-
-    .delivery-calc select, .delivery-calc input {
-      flex: 1;
-      font-size: 0.9rem;
-      padding: 10px 12px;
-    }
-
-    .delivery-result {
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px dashed var(--border);
-      font-size: 0.9rem;
-      display: flex;
-      justify-content: space-between;
-      color: var(--muted);
-    }
-
-    .delivery-result strong {
-      color: var(--gold);
-      font-weight: 600;
-    }
-
-    /* ─── PAYMENT OPTIONS ──────────────────────────────────────── */
-    .payment-grid { 
-      display: grid; 
-      grid-template-columns: repeat(3, 1fr); 
-      gap: 10px; 
-    }
-
-    @media (max-width: 480px) { 
-      .payment-grid { grid-template-columns: 1fr 1fr; } 
-    }
-
-    .pay-option { position: relative; }
-    .pay-option input[type="radio"] { position: absolute; opacity: 0; width: 0; }
-
-    .pay-label {
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      padding: 14px 10px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-      text-align: center;
-      color: var(--muted);
-      transition: all 0.2s;
-      text-transform: uppercase;
-      min-height: 44px;
-    }
-
-    .pay-label svg { width: 22px; height: 22px; stroke: var(--muted); transition: stroke 0.2s; }
-
-    .pay-option input[type="radio"]:checked + .pay-label {
-      border-color: var(--green);
-      color: var(--green-lt);
-      background: rgba(74,139,60,0.07);
-    }
-
-    .pay-option input[type="radio"]:checked + .pay-label svg { stroke: var(--green); }
-
-    .pay-label:hover { border-color: var(--green); color: var(--white); }
-
-    /* ─── FORM SUBMISSION ──────────────────────────────────────── */
-    .btn-submit {
-      width: 100%;
-      padding: 16px;
-      background: linear-gradient(135deg, var(--green) 0%, var(--green-lt) 100%);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.2s, transform 0.15s, box-shadow 0.2s;
-      position: relative; overflow: hidden;
-      margin-top: 12px;
-      min-height: 44px;
-    }
-
-    .btn-submit:hover {
-      background: linear-gradient(135deg, var(--green-lt) 0%, var(--green) 100%);
-      box-shadow: 0 8px 24px rgba(74,139,60,0.35);
-      transform: translateY(-1px);
-    }
-
-    .btn-submit:active { transform: translateY(0); }
-
-    .btn-submit:disabled {
-      opacity: 0.6; cursor: not-allowed; transform: none;
-    }
-
-    .btn-submit .btn-inner { display: flex; align-items: center; justify-content: center; gap: 8px; }
-
-    .spinner {
-      width: 16px; height: 16px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-top-color: #fff;
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      display: none;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ─── SUCCESS STATE ────────────────────────────────────────── */
-    .success-msg {
-      display: none;
-      text-align: center;
-      padding: 40px 20px;
-      animation: rise 0.5s ease both;
-    }
-
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .success-icon {
-      width: 64px; height: 64px;
-      border: 2px solid var(--green);
-      border-radius: 50%;
-      display: inline-flex; align-items: center; justify-content: center;
-      margin-bottom: 20px;
-      background: rgba(74,139,60,0.1);
-    }
-
-    .success-icon svg { width: 28px; height: 28px; stroke: var(--green); fill: none; }
-
-    .success-msg h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem; font-weight: 700;
-      color: var(--cream);
-      margin-bottom: 10px;
-    }
-
-    .order-id {
-      display: inline-block;
-      padding: 6px 16px;
-      background: var(--cream);
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--deep-brown);
-      margin: 12px 0 20px;
-    }
-
-    .order-summary-mini {
-      background: var(--dark);
-      border-radius: 12px;
-      padding: 16px;
-      margin: 20px 0;
-      text-align: left;
-    }
-
-    .next-steps {
-      background: rgba(74,139,60,0.08);
-      border-radius: 12px;
-      padding: 16px;
-      margin: 20px 0;
-      text-align: left;
-    }
-
-    .next-steps p {
-      margin: 8px 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .success-actions {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 24px;
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--green);
-      color: var(--green-lt);
-      border-radius: 10px;
-      padding: 12px 24px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-    }
-
-    .btn-outline:hover {
-      background: rgba(74,139,60,0.1);
-      transform: translateY(-2px);
-    }
-
-    .success-msg p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
-
-    /* ─── ERROR & VALIDATION MESSAGES ──────────────────────────── */
-    .error-bar {
-      display: none;
-      background: rgba(201,79,29,0.15);
-      border: 1px solid rgba(201,79,29,0.4);
-      border-radius: 8px;
-      padding: 12px 16px;
-      color: #ff9999;
-      font-size: 0.85rem;
-      margin-top: 14px;
-      text-align: center;
-    }
-
-    .field-error {
-      color: var(--terracotta);
-      font-size: 0.8rem;
-      margin-top: 4px;
-      display: none;
-    }
-
-    .field.error .field-error {
-      display: block;
-    }
-
-    .field.error input,
-    .field.error select,
-    .field.error textarea {
-      border-color: var(--terracotta);
-    }
-
-    /* ─── TOAST NOTIFICATIONS ──────────────────────────────────── */
-    .toast {
-      position: fixed;
-      bottom: 90px;
-      right: 24px;
-      background: var(--card);
-      border: 1px solid var(--green);
-      border-left: 4px solid var(--green);
-      border-radius: 10px;
-      padding: 12px 20px;
-      color: var(--white);
-      font-size: 0.9rem;
-      box-shadow: var(--shadow);
-      z-index: 2000;
-      animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
-      max-width: 300px;
-    }
-
-    @keyframes slideIn {
-      from { transform: translateX(100px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    @keyframes fadeOut {
-      from { opacity: 1; transform: translateX(0); }
-      to { opacity: 0; transform: translateX(50px); }
-    }
-
-    /* ─── WHATSAPP FLOATING BUTTON ─────────────────────────────── */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 999;
-      background: #25D366;
-      color: white;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-      text-decoration: none;
-      transition: all 0.3s ease;
-      animation: pulse 2s infinite;
-      min-height: 56px;
-      min-width: 56px;
-    }
-
-    .whatsapp-float:hover {
-      transform: scale(1.08);
-      box-shadow: 0 6px 28px rgba(37, 211, 102, 0.6);
-    }
-
-    .whatsapp-float:active {
-      transform: scale(1);
-    }
-
-    .whatsapp-float svg {
-      width: 28px;
-      height: 28px;
-      fill: white;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-      70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-    }
-
-    /* ─── FOOTER ───────────────────────────────────────────────── */
-    footer {
-      text-align: center;
-      padding: 32px 24px;
-      color: var(--muted);
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-      position: relative; z-index: 1;
-      transition: color 0.35s;
-      border-top: 1px solid var(--border);
-      margin-top: 40px;
-    }
-
-    footer a { color: var(--green); text-decoration: none; }
-    footer a:hover { color: var(--gold); }
-
-    /* ─── RESPONSIVE DESIGN ────────────────────────────────────── */
-    @media (max-width: 768px) {
-      .nav-menu {
-        position: fixed;
-        top: 72px;
-        left: 0;
-        right: 0;
-        background: var(--card);
-        flex-direction: column;
-        padding: 24px;
-        gap: 20px;
-        border-bottom: 1px solid var(--border);
-        transform: translateY(-150%);
-        transition: transform 0.35s ease;
-        z-index: 999;
-        box-shadow: var(--shadow);
-      }
-
-      .nav-menu.active {
-        transform: translateY(0);
-      }
-
-      .nav-toggle {
-        display: flex;
-      }
-
-      .nav-actions {
-        gap: 12px;
-      }
-
-      .theme-toggle, .cart-toggle {
-        padding: 6px 12px;
-        font-size: 0.68rem;
-      }
-
-      .hero h1 {
-        font-size: clamp(2.4rem, 8vw, 4rem);
-      }
-
-      .products-grid {
-        grid-template-columns: 1fr;
-        padding: 0 20px;
-      }
-
-      .trust-badges {
-        gap: 20px;
-        padding: 0 20px;
-      }
-
-      .cart-item {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .cart-item-qty {
-        justify-content: center;
-      }
-
-      .payment-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      /* Mobile checkout bar */
-      .mobile-checkout-bar {
-        position: fixed;
-        bottom: 0; left: 0; right: 0;
-        background: var(--card);
-        border-top: 1px solid var(--border);
-        padding: 12px 24px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 900;
-        box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
-      }
-      
-      .mobile-checkout-bar .total {
-        font-weight: 600;
-        color: var(--gold);
-      }
-      
-      .mobile-checkout-bar .btn-checkout {
-        margin: 0;
-        padding: 12px 24px;
-        font-size: 0.85rem;
-      }
-    }
-
-    @media (max-width: 420px) {
-      .nav-logo span { display: none; }
-      .hero { padding: 30px 16px 50px; }
-      .card, .checkout-form, .about-content {
-        padding: 24px 20px;
-      }
-      .product-image {
-        width: 150px;
-        height: 150px;
-      }
-      .product-price {
-        font-size: 1.6rem;
-      }
-      .success-actions {
-        flex-direction: column;
-        align-items: center;
-      }
-      .btn-outline, .btn-add {
-        width: 100%;
-        max-width: 280px;
-      }
-    }
-
-    /* ─── PROGRESS INDICATOR (Checkout) ───────────────────────── */
-    .checkout-progress {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 32px;
-      position: relative;
-    }
-    
-    .checkout-progress::before {
-      content: '';
-      position: absolute;
-      top: 16px;
-      left: 20px;
-      right: 20px;
-      height: 2px;
-      background: var(--border);
-      z-index: 1;
-    }
-    
-    .progress-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      position: relative;
-      z-index: 2;
-      flex: 1;
-    }
-    
-    .step-number {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--card);
-      border: 2px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--muted);
-      transition: all 0.3s;
-    }
-    
-    .progress-step.active .step-number {
-      background: var(--green);
-      border-color: var(--green);
-      color: white;
-    }
-    
-    .progress-step.completed .step-number {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: white;
-    }
-    
-    .step-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    
-    .progress-step.active .step-label {
-      color: var(--green-lt);
-      font-weight: 500;
-    }
-  </style>
-<base target="_blank">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Synthova Oil — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<style>
+/* ══════════════════════════════════════
+   TOKENS
+══════════════════════════════════════ */
+:root {
+  --ink:       #0d1008;
+  --surface:   #f5f2eb;
+  --card:      #ffffff;
+  --border:    #e4dfd4;
+  --border2:   #cfc9bc;
+  --gold:      #c8860a;
+  --gold-lt:   #e8a020;
+  --gold-pale: #fdf3e0;
+  --green:     #3a7a2c;
+  --green-lt:  #52a840;
+  --green-pale:#eaf5e6;
+  --terra:     #c94f1d;
+  --terra-pale:#fdeee8;
+  --blue:      #3949ab;
+  --blue-pale: #e8eaf6;
+  --muted:     #7a7060;
+  --muted2:    #a8a090;
+  --white:     #ffffff;
+  --r-sm: 8px; --r-md: 14px; --r-lg: 20px; --r-xl: 28px;
+  --shadow: 0 1px 3px rgba(13,16,8,.06), 0 4px 16px rgba(13,16,8,.08);
+  --shadow-md: 0 2px 8px rgba(13,16,8,.08), 0 8px 32px rgba(13,16,8,.10);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; }
+
+body {
+  background: var(--surface);
+  color: var(--ink);
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 400;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(200,134,10,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,134,10,.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+/* ── LAYOUT ── */
+.shell { position: relative; z-index: 1; max-width: 1380px; margin: 0 auto; padding: 0 24px 60px; }
+
+/* ── TOPBAR ── */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 0 0; flex-wrap: wrap; gap: 16px;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-dot {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--gold), var(--terra));
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+}
+.brand h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--ink); letter-spacing: -0.02em; }
+.brand span { font-weight: 400; font-size: 0.8rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-top: -2px; }
+.topbar-right { display: flex; align-items: center; gap: 12px; }
+
+.period-pill { display: flex; background: var(--card); border: 1px solid var(--border); border-radius: 50px; padding: 3px; gap: 2px; }
+.period-btn { padding: 5px 14px; border: none; border-radius: 50px; font-family: 'Instrument Sans', sans-serif; font-size: 0.78rem; font-weight: 500; color: var(--muted); background: none; cursor: pointer; transition: all 0.2s; letter-spacing: 0.04em; }
+.period-btn.active { background: var(--ink); color: var(--white); }
+
+.refresh-btn { display: flex; align-items: center; gap: 7px; padding: 8px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 50px; font-family: 'Instrument Sans', sans-serif; font-size: 0.78rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.2s; }
+.refresh-btn:hover { border-color: var(--green); color: var(--green); }
+.refresh-btn svg { width: 14px; height: 14px; }
+.last-updated { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted2); }
+
+/* ══════════════════════════════════════
+   TAB NAV (NEW)
+══════════════════════════════════════ */
+.tab-nav {
+  display: flex; gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin: 24px 0 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.tab-nav::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 11px 22px;
+  border: none; border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  background: none;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 0.82rem; font-weight: 500;
+  color: var(--muted); cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+.tab-btn:hover { color: var(--ink); }
+.tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); font-weight: 600; }
+.tab-btn .tab-badge {
+  background: var(--gold-pale); color: var(--gold);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 1px 7px; border-radius: 50px;
+  font-family: 'DM Mono', monospace;
+}
+.tab-btn .tab-badge.green { background: var(--green-pale); color: var(--green); }
+
+.tab-panel { display: none; padding-top: 28px; }
+.tab-panel.active { display: block; }
+
+/* ══════════════════════════════════════
+   LOADING / ERROR
+══════════════════════════════════════ */
+.state-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: var(--surface);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+}
+.state-overlay.hidden { display: none; }
+.loader-ring { width: 48px; height: 48px; border: 3px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.state-overlay h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--ink); }
+.state-overlay p { color: var(--muted); font-size: 0.9rem; text-align: center; max-width: 320px; }
+.retry-btn { padding: 10px 24px; background: var(--gold); color: var(--white); border: none; border-radius: 50px; font-family: 'Instrument Sans', sans-serif; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.2s; display: none; }
+.retry-btn:hover { background: var(--gold-lt); }
+
+/* ══════════════════════════════════════
+   KPI STRIP
+══════════════════════════════════════ */
+.kpi-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 24px; }
+.kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 22px 24px; position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+.kpi-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.kpi-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.kpi-card.gold::after  { background: linear-gradient(90deg, var(--gold), var(--gold-lt)); }
+.kpi-card.green::after { background: linear-gradient(90deg, var(--green), var(--green-lt)); }
+.kpi-card.terra::after { background: linear-gradient(90deg, var(--terra), #e8722a); }
+.kpi-card.ink::after   { background: linear-gradient(90deg, var(--ink), #3a4020); }
+.kpi-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.kpi-value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; color: var(--ink); line-height: 1; letter-spacing: -0.03em; }
+.kpi-value.mono { font-family: 'DM Mono', monospace; font-weight: 500; font-size: 1.7rem; }
+.kpi-sub { margin-top: 8px; font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.kpi-sub .badge { font-size: 0.7rem; font-weight: 600; padding: 2px 7px; border-radius: 50px; }
+.badge.up   { background: var(--green-pale); color: var(--green); }
+.badge.down { background: var(--terra-pale); color: var(--terra); }
+.badge.flat { background: var(--gold-pale);  color: var(--gold); }
+.kpi-icon { position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.kpi-card.gold  .kpi-icon { background: var(--gold-pale); }
+.kpi-card.green .kpi-icon { background: var(--green-pale); }
+.kpi-card.terra .kpi-icon { background: var(--terra-pale); }
+.kpi-card.ink   .kpi-icon { background: #f0ede6; }
+
+/* ══════════════════════════════════════
+   CASH FLOW ROW (NEW)
+══════════════════════════════════════ */
+.cf-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 24px; }
+.cf-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg);
+  padding: 20px 22px; position: relative; overflow: hidden;
+}
+.cf-card-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.cf-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.cf-value { font-family: 'DM Mono', monospace; font-size: 1.55rem; font-weight: 500; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 6px; }
+.cf-sub { font-size: 0.76rem; color: var(--muted2); }
+.cf-bar-track { margin-top: 14px; height: 4px; background: var(--surface); border-radius: 50px; overflow: hidden; }
+.cf-bar-fill { height: 100%; border-radius: 50px; transition: width 1s cubic-bezier(.4,0,.2,1); }
+
+/* ══════════════════════════════════════
+   CHARTS ROW
+══════════════════════════════════════ */
+.charts-row { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 24px; }
+.chart-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 24px; }
+.chart-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+.chart-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--ink); }
+.chart-sub { font-size: 0.75rem; color: var(--muted); margin-top: 3px; }
+.chart-legend { display: flex; gap: 14px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--muted); }
+.legend-dot { width: 8px; height: 8px; border-radius: 2px; }
+.chart-wrap { position: relative; height: 240px; }
+.chart-wrap.donut { height: 220px; }
+
+/* ── MID ROW ── */
+.mid-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.product-bar-item { margin-bottom: 14px; }
+.product-bar-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.product-bar-name { font-size: 0.85rem; font-weight: 500; color: var(--ink); }
+.product-bar-val  { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--muted); }
+.product-bar-track { height: 8px; background: var(--surface); border-radius: 50px; overflow: hidden; }
+.product-bar-fill { height: 100%; border-radius: 50px; transition: width 1s cubic-bezier(0.4,0,0.2,1); width: 0; }
+.state-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.state-row:last-child { border-bottom: none; }
+.state-flag { width: 28px; height: 28px; border-radius: var(--r-sm); background: var(--gold-pale); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+.state-name { font-size: 0.88rem; font-weight: 500; flex: 1; }
+.state-orders { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--muted); }
+.state-rev { font-family: 'DM Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--ink); }
+
+/* ══════════════════════════════════════
+   ORDERS TABLE
+══════════════════════════════════════ */
+.table-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; margin-bottom: 24px; }
+.table-topbar { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px 16px; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
+.table-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--ink); }
+.search-box { display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 50px; padding: 6px 14px; font-family: 'Instrument Sans', sans-serif; font-size: 0.82rem; color: var(--ink); }
+.search-box svg { width: 13px; height: 13px; stroke: var(--muted); flex-shrink: 0; }
+.search-box input { border: none; background: none; outline: none; font-family: inherit; font-size: inherit; color: inherit; width: 180px; }
+.search-box input::placeholder { color: var(--muted2); }
+.status-filter { display: flex; gap: 6px; flex-wrap: wrap; }
+.filter-chip { padding: 4px 12px; border: 1px solid var(--border); border-radius: 50px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); background: var(--card); cursor: pointer; transition: all 0.18s; }
+.filter-chip.active, .filter-chip:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.tbl { width: 100%; border-collapse: collapse; }
+.tbl thead tr { background: var(--surface); }
+.tbl th { padding: 10px 16px; text-align: left; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); white-space: nowrap; }
+.tbl td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 0.85rem; vertical-align: middle; }
+.tbl tbody tr:last-child td { border-bottom: none; }
+.tbl tbody tr { transition: background 0.15s; }
+.tbl tbody tr:hover { background: var(--surface); }
+.order-id { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--muted); }
+.customer-name { font-weight: 500; }
+.customer-phone { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+.amount { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--ink); }
+.status-pill { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 50px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
+.status-pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: 0.7; }
+.status-pending    { background: var(--gold-pale);  color: var(--gold); }
+.status-completed  { background: var(--green-pale); color: var(--green); }
+.status-dispatched { background: var(--blue-pale);  color: var(--blue); }
+.status-test       { background: #f0ede6; color: var(--muted); }
+.status-cancelled  { background: var(--terra-pale); color: var(--terra); }
+.pay-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; }
+.pay-paystack { background: #e8f5e9; color: #2e7d32; }
+.pay-transfer { background: var(--gold-pale); color: var(--gold); }
+.pay-cash     { background: #f0ede6; color: var(--muted); }
+.pay-pos      { background: var(--blue-pale); color: var(--blue); }
+.items-cell { font-size: 0.78rem; color: var(--muted); max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row-action { background: none; border: 1px solid var(--border); border-radius: var(--r-sm); padding: 4px 10px; font-family: 'Instrument Sans', sans-serif; font-size: 0.72rem; color: var(--muted); cursor: pointer; transition: all 0.18s; }
+.row-action:hover { border-color: var(--green); color: var(--green); }
+.table-footer { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 10px; }
+.table-info { font-size: 0.78rem; color: var(--muted); }
+.pagination { display: flex; gap: 4px; }
+.page-btn { width: 30px; height: 30px; border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--card); color: var(--muted); font-size: 0.78rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.18s; }
+.page-btn.active { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.page-btn:hover:not(.active) { border-color: var(--green); color: var(--green); }
+.empty-row td { text-align: center; padding: 40px !important; color: var(--muted); font-size: 0.9rem; }
+
+/* ══════════════════════════════════════
+   DELIVERY TAB (NEW)
+══════════════════════════════════════ */
+.delivery-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+}
+.delivery-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--ink); }
+.delivery-sub { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+
+.slot-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 28px; }
+.slot-card {
+  background: var(--card); border: 2px solid var(--border); border-radius: var(--r-lg);
+  padding: 20px 22px; cursor: pointer; transition: all 0.2s;
+}
+.slot-card:hover { border-color: var(--gold); box-shadow: var(--shadow); }
+.slot-card.active { border-color: var(--gold); background: var(--gold-pale); }
+.slot-day { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--ink); letter-spacing: -0.01em; }
+.slot-date { font-size: 0.75rem; color: var(--muted); margin-top: 2px; font-family: 'DM Mono', monospace; }
+.slot-count {
+  margin-top: 16px; display: flex; align-items: flex-end; justify-content: space-between;
+}
+.slot-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; line-height: 1; color: var(--ink); letter-spacing: -0.03em; }
+.slot-label { font-size: 0.72rem; color: var(--muted); margin-bottom: 4px; }
+.slot-indicator {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--border2); transition: background 0.2s;
+}
+.slot-card.active .slot-indicator { background: var(--gold); }
+.slot-card.has-orders .slot-indicator { background: var(--terra); }
+.slot-card.active.has-orders .slot-indicator { background: var(--gold); }
+
+.manifest-section {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.manifest-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 24px; border-bottom: 1px solid var(--border);
+  flex-wrap: wrap; gap: 10px;
+}
+.manifest-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--ink); }
+.manifest-sub { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+
+.batch-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 18px; border: none; border-radius: 50px;
+  background: var(--green); color: var(--white);
+  font-family: 'Instrument Sans', sans-serif; font-size: 0.78rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.batch-btn:hover { background: var(--green-lt); }
+.batch-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.batch-btn svg { width: 14px; height: 14px; }
+
+.manifest-item {
+  display: grid;
+  grid-template-columns: 40px 1fr 180px 120px 100px 90px;
+  align-items: center; gap: 12px;
+  padding: 14px 24px; border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.manifest-item:last-child { border-bottom: none; }
+.manifest-item:hover { background: var(--surface); }
+
+.manifest-num {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--surface); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--muted);
+  flex-shrink: 0;
+}
+.manifest-customer { min-width: 0; }
+.manifest-name { font-weight: 500; font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.manifest-phone { font-size: 0.72rem; color: var(--muted); margin-top: 1px; }
+.manifest-address-text { font-size: 0.76rem; color: var(--muted); line-height: 1.4; }
+.manifest-items-text { font-size: 0.76rem; color: var(--muted); }
+.manifest-amount { font-family: 'DM Mono', monospace; font-size: 0.88rem; font-weight: 500; white-space: nowrap; }
+
+.manifest-empty { text-align: center; padding: 40px; color: var(--muted2); font-size: 0.88rem; }
+
+/* ══════════════════════════════════════
+   NEWSLETTER TAB (NEW)
+══════════════════════════════════════ */
+.nl-grid { display: grid; grid-template-columns: 380px 1fr; gap: 20px; align-items: start; }
+
+.nl-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.nl-card-header { padding: 18px 22px 16px; border-bottom: 1px solid var(--border); }
+.nl-card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--ink); }
+.nl-card-sub { font-size: 0.74rem; color: var(--muted); margin-top: 3px; }
+.nl-card-body { padding: 20px 22px; }
+
+.nl-field { margin-bottom: 14px; }
+.nl-label { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.nl-input {
+  width: 100%;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--ink); font-family: 'Instrument Sans', sans-serif;
+  font-size: 0.86rem; padding: 9px 12px; outline: none;
+  border-radius: var(--r-sm); transition: border-color 0.2s;
+}
+.nl-input:focus { border-color: var(--gold); }
+.nl-input::placeholder { color: var(--muted2); }
+.nl-input.textarea { resize: vertical; min-height: 140px; line-height: 1.6; }
+.nl-input.select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237a7060' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 30px; cursor: pointer; }
+
+.nl-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.nl-submit {
+  width: 100%; padding: 11px;
+  background: var(--ink); color: var(--white);
+  border: none; border-radius: var(--r-sm);
+  font-family: 'Instrument Sans', sans-serif; font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; letter-spacing: 0.02em;
+  margin-top: 4px;
+}
+.nl-submit:hover { background: var(--gold); }
+.nl-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.nl-feedback { margin-top: 10px; font-size: 0.78rem; text-align: center; min-height: 20px; }
+.nl-feedback.ok  { color: var(--green); }
+.nl-feedback.err { color: var(--terra); }
+
+/* Posts list */
+.nl-posts-wrap { overflow-x: auto; }
+.nl-posts-tbl { width: 100%; border-collapse: collapse; }
+.nl-posts-tbl th { padding: 9px 16px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); background: var(--surface); text-align: left; white-space: nowrap; }
+.nl-posts-tbl td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 0.84rem; vertical-align: middle; }
+.nl-posts-tbl tbody tr:last-child td { border-bottom: none; }
+.nl-posts-tbl tbody tr:hover { background: var(--surface); }
+
+.nl-post-title { font-weight: 500; }
+.nl-post-issue { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); }
+.nl-post-date  { font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+
+.nl-status { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 50px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+.nl-status::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
+.nl-status.published { background: var(--green-pale); color: var(--green); }
+.nl-status.draft     { background: var(--gold-pale);  color: var(--gold); }
+
+.nl-action { background: none; border: 1px solid var(--border); border-radius: 6px; padding: 3px 9px; font-family: 'Instrument Sans', sans-serif; font-size: 0.7rem; color: var(--muted); cursor: pointer; transition: all 0.18s; }
+.nl-action:hover { border-color: var(--green); color: var(--green); }
+.nl-action.danger:hover { border-color: var(--terra); color: var(--terra); }
+
+/* Subscribers card */
+.sub-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 18px 22px; }
+.sub-stat-item { padding: 14px; background: var(--surface); border-radius: var(--r-md); }
+.sub-stat-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.6rem; color: var(--ink); letter-spacing: -0.02em; }
+.sub-stat-label { font-size: 0.72rem; color: var(--muted); margin-top: 3px; }
+
+/* ══════════════════════════════════════
+   STATUS MODAL
+══════════════════════════════════════ */
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(13,16,8,0.5); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.25s;
+}
+.modal-backdrop.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--r-xl);
+  padding: 32px; width: min(480px, calc(100vw - 48px));
+  box-shadow: var(--shadow-md); transform: translateY(12px); transition: transform 0.25s;
+}
+.modal-backdrop.open .modal { transform: translateY(0); }
+.modal h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 6px; color: var(--ink); }
+.modal-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 20px; }
+.modal-order-id { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--gold); }
+.status-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+.status-opt { padding: 12px 14px; border: 1.5px solid var(--border); border-radius: var(--r-md); cursor: pointer; transition: all 0.18s; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 500; }
+.status-opt:hover { border-color: var(--ink); }
+.status-opt.selected { border-color: var(--green); background: var(--green-pale); }
+.status-opt-dot { width: 8px; height: 8px; border-radius: 50%; }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+.btn-cancel { padding: 9px 20px; border: 1px solid var(--border); border-radius: 50px; background: var(--card); font-family: 'Instrument Sans', sans-serif; font-size: 0.82rem; color: var(--muted); cursor: pointer; transition: all 0.18s; }
+.btn-cancel:hover { border-color: var(--muted); color: var(--ink); }
+.btn-confirm { padding: 9px 20px; border: none; border-radius: 50px; background: var(--green); color: var(--white); font-family: 'Instrument Sans', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.18s; }
+.btn-confirm:hover { background: var(--green-lt); }
+.btn-confirm:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .charts-row { grid-template-columns: 1fr; }
+  .mid-row    { grid-template-columns: 1fr 1fr; }
+  .kpi-grid   { grid-template-columns: repeat(2,1fr); }
+  .cf-row     { grid-template-columns: 1fr 1fr; }
+  .nl-grid    { grid-template-columns: 1fr; }
+}
+@media (max-width: 860px) {
+  .slot-cards { grid-template-columns: 1fr 1fr 1fr; }
+  .manifest-item { grid-template-columns: 32px 1fr 1fr 80px; }
+  .manifest-item > *:nth-child(n+5) { display: none; }
+}
+@media (max-width: 700px) {
+  .kpi-grid   { grid-template-columns: 1fr 1fr; }
+  .cf-row     { grid-template-columns: 1fr; }
+  .mid-row    { grid-template-columns: 1fr; }
+  .slot-cards { grid-template-columns: 1fr; }
+  .status-options { grid-template-columns: 1fr; }
+  .tbl th:nth-child(n+5), .tbl td:nth-child(n+5) { display: none; }
+  .search-box input { width: 120px; }
+}
+@media (max-width: 480px) {
+  .kpi-grid { grid-template-columns: 1fr; }
+  .topbar   { flex-direction: column; align-items: flex-start; }
+}
+</style>
 </head>
 <body>
 
-  <!-- NAVIGATION HEADER -->
-  <header class="nav-header">
-    <a href="#home" class="nav-logo" data-page="home" aria-label="Synthova Oil Home">
-      <img src="https://res.cloudinary.com/dc2gwj09q/image/upload/f_auto,q_auto/file_00000000f4b871f4bf0aab23ea93084a-removebg-preview_badboh" alt="Synthova Oil" width="36" height="36" />
-      <span>Synthova Oil</span>
-    </a>
-    
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
-      <span class="sr-only">Menu</span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    
-    <nav>
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
-        <li><a href="#about" class="nav-link" data-page="about">About Us</a></li>
-        <li><a href="#cart" class="nav-link" data-page="cart">Cart <span class="cart-count" id="cartCount">0</span></a></li>
-        <li><a href="#checkout" class="nav-link" data-page="checkout">Checkout</a></li>
-      </ul>
-    </nav>
-    
-    <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
-        <span class="toggle-icon-wrap" aria-hidden="true">
-          <svg class="toggle-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-          <svg class="toggle-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="4"/>
-            <line x1="12" y1="2" x2="12" y2="4"/>
-            <line x1="12" y1="20" x2="12" y2="22"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="2" y1="12" x2="4" y2="12"/>
-            <line x1="20" y1="12" x2="22" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-          </svg>
-        </span>
-        <span id="toggleLabel">Light</span>
-      </button>
-      <a href="#cart" class="cart-toggle" data-page="cart" aria-label="View cart">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+<!-- ══ LOADING OVERLAY ══ -->
+<div class="state-overlay" id="loadingOverlay">
+  <div class="loader-ring"></div>
+  <h2>Loading dashboard…</h2>
+  <p>Fetching orders from Google Sheets</p>
+  <button class="retry-btn" id="retryBtn" onclick="loadData()">Try Again</button>
+</div>
+
+<!-- ══ MAIN SHELL ══ -->
+<div class="shell" id="mainShell" style="display:none">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-dot">🛢</div>
+      <div>
+        <h1>Synthova Oil</h1>
+        <span>Admin Dashboard</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="period-pill">
+        <button class="period-btn active" data-period="all">All Time</button>
+        <button class="period-btn" data-period="month">This Month</button>
+        <button class="period-btn" data-period="week">This Week</button>
+      </div>
+      <button class="refresh-btn" onclick="loadData()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
         </svg>
-        <span class="cart-count" id="cartCountNav">0</span>
-        <span class="sr-only">Cart items</span>
-      </a>
+        Refresh
+      </button>
+      <span class="last-updated" id="lastUpdated">—</span>
     </div>
-  </header>
+  </div>
 
-  <!-- HOME VIEW -->
-  <section id="home" class="page-view active" aria-labelledby="home-heading">
-    <!-- HERO -->
-    <header class="hero">
-      <h1 id="home-heading" class="sr-only">Synthova Oil - Premium Palm Oil</h1>
-      <div class="logo-wrap">
-        <img src="https://res.cloudinary.com/dc2gwj09q/image/upload/f_auto,q_auto/file_00000000f4b871f4bf0aab23ea93084a-removebg-preview_badboh" alt="Synthova Oil logo" class="logo-img" width="140" height="140" loading="eager" />
+  <!-- TAB NAV -->
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="overview">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Overview
+    </button>
+    <button class="tab-btn" data-tab="orders">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      Orders <span class="tab-badge" id="tabBadgeOrders">—</span>
+    </button>
+    <button class="tab-btn" data-tab="deliveries">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      Deliveries <span class="tab-badge green" id="tabBadgeDeliveries">—</span>
+    </button>
+    <button class="tab-btn" data-tab="newsletter">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Newsletter
+    </button>
+  </nav>
+
+  <!-- ═══ TAB: OVERVIEW ═══════════════════════════════════ -->
+  <div class="tab-panel active" id="tab-overview">
+
+    <!-- KPI STRIP -->
+    <div class="kpi-grid">
+      <div class="kpi-card gold">
+        <div class="kpi-icon">💰</div>
+        <div class="kpi-label">Total Revenue</div>
+        <div class="kpi-value mono" id="kpiRevenue">—</div>
+        <div class="kpi-sub"><span class="badge flat" id="kpiRevenueNote">—</span></div>
       </div>
-      <h1 aria-hidden="true">Synthova <span>Oil</span></h1>
-      <p class="hero-sub">100% Pure &amp; Natural Palm Oil</p>
-      <p class="tagline">… from nature's bounty to your kitchen</p>
-      <div class="divider" aria-hidden="true"><div class="divider-dot"></div></div>
-    </header>
+      <div class="kpi-card green">
+        <div class="kpi-icon">📦</div>
+        <div class="kpi-label">Total Orders</div>
+        <div class="kpi-value" id="kpiOrders">—</div>
+        <div class="kpi-sub" id="kpiOrdersSub">—</div>
+      </div>
+      <div class="kpi-card terra">
+        <div class="kpi-icon">🛢</div>
+        <div class="kpi-label">Bottles Sold</div>
+        <div class="kpi-value" id="kpiBottles">—</div>
+        <div class="kpi-sub" id="kpiBottlesSub">—</div>
+      </div>
+      <div class="kpi-card ink">
+        <div class="kpi-icon">📊</div>
+        <div class="kpi-label">Avg Order Value</div>
+        <div class="kpi-value mono" id="kpiAov">—</div>
+        <div class="kpi-sub" id="kpiAovSub">—</div>
+      </div>
+    </div>
 
-    <!-- PRODUCTS GRID -->
-    <div class="products-grid" role="list">
-      <!-- Product 1: 75cl -->
-      <article class="product-card" role="listitem">
-        <div class="product-image" aria-hidden="true">
-          <svg viewBox="0 0 100 100">
-            <path d="M30 20 L70 20 L75 80 Q75 90 65 90 L35 90 Q25 90 25 80 Z" stroke-width="2"/>
-            <path d="M40 20 L40 10 Q40 5 50 5 Q60 5 60 10 L60 20" stroke-width="2"/>
-            <circle cx="50" cy="50" r="15" fill="none" stroke-width="1.5" opacity="0.6"/>
-          </svg>
+    <!-- CASH FLOW ROW -->
+    <div class="cf-row">
+      <div class="cf-card">
+        <div class="cf-card-label">
+          <span class="cf-dot" style="background:var(--green)"></span>
+          Cash Collected
         </div>
-        <h3 class="product-name">75cl Bottle</h3>
-        <p class="product-desc">Perfect for small households and weekly cooking needs</p>
-        <div class="product-price"><span>₦</span>1,600</div>
-        <button class="btn-add" data-product="Synthova Palm Oil - 75cl" data-price="1600" data-size="75cl" aria-label="Add 75cl bottle to cart">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-          Add to Cart
+        <div class="cf-value" id="cfCollected">—</div>
+        <div class="cf-sub" id="cfCollectedSub">from completed orders</div>
+        <div class="cf-bar-track">
+          <div class="cf-bar-fill" id="cfCollectedBar" style="width:0%;background:var(--green)"></div>
+        </div>
+      </div>
+      <div class="cf-card">
+        <div class="cf-card-label">
+          <span class="cf-dot" style="background:var(--gold)"></span>
+          Outstanding (Pending)
+        </div>
+        <div class="cf-value" id="cfPending">—</div>
+        <div class="cf-sub" id="cfPendingSub">awaiting collection</div>
+        <div class="cf-bar-track">
+          <div class="cf-bar-fill" id="cfPendingBar" style="width:0%;background:var(--gold)"></div>
+        </div>
+      </div>
+      <div class="cf-card">
+        <div class="cf-card-label">
+          <span class="cf-dot" style="background:var(--blue)"></span>
+          Delivery Fee Revenue
+        </div>
+        <div class="cf-value" id="cfDelivery">—</div>
+        <div class="cf-sub" id="cfDeliverySub">% of total revenue</div>
+        <div class="cf-bar-track">
+          <div class="cf-bar-fill" id="cfDeliveryBar" style="width:0%;background:var(--blue)"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHARTS ROW -->
+    <div class="charts-row">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title">Revenue Over Time</div>
+            <div class="chart-sub">Daily order totals</div>
+          </div>
+          <div class="chart-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div> Revenue</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Orders</div>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="revenueChart"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title">Payment Methods</div>
+            <div class="chart-sub">By order count</div>
+          </div>
+        </div>
+        <div class="chart-wrap donut"><canvas id="paymentChart"></canvas></div>
+      </div>
+    </div>
+
+    <!-- MID ROW -->
+    <div class="mid-row">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div><div class="chart-title">Product Performance</div><div class="chart-sub">Units sold & revenue</div></div>
+        </div>
+        <div id="productBars" style="margin-top:8px"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div><div class="chart-title">Orders by State</div><div class="chart-sub">Geographic distribution</div></div>
+        </div>
+        <div id="stateList" style="margin-top:4px"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div><div class="chart-title">Order Volume by Hour</div><div class="chart-sub">When customers order</div></div>
+        </div>
+        <div class="chart-wrap" style="height:180px;margin-top:8px"><canvas id="hourChart"></canvas></div>
+      </div>
+    </div>
+
+  </div><!-- /tab-overview -->
+
+  <!-- ═══ TAB: ORDERS ══════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-orders">
+    <div class="table-card">
+      <div class="table-topbar">
+        <div class="table-title">All Orders</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="searchInput" placeholder="Search name, phone, order ID…">
+          </div>
+          <div class="status-filter">
+            <button class="filter-chip active" data-status="all">All</button>
+            <button class="filter-chip" data-status="Pending">Pending</button>
+            <button class="filter-chip" data-status="Dispatched">Dispatched</button>
+            <button class="filter-chip" data-status="Completed">Completed</button>
+          </div>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th>
+              <th>Payment</th><th>State</th><th>Date</th><th>Status</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="ordersTableBody"></tbody>
+        </table>
+      </div>
+      <div class="table-footer">
+        <span class="table-info" id="tableInfo">— orders</span>
+        <div class="pagination" id="pagination"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB: DELIVERIES ══════════════════════════════════ -->
+  <div class="tab-panel" id="tab-deliveries">
+
+    <div class="delivery-header">
+      <div>
+        <div class="delivery-title">Delivery Queue</div>
+        <div class="delivery-sub">Mon · Wed · Sat — Ugbowo, Benin City</div>
+      </div>
+    </div>
+
+    <!-- Next 3 delivery slot cards -->
+    <div class="slot-cards" id="slotCards"></div>
+
+    <!-- Manifest for selected slot -->
+    <div class="manifest-section" id="manifestSection">
+      <div class="manifest-header">
+        <div>
+          <div class="manifest-title" id="manifestTitle">Select a delivery slot above</div>
+          <div class="manifest-sub" id="manifestSub"></div>
+        </div>
+        <button class="batch-btn" id="batchDispatchBtn" onclick="batchDispatch()" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Mark All Dispatched
         </button>
-      </article>
-      
-      <!-- Product 2: 150cl (Featured) -->
-      <article class="product-card featured" role="listitem">
-        <div class="product-image" aria-hidden="true">
-          <svg viewBox="0 0 100 100">
-            <path d="M25 20 L75 20 L82 85 Q82 92 74 92 L26 92 Q18 92 18 85 Z" stroke-width="2"/>
-            <path d="M42 20 L42 8 Q42 3 50 3 Q58 3 58 8 L58 20" stroke-width="2"/>
-            <circle cx="50" cy="55" r="18" fill="none" stroke-width="1.5" opacity="0.6"/>
-          </svg>
-        </div>
-        <h3 class="product-name">150cl Bottle</h3>
-        <p class="product-desc">Best value for families, caterers, and small businesses</p>
-        <div class="product-price"><span>₦</span>3,000</div>
-        <button class="btn-add" data-product="Synthova Palm Oil - 150cl" data-price="3000" data-size="150cl" aria-label="Add 150cl bottle to cart">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-          Add to Cart
-        </button>
-      </article>
+      </div>
+      <div id="manifestBody">
+        <div class="manifest-empty">↑ Select a delivery slot to see the manifest</div>
+      </div>
     </div>
 
-    <!-- TRUST BADGES -->
-    <div class="trust-badges" aria-label="Our promises">
-      <div class="trust-item">
-        <div class="trust-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        </div>
-        <div class="trust-text">100% Natural Product</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <div class="trust-text">Nationwide Delivery</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        </div>
-        <div class="trust-text">Secure Payment</div>
-      </div>
-    </div>
-  </section>
+  </div>
 
-  <!-- ABOUT VIEW -->
-  <section id="about" class="page-view" aria-labelledby="about-heading">
-    <div class="about-section">
-      <h2 id="about-heading" class="about-title">Our Story</h2>
-      <div class="about-content">
-        <p>There is nothing complicated about what we do. We source palm oil — the kind that has fed families, fueled kitchens, and built livelihoods across Nigeria for generations. What we have chosen to complicate, deliberately, is the standard of how it reaches you.</p>
-        
-        <p>Synthova Oil was built on a straightforward conviction: that the most essential products deserve the most rigorous care. Palm oil is not a luxury. It is a staple — present at the base of nearly every meal that matters in this part of the world. And yet, for too long, the experience of sourcing it has been defined by inconsistency. Variable quality. Uncertain supply. No guarantee that what you ordered today will match what you received last time.</p>
-        
-        <p>We exist to close that gap. Every batch of <span class="about-highlight">Synthova Oil</span> is handled with an attention to process that most people reserve for premium imports. We are deliberate about sourcing, deliberate about storage, and deliberate about delivery — because we believe that when something shows up in your kitchen, your business, or your production line, it should show up right.</p>
-        
-        <p>Our name carries that intention. Synthova is about synthesis — the meeting point of quality and reliability, of local roots and modern standards, of what Nigerian agriculture has always been capable of and what it is finally being allowed to become. We are not here to reinvent palm oil. We are here to honour it.</p>
-        
-        <p>Whether you are a household buying for the week, a food vendor running a tight operation, or a business procuring at scale, Synthova Oil is built to serve you without friction. Consistent product. Honest pricing. A supply you can plan around. This is what we mean when we say we take it seriously.</p>
-        
-        <p style="margin-top:24px; font-weight:500; color:var(--gold);">
-          ✓ Premium Grade &nbsp; ✓ Locally Sourced &nbsp; ✓ Hygienically Packed
-        </p>
-      </div>
-    </div>
-    
-    <!-- TESTIMONIALS -->
-    <div class="testimonials-section">
-      <h3 class="section-title">What Our Customers Say</h3>
-      <div class="testimonials-grid">
-        <article class="testimonial-card">
-          <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"The quality is consistently excellent. I've been ordering for my restaurant for 6 months and never had a bad batch. Delivery is always on time."</p>
-          <div class="testimonial-author">— Chioma A., Lagos</div>
-        </article>
-        <article class="testimonial-card">
-          <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"Finally a palm oil brand I can trust for my family. The 150cl bottle lasts our household two weeks and the taste is pure and rich."</p>
-          <div class="testimonial-author">— Ibrahim M., Abuja</div>
-        </article>
-        <article class="testimonial-card">
-          <div class="testimonial-stars" aria-label="4 out of 5 stars">★★★★☆</div>
-          <p class="testimonial-text">"Great product and the WhatsApp ordering is so convenient. Would love to see more size options in the future!"</p>
-          <div class="testimonial-author">— Blessing O., Port Harcourt</div>
-        </article>
-      </div>
-    </div>
-    
-    <!-- FAQ -->
-    <div class="faq-section">
-      <h3 class="section-title">Frequently Asked Questions</h3>
-      
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false" aria-controls="faq1">How is delivery handled and what are the costs?</button>
-        <div id="faq1" class="faq-answer">
-          We deliver nationwide across Nigeria. Delivery fees are calculated based on your location and order size. For orders within Benin City, delivery is ₦500. For other states, fees range from ₦1,200 - ₦3,500. Use our delivery calculator on the checkout page for an instant estimate.
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false" aria-controls="faq2">How should I store Synthova Palm Oil?</button>
-        <div id="faq2" class="faq-answer">
-          Store in a cool, dry place away from direct sunlight. Once opened, keep the bottle tightly sealed. Properly stored, our palm oil maintains peak quality for up to 12 months. For best flavor, use within 6 months of opening.
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false" aria-controls="faq3">Do you offer bulk discounts for businesses?</button>
-        <div id="faq3" class="faq-answer">
-          Yes! We offer special pricing for bulk orders (10+ bottles). Contact us directly via WhatsApp at +234 815 886 0731 or mention your business needs in the order notes during checkout. Our team will follow up with a customized quote.
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false" aria-controls="faq4">What payment methods do you accept?</button>
-        <div id="faq4" class="faq-answer">
-          We accept Bank Transfer, Cash on Delivery, and POS on Delivery. For bank transfers, account details are provided after order confirmation. All payment methods are secure and verified.
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ═══ TAB: NEWSLETTER ══════════════════════════════════ -->
+  <div class="tab-panel" id="tab-newsletter">
 
-  <!-- CART VIEW -->
-  <section id="cart" class="page-view" aria-labelledby="cart-heading">
-    <div class="cart-container">
-      <h2 id="cart-heading" class="cart-title">Your Shopping Cart</h2>
-      
-      <div id="cartItemsContainer">
-        <!-- Cart items will be injected here by JavaScript -->
-        <div class="cart-empty">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-          </svg>
-          <p>Your cart is empty</p>
-          <p style="margin-top:8px; font-size:0.9rem">Add some premium palm oil to get started</p>
-          <button class="btn-add" style="margin-top:20px" onclick="navigateTo('home')" aria-label="Browse products">
-            Browse Products
-          </button>
-        </div>
-      </div>
-      
-      <div class="cart-summary" id="cartSummary" style="display:none">
-        <div class="summary-row">
-          <span class="summary-label">Subtotal</span>
-          <span class="summary-value" id="cartSubtotal">₦0</span>
-        </div>
-        <div class="summary-row">
-          <span class="summary-label">Delivery Estimate</span>
-          <span class="summary-value" id="cartDelivery">₦0</span>
-        </div>
-        <div class="summary-row">
-          <span class="summary-label">Grand Total</span>
-          <span class="summary-value" id="cartTotal">₦0</span>
-        </div>
-        <button class="btn-checkout" id="proceedToCheckout" aria-label="Proceed to checkout">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px" aria-hidden="true">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-          Proceed to Checkout
-        </button>
-      </div>
-    </div>
-  </section>
+    <div class="nl-grid">
 
-  <!-- CHECKOUT VIEW -->
-  <section id="checkout" class="page-view" aria-labelledby="checkout-heading">
-    <div class="checkout-container">
-      <h2 id="checkout-heading" class="checkout-title">Complete Your Order</h2>
-      
-      <!-- CHECKOUT PROGRESS -->
-      <div class="checkout-progress" aria-label="Checkout progress">
-        <div class="progress-step active" data-step="1">
-          <span class="step-number">1</span>
-          <span class="step-label">Details</span>
-        </div>
-        <div class="progress-step" data-step="2">
-          <span class="step-number">2</span>
-          <span class="step-label">Address</span>
-        </div>
-        <div class="progress-step" data-step="3">
-          <span class="step-number">3</span>
-          <span class="step-label">Payment</span>
-        </div>
-      </div>
-      
-      <!-- SUCCESS STATE -->
-      <div class="success-msg" id="successMsg" role="alert" aria-live="polite">
-        <div class="success-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-        </div>
-        <h2>Order Confirmed!</h2>
-        <p class="order-id">Order #<strong id="confirmedOrderId">SYN-XXXX</strong></p>
-        
-        <div class="order-summary-mini">
-          <div class="summary-row">
-            <span class="summary-label">Items</span>
-            <span class="summary-value" id="successItemCount">0</span>
+      <!-- Left: Publisher form + subscriber stats -->
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <!-- Publish form -->
+        <div class="nl-card">
+          <div class="nl-card-header">
+            <div class="nl-card-title">Publish a Post</div>
+            <div class="nl-card-sub">Pushes live to The Drop newsletter channel</div>
           </div>
-          <div class="summary-row">
-            <span class="summary-label">Total</span>
-            <span class="summary-value" id="successTotal">₦0</span>
-          </div>
-        </div>
-        
-        <div class="next-steps">
-          <p>📱 We'll contact you via WhatsApp within 30 minutes</p>
-          <p>🚚 Delivery tracking sent to your phone</p>
-          <p>📧 Confirmation email sent to your inbox</p>
-        </div>
-        
-        <div class="success-actions">
-          <button class="btn-add" onclick="resetOrder()" aria-label="Place another order">
-            Continue Shopping
-          </button>
-          <a href="https://wa.me/2348158860731" class="btn-outline" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
-            Chat on WhatsApp
-          </a>
-        </div>
-      </div>
-
-      <!-- CHECKOUT FORM -->
-      <form id="checkoutForm" class="checkout-form" novalidate>
-        
-        <!-- ORDER SUMMARY -->
-        <div class="form-section">
-          <p class="section-label">Order Summary</p>
-          <div id="checkoutItems">
-            <!-- Items injected by JS -->
-          </div>
-          <div class="cart-summary" style="margin-top:16px; background:var(--dark); border:none">
-            <div class="summary-row">
-              <span class="summary-label">Subtotal</span>
-              <span class="summary-value" id="checkoutSubtotal">₦0</span>
-            </div>
-            <div class="summary-row">
-              <span class="summary-label">Delivery Fee</span>
-              <span class="summary-value" id="checkoutDelivery">₦0</span>
-            </div>
-            <div class="summary-row">
-              <span class="summary-label">Grand Total</span>
-              <span class="summary-value" id="checkoutTotal">₦0</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- CONTACT DETAILS -->
-        <div class="form-section">
-          <p class="section-label">01 — Your Details</p>
-          <div class="field-group">
-            <div class="field-row">
-              <div class="field">
-                <label for="fullName">Full Name *</label>
-                <input type="text" id="fullName" name="fullName" placeholder="Ade Okonkwo" required aria-required="true" />
-                <span class="field-error" id="fullNameError">Please enter your full name</span>
+          <div class="nl-card-body">
+            <div class="nl-row">
+              <div class="nl-field">
+                <label class="nl-label">Issue</label>
+                <input class="nl-input" type="text" id="nlIssue" placeholder="Issue 03">
               </div>
-              <div class="field">
-                <label for="phone">Phone Number *</label>
-                <input type="tel" id="phone" name="phone" placeholder="+234 800 000 0000" required aria-required="true" pattern="^\+?234\d{10}$" />
-                <span class="field-error" id="phoneError">Enter a valid Nigerian phone number</span>
+              <div class="nl-field">
+                <label class="nl-label">Date</label>
+                <input class="nl-input" type="date" id="nlDate">
               </div>
             </div>
-            <div class="field">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="ade@email.com" />
-              <span class="field-error" id="emailError">Enter a valid email address</span>
+            <div class="nl-field">
+              <label class="nl-label">Title</label>
+              <input class="nl-input" type="text" id="nlTitle" placeholder="Post headline…" maxlength="120">
             </div>
-          </div>
-        </div>
-
-        <!-- DELIVERY ADDRESS -->
-        <div class="form-section">
-          <p class="section-label">02 — Delivery Address</p>
-          <div class="field-group">
-            <div class="field">
-              <label for="address">Street Address *</label>
-              <input type="text" id="address" name="address" placeholder="12 Sapele Road" required aria-required="true" />
-              <span class="field-error" id="addressError">Please enter your street address</span>
+            <div class="nl-field">
+              <label class="nl-label">Image URL <span style="font-weight:400;text-transform:none;letter-spacing:0">(Cloudinary)</span></label>
+              <input class="nl-input" type="url" id="nlImage" placeholder="https://res.cloudinary.com/…">
             </div>
-            <div class="field-row">
-              <div class="field">
-                <label for="city">City *</label>
-                <input type="text" id="city" name="city" placeholder="Benin City" required aria-required="true" />
-                <span class="field-error" id="cityError">Please enter your city</span>
-              </div>
-              <div class="field">
-                <label for="state">State *</label>
-                <select id="state" name="state" required aria-required="true">
-                  <option value="" disabled selected>Select State</option>
-                  <option value="Abia">Abia</option>
-                  <option value="Adamawa">Adamawa</option>
-                  <option value="Akwa Ibom">Akwa Ibom</option>
-                  <option value="Anambra">Anambra</option>
-                  <option value="Bauchi">Bauchi</option>
-                  <option value="Bayelsa">Bayelsa</option>
-                  <option value="Benue">Benue</option>
-                  <option value="Borno">Borno</option>
-                  <option value="Cross River">Cross River</option>
-                  <option value="Delta">Delta</option>
-                  <option value="Ebonyi">Ebonyi</option>
-                  <option value="Edo">Edo</option>
-                  <option value="Ekiti">Ekiti</option>
-                  <option value="Enugu">Enugu</option>
-                  <option value="Gombe">Gombe</option>
-                  <option value="Imo">Imo</option>
-                  <option value="Jigawa">Jigawa</option>
-                  <option value="Kaduna">Kaduna</option>
-                  <option value="Kano">Kano</option>
-                  <option value="Katsina">Katsina</option>
-                  <option value="Kebbi">Kebbi</option>
-                  <option value="Kogi">Kogi</option>
-                  <option value="Kwara">Kwara</option>
-                  <option value="Lagos">Lagos</option>
-                  <option value="Nasarawa">Nasarawa</option>
-                  <option value="Niger">Niger</option>
-                  <option value="Ogun">Ogun</option>
-                  <option value="Ondo">Ondo</option>
-                  <option value="Osun">Osun</option>
-                  <option value="Oyo">Oyo</option>
-                  <option value="Plateau">Plateau</option>
-                  <option value="Rivers">Rivers</option>
-                  <option value="Sokoto">Sokoto</option>
-                  <option value="Taraba">Taraba</option>
-                  <option value="Yobe">Yobe</option>
-                  <option value="Zamfara">Zamfara</option>
-                  <option value="FCT">FCT - Abuja</option>
-                </select>
-                <span class="field-error" id="stateError">Please select your state</span>
-              </div>
+            <div class="nl-field">
+              <label class="nl-label">Content</label>
+              <textarea class="nl-input textarea" id="nlContent" placeholder="Write your post content here. Use blank lines to separate paragraphs." maxlength="4000"></textarea>
             </div>
-          </div>
-          
-          <!-- DELIVERY CALCULATOR -->
-          <div class="delivery-calc">
-            <div class="delivery-calc-title">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-              </svg>
-              Estimate Delivery Cost
-            </div>
-            <div class="delivery-calc-row">
-              <select id="calcState" aria-label="Select state for delivery estimate">
-                <option value="">Select State</option>
-                <option value="Edo">Edo</option>
-                <option value="Lagos">Lagos</option>
-                <option value="Abuja">FCT - Abuja</option>
-                <option value="Rivers">Rivers</option>
-                <option value="other">Other States</option>
+            <div class="nl-field">
+              <label class="nl-label">Status</label>
+              <select class="nl-input select" id="nlStatus">
+                <option value="published">Published (live immediately)</option>
+                <option value="draft">Draft (save for later)</option>
               </select>
-              <input type="number" id="calcQty" placeholder="Qty" min="1" value="1" aria-label="Quantity for delivery estimate">
             </div>
-            <div class="delivery-result">
-              <span>Estimated Delivery:</span>
-              <strong id="calcResult">₦0</strong>
+            <button class="nl-submit" id="nlSubmitBtn" onclick="publishPost()">Publish Post →</button>
+            <div class="nl-feedback" id="nlFeedback"></div>
+          </div>
+        </div>
+
+        <!-- Subscriber stats -->
+        <div class="nl-card" id="subscriberCard">
+          <div class="nl-card-header">
+            <div class="nl-card-title">Subscribers</div>
+            <div class="nl-card-sub" id="subCardSub">Loading from newsletter backend…</div>
+          </div>
+          <div class="sub-stats">
+            <div class="sub-stat-item">
+              <div class="sub-stat-val" id="subTotal">—</div>
+              <div class="sub-stat-label">Total subscribers</div>
+            </div>
+            <div class="sub-stat-item">
+              <div class="sub-stat-val" id="subActive">—</div>
+              <div class="sub-stat-label">Active (newsletter on)</div>
             </div>
           </div>
         </div>
 
-        <!-- PAYMENT METHOD -->
-        <div class="form-section">
-          <p class="section-label">03 — Payment Method</p>
-          <div class="field-group">
-            <fieldset style="border:none; padding:0; margin:0">
-              <legend class="sr-only">Select payment method</legend>
-              <div class="payment-grid">
-                <div class="pay-option">
-                  <input type="radio" name="payment" id="pay-transfer" value="Bank Transfer" required aria-required="true" />
-                  <label class="pay-label" for="pay-transfer">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <rect x="2" y="5" width="20" height="14" rx="2"/>
-                      <line x1="2" y1="10" x2="22" y2="10"/>
-                    </svg>
-                    Bank Transfer
-                  </label>
-                </div>
-                <div class="pay-option">
-                  <input type="radio" name="payment" id="pay-cash" value="Cash on Delivery" />
-                  <label class="pay-label" for="pay-cash">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <circle cx="12" cy="12" r="10"/>
-                      <path d="M12 6v2m0 8v2M9 9h4a2 2 0 010 4H9"/>
-                    </svg>
-                    Cash on Delivery
-                  </label>
-                </div>
-                <div class="pay-option">
-                  <input type="radio" name="payment" id="pay-pos" value="POS on Delivery" />
-                  <label class="pay-label" for="pay-pos">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <rect x="5" y="2" width="14" height="20" rx="2"/>
-                      <line x1="9" y1="7" x2="15" y2="7"/>
-                      <line x1="9" y1="11" x2="15" y2="11"/>
-                      <line x1="9" y1="15" x2="13" y2="15"/>
-                    </svg>
-                    POS on Delivery
-                  </label>
-                </div>
-              </div>
-              <span class="field-error" id="paymentError" style="display:block; margin-top:12px; text-align:center">Please select a payment method</span>
-            </fieldset>
-          </div>
-        </div>
+      </div>
 
-        <!-- SPECIAL REQUESTS -->
-        <div class="form-section">
-          <p class="section-label">04 — Special Requests</p>
-          <div class="field">
-            <label for="notes">Order Notes (Optional)</label>
-            <textarea id="notes" name="notes" placeholder="e.g. bulk discount inquiry, preferred delivery time, gift packaging…"></textarea>
+      <!-- Right: Published posts table -->
+      <div class="nl-card">
+        <div class="nl-card-header" style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div>
+            <div class="nl-card-title">All Posts</div>
+            <div class="nl-card-sub" id="nlPostsCountLabel">Loading…</div>
           </div>
+          <button class="nl-action" onclick="loadNlPosts()" style="margin-top:2px">↻ Refresh</button>
         </div>
-
-        <!-- SUBMIT -->
-        <button type="submit" class="btn-submit" id="submitBtn" aria-busy="false">
-          <div class="btn-inner">
-            <div class="spinner" id="spinner" aria-hidden="true"></div>
-            <span id="btnText">Confirm & Place Order</span>
-          </div>
-        </button>
-
-        <div class="error-bar" id="errorBar" role="alert" aria-live="assertive">
-          Something went wrong. Please try again or contact us directly.
+        <div class="nl-posts-wrap">
+          <table class="nl-posts-tbl">
+            <thead>
+              <tr>
+                <th>Issue</th><th>Title</th><th>Date</th><th>Likes</th><th>Comments</th><th>Status</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="nlPostsTableBody">
+              <tr><td colspan="7" style="text-align:center;padding:32px;color:var(--muted2);font-size:0.84rem">
+                Connect NEWSLETTER_SCRIPT_URL to see posts
+              </td></tr>
+            </tbody>
+          </table>
         </div>
-      </form>
+      </div>
+
     </div>
-  </section>
+  </div>
 
-  <!-- WHATSAPP FLOATING BUTTON -->
-  <a href="https://wa.me/2348158860731?text=Hello%20Synthova%20Oil%2C%20I%27d%20like%20to%20place%20an%20order..." 
-     class="whatsapp-float" 
-     target="_blank"
-     rel="noopener"
-     aria-label="Quick order via WhatsApp">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.226 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-    </svg>
-    <span class="sr-only">Chat on WhatsApp</span>
-  </a>
+</div><!-- /shell -->
 
-  <!-- FOOTER -->
-  <footer>
-    &copy; 2025 Synthova Oil &mdash; All rights reserved &middot;
-    Questions? <a href="https://wa.me/2348158860731" target="_blank" rel="noopener">+234 815 886 0731</a>
-  </footer>
+<!-- STATUS UPDATE MODAL -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <h3>Update Order Status</h3>
+    <div class="modal-sub">
+      <span class="modal-order-id" id="modalOrderId"></span>
+      &nbsp;·&nbsp; <span id="modalCustomer"></span>
+    </div>
+    <div class="status-options">
+      <div class="status-opt" data-val="Pending">
+        <div class="status-opt-dot" style="background:var(--gold)"></div> Pending
+      </div>
+      <div class="status-opt" data-val="Dispatched">
+        <div class="status-opt-dot" style="background:var(--blue)"></div> Dispatched
+      </div>
+      <div class="status-opt" data-val="Completed">
+        <div class="status-opt-dot" style="background:var(--green)"></div> Completed
+      </div>
+      <div class="status-opt" data-val="Cancelled">
+        <div class="status-opt-dot" style="background:var(--terra)"></div> Cancelled
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-confirm" id="confirmBtn" onclick="confirmStatus()">Update Status</button>
+    </div>
+  </div>
+</div>
 
-  <script>
-    // ─── GLOBAL STATE & CONFIG ─────────────────────────────────────
-    const CONFIG = {
-      // ⚠️ REPLACE WITH YOUR DEPLOYED GAS WEB APP URL
-      GAS_ENDPOINT: 'https://script.google.com/macros/s/AKfycbx7bi2_6bbD54-hh4jrBY8NpO6DFzjQO5fIyEVCUftE6TT8A48BmCFnUWavwH9AHMRj/exec',
-      WHATSAPP_NUMBER: '2348158860731',
-      DELIVERY_RATES: {
-        'Edo': 500,
-        'Lagos': 1500,
-        'FCT': 2000,
-        'Rivers': 1800,
-        'default': 2500
-      }
-    };
+<script>
+/* ════════════════════════════════════════
+   CONFIG
+════════════════════════════════════════ */
+// Main orders/dashboard Apps Script URL
+const GAS_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYED_GAS_URL/exec';
 
-    let cart = JSON.parse(localStorage.getItem('synthova-cart')) || [];
-    let currentTheme = localStorage.getItem('synthova-theme') || 'dark';
-    let currentView = 'home';
+// Newsletter Apps Script URL (from newsletter-Code.gs deployment)
+const NEWSLETTER_SCRIPT_URL = '';
 
-    // ─── THEME MANAGEMENT ──────────────────────────────────────────
-    function initTheme() {
-      if (currentTheme === 'light') {
-        document.body.classList.add('light');
-        document.getElementById('toggleLabel').textContent = 'Dark';
-      }
-      document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+const PAGE_SIZE = 10;
+
+/* ════════════════════════════════════════
+   STATE
+════════════════════════════════════════ */
+let allOrders    = [];
+let filtered     = [];
+let currentPage  = 1;
+let activePeriod = 'all';
+let activeStatus = 'all';
+let searchQuery  = '';
+let modalTarget  = null;
+let selectedStatus  = null;
+let selectedSlotIdx = 0;
+let deliverySlots   = [];
+let charts = {};
+
+/* ════════════════════════════════════════
+   BOOT
+════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  loadData();
+
+  // Set today as default publish date
+  document.getElementById('nlDate').value = new Date().toISOString().slice(0,10);
+
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const panel = document.getElementById('tab-' + btn.dataset.tab);
+      if (panel) panel.classList.add('active');
+
+      if (btn.dataset.tab === 'newsletter') loadNlPosts();
+      if (btn.dataset.tab === 'deliveries') renderDeliveriesTab();
+    });
+  });
+
+  // Period buttons
+  document.querySelectorAll('.period-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activePeriod = btn.dataset.period;
+      applyFilters();
+    });
+  });
+
+  // Status filter chips
+  document.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeStatus = chip.dataset.status;
+      currentPage = 1;
+      applyFilters();
+    });
+  });
+
+  // Search
+  document.getElementById('searchInput').addEventListener('input', e => {
+    searchQuery = e.target.value.toLowerCase();
+    currentPage = 1;
+    applyFilters();
+  });
+
+  // Modal status options
+  document.querySelectorAll('.status-opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('.status-opt').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      selectedStatus = opt.dataset.val;
+    });
+  });
+
+  // Modal backdrop close
+  document.getElementById('modalBackdrop').addEventListener('click', e => {
+    if (e.target === document.getElementById('modalBackdrop')) closeModal();
+  });
+});
+
+/* ════════════════════════════════════════
+   DATA LOADING
+════════════════════════════════════════ */
+async function loadData() {
+  showLoading(true);
+  try {
+    const res  = await fetch(GAS_URL + '?action=getOrders');
+    const json = await res.json();
+    allOrders  = parseOrders(json.orders || json.data || []);
+    onDataLoaded();
+  } catch (err) {
+    allOrders = getDemoData();
+    onDataLoaded();
+  }
+}
+
+function onDataLoaded() {
+  showLoading(false);
+  document.getElementById('lastUpdated').textContent =
+    'Updated ' + new Date().toLocaleTimeString('en-NG', { hour:'2-digit', minute:'2-digit' });
+  applyFilters();
+  updateTabBadges();
+}
+
+/* ════════════════════════════════════════
+   PARSE
+════════════════════════════════════════ */
+function parseOrders(rows) {
+  return rows.map(r => ({
+    id:        r['Order ID']       || r[0] || '',
+    timestamp: r['Timestamp']      || r[1] || '',
+    name:      r['Customer Name']  || r[2] || '',
+    phone:     r['Phone']          || r[3] || '',
+    email:     r['Email']          || r[4] || '',
+    address:   r['Address']        || r[5] || '',
+    city:      r['City']           || r[6] || '',
+    state:     r['State']          || r[7] || '',
+    items:     r['Items']          || r[8] || '',
+    subtotal:  parseMoney(r['Subtotal'] || r[9]),
+    delivery:  parseMoney(r['Delivery'] || r[10]),
+    total:     parseMoney(r['Total']    || r[11]),
+    payment:   r['Payment Method'] || r[12] || '',
+    notes:     r['Notes']          || r[13] || '',
+    status:    r['Status']         || r[14] || 'Pending',
+    date:      new Date(r['Timestamp'] || r[1] || Date.now())
+  }));
+}
+
+function parseMoney(val) {
+  if (!val) return 0;
+  return parseFloat(String(val).replace(/[^0-9.]/g,'')) || 0;
+}
+
+function getDemoData() {
+  const raw = [
+    ['SYN-MP1QU30W-FHJR','2026-05-11T21:58:26.807Z','isesele ebosetale','2348158860731','iseseleebos221@gmail.com','2 Imariagbe cresent, off Igbinedion street, Isihor','Benin','Edo','Synthova Palm Oil - 75cl (x1); Synthova Palm Oil - 150cl (x2)','₦7,600','₦1,100','₦8,700','POS on Delivery','','Pending'],
+    ['SYN-MP1RVLWA-AOE8','2026-05-11T22:27:35.419Z','Ebosetale','2348025785351','iseseleebosetale@gmail.com','Tggttdff','Benin','Edo','Synthova Palm Oil - 75cl (x1); Synthova Palm Oil - 150cl (x1)','₦4,600','₦800','₦5,400','Cash on Delivery','','Pending'],
+    ['SYN-MP23X63L-SL5V','2026-05-12T04:04:47.258Z','Chioma Adeyemi','—','iseseleebos221@gmail.com','45 Royal Road','Benin City','Edo','Synthova Palm Oil - 150cl x2; Synthova Palm Oil - 75cl x1','₦7,600','₦500','₦8,100','Bank Transfer','','Test — please ignore'],
+    ['SYN-MP2403C7-E20G','2026-05-12T04:07:03.654Z','Chioma Adeyemi','—','iseseleebos221@gmail.com','45 Royal Road','Benin City','Edo','Synthova Palm Oil - 150cl x2; Synthova Palm Oil - 75cl x1','₦7,600','₦500','₦8,100','Paystack (Online)','TMP2403C7','Test — please ignore'],
+    ['SYN-MP250K3R-RV3E','2026-05-12T04:35:22.964Z','Ebosetale','—','iseseleebosetale@gmail.com','1 rahama street','benin city','Edo','Synthova Palm Oil - 75cl (x2); Synthova Palm Oil - 150cl (x1)','₦6,200','₦900','₦7,100','Bank Transfer','','Pending'],
+    ['SYN-MP25OUIT-LSB0','2026-05-12T04:54:15.780Z','isesele ebosetale','2348158860731','alixbc247@gmail.com','2 Imariagbe cresent, off Igbinedion street, Isihor','Benin','Edo','Synthova Palm Oil - 75cl (x8); Synthova Palm Oil - 150cl (x5)','₦27,800','₦2,900','₦30,700','Cash on Delivery','','Completed'],
+    ['SYN-MP25Z42S-HGK9','2026-05-12T05:02:15.264Z','test','—','aliixbc247@gmail.com','1 rahama street','benin cty','Edo','Synthova Palm Oil - 75cl (x1); Synthova Palm Oil - 150cl (x1)','₦4,600','₦700','₦5,300','Bank Transfer','','Pending'],
+    ['SYN-MP26GOZ4-3Q76','2026-05-12T05:15:54.418Z','isesele ebosetale','2348158860731','alixbc247@gmail.com','2 Imariagbe cresent, off Igbinedion street, Isihor','Benin','Edo','Synthova Palm Oil - 75cl (x8); Synthova Palm Oil - 150cl (x5)','₦27,800','₦2,900','₦30,700','Bank Transfer','','Dispatched'],
+    ['SYN-MP26QQ7E-TNNM','2026-05-12T05:23:43.678Z','Ebosetale isesele','23408158860731','iseseleosasuyi@gmail.com','1 rahama street','Benin city','Edo','Synthova Palm Oil - 150cl (x2)','₦6,000','₦700','₦6,700','Cash on Delivery','','Pending'],
+  ];
+  return raw.map(r => ({
+    id:r[0],timestamp:r[1],name:r[2],phone:r[3],email:r[4],
+    address:r[5],city:r[6],state:r[7],items:r[8],
+    subtotal:parseMoney(r[9]),delivery:parseMoney(r[10]),total:parseMoney(r[11]),
+    payment:r[12],notes:r[13],status:r[14],
+    date:new Date(r[1])
+  }));
+}
+
+/* ════════════════════════════════════════
+   FILTERS
+════════════════════════════════════════ */
+function applyFilters() {
+  const now = new Date(), start = new Date();
+  if (activePeriod === 'month') start.setDate(1), start.setHours(0,0,0,0);
+  if (activePeriod === 'week')  start.setDate(now.getDate()-6), start.setHours(0,0,0,0);
+
+  filtered = allOrders.filter(o => {
+    if (activePeriod !== 'all' && o.date < start) return false;
+    if (activeStatus !== 'all' && o.status !== activeStatus) return false;
+    if (searchQuery) {
+      const hay = [o.id,o.name,o.phone,o.email,o.items].join(' ').toLowerCase();
+      if (!hay.includes(searchQuery)) return false;
     }
+    return true;
+  });
 
-    function toggleTheme() {
-      document.body.classList.toggle('light');
-      const isLight = document.body.classList.contains('light');
-      document.getElementById('toggleLabel').textContent = isLight ? 'Dark' : 'Light';
-      currentTheme = isLight ? 'light' : 'dark';
-      localStorage.setItem('synthova-theme', currentTheme);
-      gtag('event', 'theme_toggle', { 'theme': currentTheme });
+  renderKPIs();
+  renderCashFlow();
+  renderCharts();
+  renderTable();
+  updateTabBadges();
+}
+
+function updateTabBadges() {
+  const real = allOrders.filter(o => !isTest(o));
+  const pending = real.filter(o => o.status === 'Pending').length;
+  const total   = real.length;
+  set('tabBadgeOrders', total);
+  set('tabBadgeDeliveries', pending);
+}
+
+/* ════════════════════════════════════════
+   KPIs
+════════════════════════════════════════ */
+function renderKPIs() {
+  const real = filtered.filter(o => !isTest(o));
+  const revenue = real.reduce((s,o) => s+o.total,0);
+  const bottles = countBottles(real);
+  const aov     = real.length ? revenue / real.length : 0;
+
+  set('kpiRevenue', '₦' + revenue.toLocaleString('en-NG'));
+  set('kpiOrders',  real.length);
+  set('kpiBottles', bottles.total);
+  set('kpiAov',     real.length ? '₦'+Math.round(aov).toLocaleString('en-NG') : '—');
+  set('kpiRevenueNote', activePeriod==='all'?'All time':activePeriod==='month'?'This month':'This week');
+  set('kpiOrdersSub', `${bottles.b75}× 75cl · ${bottles.b150}× 150cl`);
+  set('kpiBottlesSub', `₦${bottles.total?Math.round(revenue/bottles.total).toLocaleString('en-NG'):0} avg/bottle`);
+  set('kpiAovSub', `${real.length} orders included`);
+}
+
+function countBottles(orders) {
+  let b75=0,b150=0,b4L=0;
+  orders.forEach(o=>{
+    const m75  = o.items.match(/75cl.*?[x×](\d+)|(\d+).*?75cl/i);
+    const m150 = o.items.match(/150cl.*?[x×](\d+)|(\d+).*?150cl/i);
+    const m4L  = o.items.match(/4.*?litre.*?[x×](\d+)|(\d+).*?4.*?litre/i);
+    b75  += m75  ? parseInt(m75[1]||m75[2])||0 : 0;
+    b150 += m150 ? parseInt(m150[1]||m150[2])||0 : 0;
+    b4L  += m4L  ? parseInt(m4L[1]||m4L[2])||0 : 0;
+  });
+  return {b75,b150,b4L,total:b75+b150+b4L};
+}
+
+function isTest(o) {
+  return (o.notes||'').toLowerCase().includes('test') ||
+         (o.status||'').toLowerCase().includes('test') ||
+         (o.name||'').toLowerCase()==='test';
+}
+
+/* ════════════════════════════════════════
+   CASH FLOW (NEW)
+════════════════════════════════════════ */
+function renderCashFlow() {
+  const real       = filtered.filter(o => !isTest(o));
+  const collected  = real.filter(o=>o.status==='Completed').reduce((s,o)=>s+o.total,0);
+  const outstanding= real.filter(o=>o.status==='Pending'||o.status==='Dispatched').reduce((s,o)=>s+o.total,0);
+  const delivFees  = real.reduce((s,o)=>s+o.delivery,0);
+  const pipeline   = collected + outstanding;
+
+  set('cfCollected', '₦'+collected.toLocaleString('en-NG'));
+  set('cfPending',   '₦'+outstanding.toLocaleString('en-NG'));
+  set('cfDelivery',  '₦'+delivFees.toLocaleString('en-NG'));
+
+  const completedCount  = real.filter(o=>o.status==='Completed').length;
+  const pendingCount    = real.filter(o=>o.status==='Pending'||o.status==='Dispatched').length;
+  const delivPct        = real.length ? ((delivFees/(real.reduce((s,o)=>s+o.total,0)||1))*100).toFixed(1) : 0;
+
+  set('cfCollectedSub', `${completedCount} completed order${completedCount!==1?'s':''}`);
+  set('cfPendingSub',   `${pendingCount} order${pendingCount!==1?'s':''} awaiting collection`);
+  set('cfDeliverySub',  `${delivPct}% of total revenue`);
+
+  // Animate bars
+  requestAnimationFrame(() => {
+    const total = pipeline || 1;
+    setBarWidth('cfCollectedBar', (collected/total*100).toFixed(1));
+    setBarWidth('cfPendingBar',   (outstanding/total*100).toFixed(1));
+    setBarWidth('cfDeliveryBar',  Math.min((delivFees/(real.reduce((s,o)=>s+o.total,1))*100),100).toFixed(1));
+  });
+}
+
+function setBarWidth(id, pct) {
+  const el = document.getElementById(id);
+  if (el) el.style.width = pct + '%';
+}
+
+/* ════════════════════════════════════════
+   CHARTS (unchanged from original)
+════════════════════════════════════════ */
+const PALETTE = {
+  gold:'rgba(200,134,10,0.85)',goldBg:'rgba(200,134,10,0.12)',
+  green:'rgba(58,122,44,0.85)',greenBg:'rgba(58,122,44,0.12)',
+  terra:'rgba(201,79,29,0.85)',blue:'rgba(57,73,171,0.85)',
+  muted:'rgba(122,112,96,0.6)',border:'rgba(228,223,212,1)',
+};
+Chart.defaults.font.family = "'Instrument Sans', sans-serif";
+Chart.defaults.color = '#7a7060';
+
+function renderCharts() {
+  renderRevenueChart(); renderPaymentChart();
+  renderProductBars(); renderStateList(); renderHourChart();
+}
+
+function renderRevenueChart() {
+  const real=filtered.filter(o=>!isTest(o));
+  const byDay={};
+  real.forEach(o=>{const d=o.date.toISOString().slice(0,10);byDay[d]=byDay[d]||{rev:0,count:0};byDay[d].rev+=o.total;byDay[d].count+=1;});
+  const labels=Object.keys(byDay).sort();
+  const revs=labels.map(d=>byDay[d].rev);
+  const counts=labels.map(d=>byDay[d].count);
+  const display=labels.map(d=>{const dt=new Date(d+'T12:00:00Z');return dt.toLocaleDateString('en-NG',{day:'numeric',month:'short'});});
+  destroyChart('revenueChart');
+  charts.revenue=new Chart(document.getElementById('revenueChart'),{
+    type:'bar',
+    data:{labels:display,datasets:[
+      {label:'Revenue (₦)',data:revs,backgroundColor:PALETTE.goldBg,borderColor:PALETTE.gold,borderWidth:2,borderRadius:6,yAxisID:'y'},
+      {label:'Orders',data:counts,type:'line',borderColor:PALETTE.green,backgroundColor:'transparent',borderWidth:2.5,pointBackgroundColor:PALETTE.green,pointRadius:5,pointHoverRadius:7,tension:0.4,yAxisID:'y1'}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:false},tooltip:{backgroundColor:'#fff',borderColor:PALETTE.border,borderWidth:1,titleColor:'#0d1008',bodyColor:'#7a7060',padding:12,callbacks:{label:ctx=>ctx.datasetIndex===0?'  Revenue: ₦'+ctx.parsed.y.toLocaleString('en-NG'):'  Orders: '+ctx.parsed.y}}},
+      scales:{x:{grid:{display:false},border:{display:false},ticks:{font:{size:11}}},y:{position:'left',grid:{color:PALETTE.border},border:{display:false,dash:[4,4]},ticks:{font:{size:11},callback:v=>'₦'+(v>=1000?(v/1000).toFixed(0)+'k':v)}},y1:{position:'right',grid:{display:false},border:{display:false},ticks:{font:{size:11},stepSize:1}}}}
+  });
+}
+
+function renderPaymentChart() {
+  const real=filtered.filter(o=>!isTest(o));
+  const counts={};
+  real.forEach(o=>{const m=(o.payment||'Unknown').replace(' on Delivery','').replace(' (Online)','');counts[m]=(counts[m]||0)+1;});
+  const labels=Object.keys(counts);const data=labels.map(l=>counts[l]);
+  const colors=[PALETTE.gold,PALETTE.green,PALETTE.terra,PALETTE.blue,PALETTE.muted];
+  destroyChart('paymentChart');
+  charts.payment=new Chart(document.getElementById('paymentChart'),{
+    type:'doughnut',
+    data:{labels,datasets:[{data,backgroundColor:colors.slice(0,labels.length),borderWidth:3,borderColor:'#fff',hoverOffset:6}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{position:'bottom',labels:{padding:16,font:{size:11},usePointStyle:true,pointStyleWidth:8}},tooltip:{backgroundColor:'#fff',borderColor:PALETTE.border,borderWidth:1,titleColor:'#0d1008',bodyColor:'#7a7060',padding:10,callbacks:{label:ctx=>`  ${ctx.label}: ${ctx.parsed} order${ctx.parsed!==1?'s':''}`}}}}
+  });
+}
+
+function renderProductBars() {
+  const real=filtered.filter(o=>!isTest(o));
+  const products={};
+  real.forEach(o=>{
+    const items=o.items.split(';');
+    items.forEach(item=>{
+      item=item.trim();
+      const name=item.match(/Synthova Palm Oil - (\w+)/i)?.[0]||item.split('(')[0].trim();
+      const qty=parseInt(item.match(/[x×](\d+)/i)?.[1]||'1');
+      const price=name.includes('150')?3000:1600;
+      if(!products[name])products[name]={units:0,revenue:0};
+      products[name].units+=qty;products[name].revenue+=qty*price;
+    });
+  });
+  const entries=Object.entries(products).sort((a,b)=>b[1].revenue-a[1].revenue);
+  const maxRev=Math.max(...entries.map(e=>e[1].revenue),1);
+  const colors=[PALETTE.gold,PALETTE.green,PALETTE.terra,PALETTE.blue];
+  const container=document.getElementById('productBars');
+  container.innerHTML=entries.map(([name,data],i)=>{
+    const pct=(data.revenue/maxRev*100).toFixed(1);
+    const short=name.replace('Synthova Palm Oil - ','');
+    return `<div class="product-bar-item"><div class="product-bar-header"><span class="product-bar-name">${short}</span><span class="product-bar-val">${data.units} units · ₦${data.revenue.toLocaleString('en-NG')}</span></div><div class="product-bar-track"><div class="product-bar-fill" style="width:0%;background:${colors[i%colors.length]}" data-width="${pct}%"></div></div></div>`;
+  }).join('')||'<p style="color:var(--muted2);font-size:0.85rem;padding:12px 0">No product data</p>';
+  requestAnimationFrame(()=>{document.querySelectorAll('.product-bar-fill').forEach(el=>{el.style.width=el.dataset.width;});});
+}
+
+function renderStateList() {
+  const real=filtered.filter(o=>!isTest(o));
+  const states={};
+  real.forEach(o=>{const s=(o.state||'Unknown').trim();states[s]=states[s]||{orders:0,revenue:0};states[s].orders++;states[s].revenue+=o.total;});
+  const entries=Object.entries(states).sort((a,b)=>b[1].revenue-a[1].revenue);
+  document.getElementById('stateList').innerHTML=entries.map(([state,data])=>`<div class="state-row"><div class="state-flag">${state.slice(0,2).toUpperCase()}</div><span class="state-name">${state}</span><span class="state-orders">${data.orders} order${data.orders!==1?'s':''}</span><span class="state-rev">₦${data.revenue.toLocaleString('en-NG')}</span></div>`).join('')||'<p style="color:var(--muted2);font-size:0.85rem;padding:12px 0">No data</p>';
+}
+
+function renderHourChart() {
+  const real=filtered.filter(o=>!isTest(o));
+  const hours=new Array(24).fill(0);
+  real.forEach(o=>{if(o.date)hours[o.date.getHours()]++;});
+  const labels=Array.from({length:24},(_,i)=>i===0?'12am':i<12?`${i}am`:i===12?'12pm':`${i-12}pm`);
+  destroyChart('hourChart');
+  charts.hour=new Chart(document.getElementById('hourChart'),{
+    type:'bar',
+    data:{labels,datasets:[{data:hours,backgroundColor:hours.map(v=>v>0?PALETTE.gold:PALETTE.goldBg),borderRadius:4,borderSkipped:false}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'#fff',borderColor:PALETTE.border,borderWidth:1,titleColor:'#0d1008',bodyColor:'#7a7060',padding:8,callbacks:{label:ctx=>`  ${ctx.parsed.y} order${ctx.parsed.y!==1?'s':''}`}}},scales:{x:{grid:{display:false},border:{display:false},ticks:{font:{size:10},maxRotation:0,callback:(v,i)=>[0,6,12,18,23].includes(i)?labels[i]:''}},y:{grid:{color:PALETTE.border},border:{display:false,dash:[4,4]},ticks:{font:{size:10},stepSize:1},beginAtZero:true}}}
+  });
+}
+
+/* ════════════════════════════════════════
+   ORDERS TABLE
+════════════════════════════════════════ */
+function renderTable() {
+  const start=(currentPage-1)*PAGE_SIZE;
+  const page=filtered.slice(start,start+PAGE_SIZE);
+  const tbody=document.getElementById('ordersTableBody');
+  if(filtered.length===0){tbody.innerHTML=`<tr class="empty-row"><td colspan="9">No orders match your filters</td></tr>`;renderPagination();set('tableInfo','0 orders');return;}
+  tbody.innerHTML=page.map(o=>{
+    const dateStr=o.date.toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'});
+    const payClass=o.payment.toLowerCase().includes('paystack')?'pay-paystack':o.payment.toLowerCase().includes('transfer')?'pay-transfer':o.payment.toLowerCase().includes('cash')?'pay-cash':'pay-pos';
+    const statusClass=o.status==='Completed'?'status-completed':o.status==='Cancelled'?'status-cancelled':o.status==='Dispatched'?'status-dispatched':isTest(o)?'status-test':'status-pending';
+    const statusLabel=isTest(o)?'Test':o.status;
+    const shortItems=o.items.replace(/Synthova Palm Oil - /gi,'').replace(/\s*;\s*/g,' · ');
+    return `<tr><td><div class="order-id">${o.id}</div></td><td><div class="customer-name">${esc(o.name)}</div><div class="customer-phone">${o.phone||'—'}</div></td><td><div class="items-cell" title="${esc(o.items)}">${esc(shortItems)}</div></td><td><span class="amount">₦${o.total.toLocaleString('en-NG')}</span></td><td><span class="pay-badge ${payClass}">${o.payment.replace(' on Delivery','').replace(' (Online)','')}</span></td><td>${esc(o.state)}</td><td style="font-size:0.8rem;color:var(--muted)">${dateStr}</td><td><span class="status-pill ${statusClass}">${statusLabel}</span></td><td><button class="row-action" onclick="openModal('${esc(o.id)}','${esc(o.name)}','${esc(o.status)}')">Update</button></td></tr>`;
+  }).join('');
+  const total=filtered.length,end=Math.min(start+PAGE_SIZE,total);
+  set('tableInfo',`Showing ${start+1}–${end} of ${total} order${total!==1?'s':''}`);
+  renderPagination();
+}
+
+function renderPagination() {
+  const pages=Math.ceil(filtered.length/PAGE_SIZE);
+  const pg=document.getElementById('pagination');
+  if(pages<=1){pg.innerHTML='';return;}
+  let html='';
+  for(let i=1;i<=pages;i++) html+=`<button class="page-btn${i===currentPage?' active':''}" onclick="goPage(${i})">${i}</button>`;
+  pg.innerHTML=html;
+}
+
+function goPage(n) {
+  currentPage=n;
+  renderTable();
+  document.querySelector('.table-card').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ════════════════════════════════════════
+   STATUS MODAL
+════════════════════════════════════════ */
+function openModal(id, name, currentStatus) {
+  modalTarget=id; selectedStatus=currentStatus;
+  set('modalOrderId',id); set('modalCustomer',name);
+  document.querySelectorAll('.status-opt').forEach(o=>{o.classList.toggle('selected',o.dataset.val===currentStatus);});
+  document.getElementById('modalBackdrop').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('modalBackdrop').classList.remove('open');
+  modalTarget=null; selectedStatus=null;
+}
+async function confirmStatus() {
+  if(!selectedStatus||!modalTarget)return;
+  const btn=document.getElementById('confirmBtn');
+  btn.disabled=true; btn.textContent='Updating…';
+  try {
+    await fetch(GAS_URL+'?action=updateStatus',{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({orderId:modalTarget,status:selectedStatus})});
+  } catch(e){}
+  const order=allOrders.find(o=>o.id===modalTarget);
+  if(order) order.status=selectedStatus;
+  closeModal();
+  applyFilters();
+  // Refresh delivery tab if open
+  const delivTab=document.getElementById('tab-deliveries');
+  if(delivTab&&delivTab.classList.contains('active')) renderDeliveriesTab();
+  btn.disabled=false; btn.textContent='Update Status';
+}
+
+/* ════════════════════════════════════════
+   DELIVERY TAB (NEW)
+════════════════════════════════════════ */
+function getNextDeliverySlots(count) {
+  // Delivery days: 1=Monday, 3=Wednesday, 6=Saturday
+  const DELIVERY_DAYS = [1, 3, 6];
+  const CUTOFF_HOUR   = 20; // 8pm: orders after this go to next slot
+  const now = new Date();
+  const slots = [];
+
+  let cursor = new Date(now);
+  let i = 0;
+  while (slots.length < count && i < 30) {
+    i++;
+    cursor.setDate(cursor.getDate() + 1);
+    cursor.setHours(0, 0, 0, 0);
+    if (DELIVERY_DAYS.includes(cursor.getDay())) {
+      slots.push(new Date(cursor));
     }
+  }
+  return slots;
+}
 
-    // ─── NAVIGATION & SPA ROUTING ──────────────────────────────────
-    function initNavigation() {
-      // Handle nav links
-      document.querySelectorAll('[data-page]').forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const page = link.getAttribute('data-page');
-          navigateTo(page);
-          closeMobileMenu();
-        });
-      });
+function getAssignedSlot(orderDate, slots) {
+  const DELIVERY_DAYS = [1, 3, 6];
+  const CUTOFF_HOUR   = 20;
+  const d = new Date(orderDate);
+  const effectiveDate = new Date(d);
+  if (d.getHours() >= CUTOFF_HOUR) effectiveDate.setDate(d.getDate() + 1);
+  effectiveDate.setHours(0, 0, 0, 0);
 
-      // Handle mobile menu toggle
-      const navToggle = document.getElementById('navToggle');
-      navToggle.addEventListener('click', toggleMobileMenu);
-      
-      // Close menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('.nav-header') && navToggle.classList.contains('active')) {
-          closeMobileMenu();
-        }
-      });
-      
-      // Handle browser back/forward
-      window.addEventListener('popstate', handlePopState);
-      
-      // Initial route
-      handleHashChange();
-      window.addEventListener('hashchange', handleHashChange);
+  // Find the next delivery day on or after effectiveDate
+  for (let i = 0; i <= 7; i++) {
+    const check = new Date(effectiveDate);
+    check.setDate(effectiveDate.getDate() + i);
+    if (DELIVERY_DAYS.includes(check.getDay())) {
+      return check.toDateString();
     }
+  }
+  return null;
+}
 
-    function navigateTo(page) {
-      // Update active nav link
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.toggle('active', link.getAttribute('data-page') === page);
-      });
-      
-      // Update nav toggle state
-      const navToggle = document.getElementById('navToggle');
-      navToggle.classList.remove('active');
-      navToggle.setAttribute('aria-expanded', 'false');
-      
-      // Show/hide page views
-      document.querySelectorAll('.page-view').forEach(view => {
-        view.classList.toggle('active', view.id === page);
-        view.setAttribute('aria-hidden', view.id !== page);
-      });
-      
-      // Update URL hash without scrolling
-      history.pushState({page}, '', `#${page}`);
-      currentView = page;
-      
-      // Track page view in GA4
-      gtag('event', 'page_view', { 'page_path': `/${page}`, 'page_title': page });
-      
-      // Special handling for cart/checkout views
-      if (page === 'cart') renderCart();
-      if (page === 'checkout') renderCheckout();
-      
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      
-      // Update document title
-      const titles = {
-        'home': 'Synthova Oil — Premium Palm Oil',
-        'about': 'About Us — Synthova Oil',
-        'cart': 'Your Cart — Synthova Oil',
-        'checkout': 'Checkout — Synthova Oil'
-      };
-      document.title = titles[page] || 'Synthova Oil';
-    }
+function renderDeliveriesTab() {
+  deliverySlots = getNextDeliverySlots(3);
+  const real = allOrders.filter(o => !isTest(o) && (o.status === 'Pending' || o.status === 'Dispatched'));
 
-    function handleHashChange() {
-      const hash = window.location.hash.slice(1) || 'home';
-      if (['home', 'about', 'cart', 'checkout'].includes(hash)) {
-        navigateTo(hash);
-      } else {
-        navigateTo('home');
-      }
-    }
-
-    function handlePopState(event) {
-      if (event.state && event.state.page) {
-        navigateTo(event.state.page);
-      } else {
-        handleHashChange();
-      }
-    }
-
-    function toggleMobileMenu() {
-      const toggle = document.getElementById('navToggle');
-      const menu = document.getElementById('navMenu');
-      const isActive = toggle.classList.toggle('active');
-      menu.classList.toggle('active');
-      toggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-    }
-
-    function closeMobileMenu() {
-      const toggle = document.getElementById('navToggle');
-      const menu = document.getElementById('navMenu');
-      toggle.classList.remove('active');
-      menu.classList.remove('active');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
-
-    // ─── CART SYSTEM ───────────────────────────────────────────────
-    function addToCart(product, price, size) {
-      const existing = cart.find(item => item.size === size);
-      
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        cart.push({
-          id: Date.now() + Math.random().toString(36).substr(2, 4),
-          product,
-          price: parseInt(price),
-          size,
-          quantity: 1
-        });
-      }
-      
-      saveCart();
-      updateCartCount();
-      showCartNotification(`${product} added to cart`);
-      gtag('event', 'add_to_cart', {
-        'items': [{ 'item_name': product, 'price': price, 'quantity': 1 }]
-      });
-    }
-
-    function updateCartItem(id, newQty) {
-      const item = cart.find(i => i.id === id);
-      if (item) {
-        item.quantity = Math.max(1, newQty);
-        saveCart();
-        renderCart();
-        if (currentView === 'checkout') renderCheckout();
-        gtag('event', 'update_cart_item', { 'quantity': newQty });
-      }
-    }
-
-    function removeFromCart(id) {
-      cart = cart.filter(item => item.id !== id);
-      saveCart();
-      updateCartCount();
-      renderCart();
-      if (currentView === 'checkout') renderCheckout();
-      gtag('event', 'remove_from_cart');
-    }
-
-    function saveCart() {
-      localStorage.setItem('synthova-cart', JSON.stringify(cart));
-    }
-
-    function updateCartCount() {
-      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-      document.getElementById('cartCount').textContent = count;
-      document.getElementById('cartCountNav').textContent = count;
-    }
-
-    function renderCart() {
-      const container = document.getElementById('cartItemsContainer');
-      const summary = document.getElementById('cartSummary');
-      
-      if (cart.length === 0) {
-        container.innerHTML = `
-          <div class="cart-empty">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-            </svg>
-            <p>Your cart is empty</p>
-            <p style="margin-top:8px; font-size:0.9rem">Add some premium palm oil to get started</p>
-            <button class="btn-add" style="margin-top:20px" onclick="navigateTo('home')" aria-label="Browse products">
-              Browse Products
-            </button>
+  // Build slot cards
+  const container = document.getElementById('slotCards');
+  container.innerHTML = deliverySlots.map((slot, idx) => {
+    const slotKey = slot.toDateString();
+    const count   = real.filter(o => getAssignedSlot(o.date, deliverySlots) === slotKey).length;
+    const dayName = slot.toLocaleDateString('en-NG', { weekday: 'long' });
+    const dateStr = slot.toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' });
+    const isActive = idx === selectedSlotIdx;
+    const hasOrders = count > 0;
+    return `
+      <div class="slot-card ${isActive ? 'active' : ''} ${hasOrders ? 'has-orders' : ''}"
+           onclick="selectSlot(${idx})">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div>
+            <div class="slot-day">${dayName}</div>
+            <div class="slot-date">${dateStr}</div>
           </div>
-        `;
-        summary.style.display = 'none';
-        return;
-      }
-      
-      let html = '<div class="cart-items" role="list">';
-      let subtotal = 0;
-      
-      cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        subtotal += itemTotal;
-        
-        html += `
-          <div class="cart-item" role="listitem">
-            <div class="cart-item-info">
-              <h4>${item.product}</h4>
-              <div class="cart-item-price">₦${item.price.toLocaleString()}</div>
-              <div class="cart-item-qty">
-                <button class="qty-btn" onclick="updateCartItem(${item.id}, ${item.quantity - 1})" aria-label="Decrease quantity">−</button>
-                <span class="qty-display" aria-live="polite">${item.quantity}</span>
-                <button class="qty-btn" onclick="updateCartItem(${item.id}, ${item.quantity + 1})" aria-label="Increase quantity">+</button>
-              </div>
-            </div>
-            <div style="text-align:right">
-              <div style="font-weight:600; color:var(--gold); margin-bottom:8px">
-                ₦${itemTotal.toLocaleString()}
-              </div>
-              <button class="cart-item-remove" onclick="removeFromCart(${item.id})" aria-label="Remove ${item.product} from cart">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M18 6L6 18M6 6l12 12"/>
-                </svg>
-              </button>
-            </div>
+          <div class="slot-indicator"></div>
+        </div>
+        <div class="slot-count">
+          <div>
+            <div class="slot-num">${count}</div>
+            <div class="slot-label">pending order${count !== 1 ? 's' : ''}</div>
           </div>
-        `;
-      });
-      
-      html += '</div>';
-      container.innerHTML = html;
-      
-      // Calculate delivery estimate (default to Edo for cart view)
-      const delivery = CONFIG.DELIVERY_RATES['Edo'] || CONFIG.DELIVERY_RATES.default;
-      const total = subtotal + delivery;
-      
-      document.getElementById('cartSubtotal').textContent = `₦${subtotal.toLocaleString()}`;
-      document.getElementById('cartDelivery').textContent = `₦${delivery.toLocaleString()}`;
-      document.getElementById('cartTotal').textContent = `₦${total.toLocaleString()}`;
-      
-      summary.style.display = 'block';
-    }
+        </div>
+      </div>`;
+  }).join('');
 
-    function showCartNotification(message) {
-      // Remove existing toasts
-      document.querySelectorAll('.toast').forEach(t => t.remove());
-      
-      // Create toast
-      const toast = document.createElement('div');
-      toast.className = 'toast';
-      toast.setAttribute('role', 'status');
-      toast.setAttribute('aria-live', 'polite');
-      toast.innerHTML = `✓ ${message}`;
-      document.body.appendChild(toast);
-      
-      // Auto-remove after animation
-      setTimeout(() => toast.remove(), 3000);
-    }
+  renderManifest(selectedSlotIdx);
+}
 
-    // ─── CHECKOUT & FORM HANDLING ──────────────────────────────────
-    function renderCheckout() {
-      if (cart.length === 0) {
-        document.getElementById('checkoutItems').innerHTML = `
-          <p style="text-align:center; color:var(--muted); padding:20px">
-            Your cart is empty. <a href="#home" style="color:var(--green)" onclick="navigateTo('home'); return false;">Add products first</a>.
-          </p>
-        `;
-        document.getElementById('checkoutSubtotal').textContent = '₦0';
-        document.getElementById('checkoutDelivery').textContent = '₦0';
-        document.getElementById('checkoutTotal').textContent = '₦0';
-        return;
-      }
-      
-      let html = '<div style="display:flex; flex-direction:column; gap:12px">';
-      let subtotal = 0;
-      
-      cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        subtotal += itemTotal;
-        html += `
-          <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px dashed var(--border)">
-            <div>
-              <div style="font-weight:500">${item.product}</div>
-              <div style="font-size:0.85rem; color:var(--muted)">Qty: ${item.quantity}</div>
-            </div>
-            <div style="font-weight:600; color:var(--gold)">₦${itemTotal.toLocaleString()}</div>
-          </div>
-        `;
-      });
-      
-      html += '</div>';
-      document.getElementById('checkoutItems').innerHTML = html;
-      
-      // Get delivery from calculator or default
-      const state = document.getElementById('state').value || 'Edo';
-      const delivery = calculateDelivery(state, cart.reduce((sum, i) => sum + i.quantity, 0));
-      const total = subtotal + delivery;
-      
-      document.getElementById('checkoutSubtotal').textContent = `₦${subtotal.toLocaleString()}`;
-      document.getElementById('checkoutDelivery').textContent = `₦${delivery.toLocaleString()}`;
-      document.getElementById('checkoutTotal').textContent = `₦${total.toLocaleString()}`;
-      
-      // Auto-fill form from localStorage if available
-      loadFormData();
-    }
+function selectSlot(idx) {
+  selectedSlotIdx = idx;
+  document.querySelectorAll('.slot-card').forEach((c, i) => {
+    c.classList.toggle('active', i === idx);
+  });
+  renderManifest(idx);
+}
 
-    function calculateDelivery(state, quantity) {
-      // Simple logic: base rate + quantity multiplier
-      const baseRate = CONFIG.DELIVERY_RATES[state] || CONFIG.DELIVERY_RATES.default;
-      return baseRate + (Math.max(0, quantity - 1) * 300);
-    }
+function renderManifest(idx) {
+  const slot    = deliverySlots[idx];
+  if (!slot) return;
+  const slotKey = slot.toDateString();
+  const dayName = slot.toLocaleDateString('en-NG', { weekday: 'long' });
+  const dateStr = slot.toLocaleDateString('en-NG', { day: 'numeric', month: 'long', year: 'numeric' });
+  const real    = allOrders.filter(o => !isTest(o) && (o.status === 'Pending' || o.status === 'Dispatched'));
+  const orders  = real.filter(o => getAssignedSlot(o.date, deliverySlots) === slotKey);
 
-    function initDeliveryCalculator() {
-      const calcState = document.getElementById('calcState');
-      const calcQty = document.getElementById('calcQty');
-      const calcResult = document.getElementById('calcResult');
-      
-      function updateCalc() {
-        const state = calcState.value || 'Edo';
-        const qty = parseInt(calcQty.value) || 1;
-        const delivery = calculateDelivery(state, qty);
-        calcResult.textContent = `₦${delivery.toLocaleString()}`;
-      }
-      
-      // Debounce input for better performance
-      let calcTimeout;
-      calcQty.addEventListener('input', () => {
-        clearTimeout(calcTimeout);
-        calcTimeout = setTimeout(updateCalc, 150);
-      });
-      calcState.addEventListener('change', updateCalc);
-      updateCalc(); // initial calc
-      
-      // Sync with main form state selection
-      document.getElementById('state').addEventListener('change', (e) => {
-        if (calcState.value !== e.target.value) {
-          calcState.value = e.target.value;
-          updateCalc();
-        }
-      });
-    }
+  set('manifestTitle', `${dayName} — ${dateStr}`);
+  set('manifestSub',   `${orders.length} order${orders.length !== 1 ? 's' : ''} · Ugbowo, Benin City`);
 
-    function initFormAutoSave() {
-      const form = document.getElementById('checkoutForm');
-      const fields = form.querySelectorAll('input, select, textarea');
-      
-      // Load saved data on init
-      loadFormData();
-      
-      // Save on input with debounce
-      let saveTimeout;
-      fields.forEach(field => {
-        field.addEventListener('input', () => {
-          clearTimeout(saveTimeout);
-          saveTimeout = setTimeout(saveFormData, 300);
-        });
-        field.addEventListener('change', saveFormData);
-      });
-    }
+  const batchBtn = document.getElementById('batchDispatchBtn');
+  const pendingInSlot = orders.filter(o => o.status === 'Pending').length;
+  batchBtn.style.display = pendingInSlot > 0 ? 'flex' : 'none';
 
-    function saveFormData() {
-      const form = document.getElementById('checkoutForm');
-      const data = {};
-      form.querySelectorAll('input, select, textarea').forEach(field => {
-        if (field.name) data[field.name] = field.value;
-      });
-      localStorage.setItem('synthova-checkout-data', JSON.stringify(data));
-    }
+  const body = document.getElementById('manifestBody');
+  if (!orders.length) {
+    body.innerHTML = '<div class="manifest-empty">No pending orders for this slot</div>';
+    return;
+  }
 
-    function loadFormData() {
-      const saved = localStorage.getItem('synthova-checkout-data');
-      if (!saved) return;
-      
-      try {
-        const data = JSON.parse(saved);
-        Object.entries(data).forEach(([name, value]) => {
-          const field = document.getElementById(name);
-          if (field) field.value = value;
-        });
-      } catch(e) {
-        console.warn('Failed to load saved form data', e);
-      }
-    }
+  body.innerHTML = orders.map((o, i) => {
+    const statusClass = o.status === 'Dispatched' ? 'status-dispatched' : 'status-pending';
+    const shortItems  = o.items.replace(/Synthova Palm Oil - /gi,'').replace(/\s*;\s*/g,' · ');
+    const payShort    = o.payment.replace(' on Delivery','').replace(' (Online)','');
+    return `
+      <div class="manifest-item">
+        <div class="manifest-num">${i+1}</div>
+        <div class="manifest-customer">
+          <div class="manifest-name">${esc(o.name)}</div>
+          <div class="manifest-phone">${o.phone || '—'}</div>
+        </div>
+        <div class="manifest-address-text">${esc(o.address)}${o.city ? ', '+esc(o.city) : ''}</div>
+        <div class="manifest-items-text">${esc(shortItems)}</div>
+        <div class="manifest-amount">₦${o.total.toLocaleString('en-NG')}<br><span style="font-size:0.7rem;color:var(--muted);font-family:'Instrument Sans',sans-serif">${payShort}</span></div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="status-pill ${statusClass}">${o.status}</span>
+          <button class="row-action" onclick="openModal('${esc(o.id)}','${esc(o.name)}','${esc(o.status)}')">↗</button>
+        </div>
+      </div>`;
+  }).join('');
+}
 
-    // ─── FORM VALIDATION ─────────────────────────────────────────
-    function validateField(field) {
-      const value = field.value.trim();
-      const fieldContainer = field.closest('.field');
-      const errorEl = fieldContainer?.querySelector('.field-error');
-      
-      // Clear previous error
-      if (fieldContainer) fieldContainer.classList.remove('error');
-      
-      // Skip validation for optional fields that are empty
-      if (!field.required && !value) return true;
-      
-      // Required field validation
-      if (field.required && !value) {
-        if (fieldContainer) fieldContainer.classList.add('error');
-        return false;
-      }
-      
-      // Phone validation (Nigerian format)
-      if (field.type === 'tel' && value && !/^\+?234\d{10}$/.test(value.replace(/\s/g,''))) {
-        if (fieldContainer) fieldContainer.classList.add('error');
-        return false;
-      }
-      
-      // Email validation
-      if (field.type === 'email' && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-        if (fieldContainer) fieldContainer.classList.add('error');
-        return false;
-      }
-      
-      return true;
-    }
+function batchDispatch() {
+  if (!deliverySlots[selectedSlotIdx]) return;
+  const slotKey = deliverySlots[selectedSlotIdx].toDateString();
+  const toDispatch = allOrders.filter(o =>
+    !isTest(o) && o.status === 'Pending' &&
+    getAssignedSlot(o.date, deliverySlots) === slotKey
+  );
+  if (!toDispatch.length) return;
+  if (!confirm(`Mark ${toDispatch.length} order${toDispatch.length!==1?'s':''} as Dispatched?`)) return;
 
-    function validateForm() {
-      const form = document.getElementById('checkoutForm');
-      const fields = form.querySelectorAll('input[required], select[required]');
-      let isValid = true;
-      
-      fields.forEach(field => {
-        if (!validateField(field)) {
-          isValid = false;
-          // Focus first invalid field
-          if (isValid) field.focus();
-        }
-      });
-      
-      // Payment method validation
-      const paymentSelected = form.querySelector('input[name="payment"]:checked');
-      const paymentError = document.getElementById('paymentError');
-      if (!paymentSelected) {
-        paymentError.style.display = 'block';
-        isValid = false;
-      } else {
-        paymentError.style.display = 'none';
-      }
-      
-      return isValid;
+  toDispatch.forEach(o => {
+    o.status = 'Dispatched';
+    if (GAS_URL && !GAS_URL.includes('YOUR_DEPLOYED')) {
+      fetch(GAS_URL+'?action=updateStatus',{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({orderId:o.id,status:'Dispatched'})}).catch(()=>{});
     }
+  });
+  renderDeliveriesTab();
+  updateTabBadges();
+}
 
-    // ─── ORDER SUBMISSION ──────────────────────────────────────────
-    function initFormSubmission() {
-      const form = document.getElementById('checkoutForm');
-      const submitBtn = document.getElementById('submitBtn');
-      const spinner = document.getElementById('spinner');
-      const btnText = document.getElementById('btnText');
-      const successMsg = document.getElementById('successMsg');
-      const errorBar = document.getElementById('errorBar');
-      
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        errorBar.style.display = 'none';
-        
-        // Validate form
-        if (!validateForm()) {
-          // Show first error field
-          const firstError = form.querySelector('.field.error input, .field.error select');
-          if (firstError) firstError.focus();
-          return;
-        }
-        
-        if (cart.length === 0) {
-          errorBar.textContent = 'Your cart is empty. Please add items before checkout.';
-          errorBar.style.display = 'block';
-          errorBar.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          return;
-        }
-        
-        // Disable button & show spinner
-        submitBtn.disabled = true;
-        submitBtn.setAttribute('aria-busy', 'true');
-        spinner.style.display = 'block';
-        btnText.textContent = 'Processing…';
-        
-        // Prepare order data
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-        data.cart = JSON.stringify(cart);
-        data.subtotal = document.getElementById('checkoutSubtotal').textContent;
-        data.delivery = document.getElementById('checkoutDelivery').textContent;
-        data.total = document.getElementById('checkoutTotal').textContent;
-        data.timestamp = new Date().toISOString();
-        
-        try {
-          const response = await fetch(CONFIG.GAS_ENDPOINT, {
-            method: 'POST',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify(data),
-          });
-          
-          const result = await response.json();
-          
-          if (result.status === 'ok') {
-            // Clear cart and form
-            const orderCount = cart.reduce((sum, i) => sum + i.quantity, 0);
-            const orderTotal = document.getElementById('checkoutTotal').textContent;
-            
-            cart = [];
-            saveCart();
-            updateCartCount();
-            localStorage.removeItem('synthova-checkout-data');
-            
-            // Show success state
-            document.getElementById('confirmedOrderId').textContent = result.orderId || 'SYN-XXXX';
-            document.getElementById('successItemCount').textContent = orderCount;
-            document.getElementById('successTotal').textContent = orderTotal;
-            
-            form.style.display = 'none';
-            successMsg.style.display = 'block';
-            successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            gtag('event', 'purchase', {
-              'transaction_id': result.orderId || Date.now(),
-              'value': parseFloat(data.total.replace(/[₦,]/g, '')),
-              'currency': 'NGN',
-              'items': cart.map(item => ({
-                item_name: item.product,
-                price: item.price,
-                quantity: item.quantity
-              }))
-            });
-          } else {
-            throw new Error(result.message || 'Submission failed');
-          }
-          
-        } catch (err) {
-          console.error('Order submission error:', err);
-          errorBar.textContent = 'Something went wrong. Please try again or contact us via WhatsApp.';
-          errorBar.style.display = 'block';
-          errorBar.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          gtag('event', 'exception', { 'description': err.message, 'fatal': false });
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.setAttribute('aria-busy', 'false');
-          spinner.style.display = 'none';
-          btnText.textContent = 'Confirm & Place Order';
-        }
-      });
-    }
+/* ════════════════════════════════════════
+   NEWSLETTER TAB (NEW)
+════════════════════════════════════════ */
 
-    function resetOrder() {
-      // Reset to home with fresh cart
-      cart = [];
-      saveCart();
-      updateCartCount();
-      document.getElementById('checkoutForm').style.display = 'block';
-      document.getElementById('successMsg').style.display = 'none';
-      document.getElementById('checkoutForm').reset();
-      navigateTo('home');
-    }
+// JSONP for newsletter Apps Script (CORS-safe)
+function nlFetch(url) {
+  return new Promise((resolve, reject) => {
+    const cb = '__nl_' + Date.now();
+    window[cb] = (d) => { resolve(d); delete window[cb]; const s=document.getElementById(cb); if(s)s.remove(); };
+    const script = document.createElement('script');
+    script.id = cb;
+    script.src = url + (url.includes('?')? '&':'?') + 'callback=' + cb;
+    script.onerror = () => { reject(new Error('Network error')); delete window[cb]; };
+    setTimeout(() => { reject(new Error('Timeout')); delete window[cb]; }, 8000);
+    document.head.appendChild(script);
+  });
+}
 
-    // ─── FAQ ACCORDION ─────────────────────────────────────────────
-    function initFAQ() {
-      document.querySelectorAll('.faq-question').forEach(question => {
-        question.addEventListener('click', () => {
-          const item = question.parentElement;
-          const isExpanded = question.getAttribute('aria-expanded') === 'true';
-          
-          // Close all
-          document.querySelectorAll('.faq-item').forEach(i => {
-            i.classList.remove('active');
-            i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-          });
-          
-          // Toggle current
-          if (!isExpanded) {
-            item.classList.add('active');
-            question.setAttribute('aria-expanded', 'true');
-          }
-        });
-      });
-    }
+async function loadNlPosts() {
+  const tbody = document.getElementById('nlPostsTableBody');
 
-    // ─── INITIALIZATION ────────────────────────────────────────────
-    function init() {
-      initTheme();
-      initNavigation();
-      initDeliveryCalculator();
-      initFormAutoSave();
-      initFormSubmission();
-      initFAQ();
-      updateCartCount();
-      
-      // Add to cart button listeners
-      document.querySelectorAll('.btn-add').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const product = e.currentTarget.getAttribute('data-product');
-          const price = e.currentTarget.getAttribute('data-price');
-          const size = e.currentTarget.getAttribute('data-size');
-          if (product) addToCart(product, price, size);
-        });
-      });
-      
-      // Proceed to checkout button
-      document.getElementById('proceedToCheckout')?.addEventListener('click', () => {
-        if (cart.length > 0) navigateTo('checkout');
-      });
-      
-      // Track initial page view
-      gtag('event', 'page_view', { 
-        'page_path': '/home', 
-        'page_title': 'home' 
-      });
-      
-      // Add input validation listeners
-      document.querySelectorAll('input, select, textarea').forEach(field => {
-        field.addEventListener('blur', () => validateField(field));
-        field.addEventListener('input', () => {
-          const container = field.closest('.field');
-          if (container?.classList.contains('error')) {
-            validateField(field);
-          }
-        });
-      });
-    }
+  if (!NEWSLETTER_SCRIPT_URL) {
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:32px;color:var(--muted2);font-size:0.84rem">Paste NEWSLETTER_SCRIPT_URL in config to manage posts</td></tr>`;
+    set('nlPostsCountLabel', 'Not connected');
+    set('subTotal', '—'); set('subActive', '—');
+    set('subCardSub', 'Connect NEWSLETTER_SCRIPT_URL to see subscribers');
+    return;
+  }
 
-    // Start the app when DOM is ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
-    } else {
-      init();
-    }
-  </script>
+  tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--muted2)">Loading…</td></tr>`;
+  try {
+    const data = await nlFetch(NEWSLETTER_SCRIPT_URL + '?action=getAllPosts');
+    renderNlPosts(data.posts || []);
+    loadSubscribers();
+  } catch(e) {
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--terra);font-size:0.82rem">Failed to load posts. Check your NEWSLETTER_SCRIPT_URL and deployment settings.</td></tr>`;
+  }
+}
+
+function renderNlPosts(posts) {
+  const tbody = document.getElementById('nlPostsTableBody');
+  set('nlPostsCountLabel', `${posts.length} post${posts.length!==1?'s':''} total`);
+  if (!posts.length) {
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:32px;color:var(--muted2)">No posts yet. Publish your first above.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = posts.map(p => {
+    const statusClass = (p.status||'').toLowerCase() === 'published' ? 'published' : 'draft';
+    return `<tr>
+      <td><div class="nl-post-issue">${esc(p.issue||'—')}</div></td>
+      <td><div class="nl-post-title">${esc(p.title||'—')}</div></td>
+      <td><div class="nl-post-date">${esc(p.date||'—')}</div></td>
+      <td style="font-family:'DM Mono',monospace;font-size:0.78rem">${p.likes||0}</td>
+      <td style="font-family:'DM Mono',monospace;font-size:0.78rem">${p.commentCount||0}</td>
+      <td><span class="nl-status ${statusClass}">${p.status||'draft'}</span></td>
+      <td>
+        <div style="display:flex;gap:4px">
+          <button class="nl-action" onclick="togglePostStatus('${esc(p.id)}','${esc(p.status||'draft')}')">
+            ${(p.status||'').toLowerCase()==='published' ? 'Unpublish' : 'Publish'}
+          </button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+async function togglePostStatus(postId, currentStatus) {
+  if (!NEWSLETTER_SCRIPT_URL) return;
+  const newStatus = (currentStatus||'').toLowerCase() === 'published' ? 'draft' : 'published';
+  try {
+    await nlFetch(NEWSLETTER_SCRIPT_URL + '?action=updatePostStatus&postId=' + encodeURIComponent(postId) + '&status=' + newStatus);
+    loadNlPosts();
+  } catch(e) { alert('Failed to update status. Try again.'); }
+}
+
+async function loadSubscribers() {
+  if (!NEWSLETTER_SCRIPT_URL) return;
+  try {
+    const data = await nlFetch(NEWSLETTER_SCRIPT_URL + '?action=getSubscribers');
+    const subs   = data.subscribers || [];
+    const active = subs.filter(s => (s.active||'').toLowerCase() !== 'false').length;
+    set('subTotal', subs.length);
+    set('subActive', active);
+    set('subCardSub', `Last updated ${new Date().toLocaleTimeString('en-NG',{hour:'2-digit',minute:'2-digit'})}`);
+  } catch(e) { set('subCardSub', 'Could not load subscriber data'); }
+}
+
+async function publishPost() {
+  const issue   = (document.getElementById('nlIssue').value   || '').trim();
+  const title   = (document.getElementById('nlTitle').value   || '').trim();
+  const date    = (document.getElementById('nlDate').value    || '').trim();
+  const image   = (document.getElementById('nlImage').value   || '').trim();
+  const content = (document.getElementById('nlContent').value || '').trim();
+  const status  = document.getElementById('nlStatus').value;
+
+  const feedback = document.getElementById('nlFeedback');
+  const btn      = document.getElementById('nlSubmitBtn');
+
+  if (!title || !content) {
+    feedback.textContent = 'Title and content are required.';
+    feedback.className = 'nl-feedback err';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Publishing…';
+  feedback.textContent = '';
+  feedback.className = 'nl-feedback';
+
+  // Auto-generate a post ID
+  const postId = 'post_' + Date.now();
+  const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'}) : new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+
+  if (!NEWSLETTER_SCRIPT_URL) {
+    // Demo mode feedback
+    setTimeout(() => {
+      feedback.textContent = '✓ Post saved (connect NEWSLETTER_SCRIPT_URL to push live)';
+      feedback.className = 'nl-feedback ok';
+      btn.disabled = false; btn.textContent = 'Publish Post →';
+    }, 600);
+    return;
+  }
+
+  try {
+    await nlFetch(
+      NEWSLETTER_SCRIPT_URL +
+      '?action=createPost' +
+      '&postId=' + encodeURIComponent(postId) +
+      '&issue=' + encodeURIComponent(issue) +
+      '&title=' + encodeURIComponent(title) +
+      '&date='  + encodeURIComponent(formattedDate) +
+      '&imageUrl=' + encodeURIComponent(image) +
+      '&content='  + encodeURIComponent(content) +
+      '&status='   + encodeURIComponent(status)
+    );
+    feedback.textContent = status === 'published' ? '✓ Published! It\'s live on The Drop.' : '✓ Saved as draft.';
+    feedback.className = 'nl-feedback ok';
+    // Clear form
+    ['nlIssue','nlTitle','nlImage','nlContent'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+    document.getElementById('nlDate').value = new Date().toISOString().slice(0,10);
+    loadNlPosts();
+  } catch(e) {
+    feedback.textContent = 'Failed to publish. Check your newsletter backend.';
+    feedback.className = 'nl-feedback err';
+  }
+
+  btn.disabled = false; btn.textContent = 'Publish Post →';
+}
+
+/* ════════════════════════════════════════
+   HELPERS
+════════════════════════════════════════ */
+function set(id, val) { const el=document.getElementById(id); if(el) el.textContent=val; }
+function esc(str) { return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function destroyChart(id) { const e=Chart.getChart(id); if(e) e.destroy(); }
+function showLoading(show) {
+  document.getElementById('loadingOverlay').classList.toggle('hidden',!show);
+  document.getElementById('mainShell').style.display=show?'none':'block';
+  if(!show) document.getElementById('retryBtn').style.display='none';
+}
+</script>
 </body>
 </html>
