@@ -2,1596 +2,1241 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Synthova Oil — Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#020d1f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>SPAx '26 — Student Professional Awareness Conference | IEEE UNIBEN</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-
+<link rel="preconnect" href="https://res.cloudinary.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:ital,wght@0,400;0,500&display=swap" rel="stylesheet">
 <style>
-/* ══════════════════════════════════════
-   TOKENS
-══════════════════════════════════════ */
+/* ──────────────────────────────────────────────────
+   VARIABLES
+────────────────────────────────────────────────── */
 :root {
-  --ink:       #0d1008;
-  --surface:   #f5f2eb;
-  --card:      #ffffff;
-  --border:    #e4dfd4;
-  --border2:   #cfc9bc;
-  --gold:      #c8860a;
-  --gold-lt:   #e8a020;
-  --gold-pale: #fdf3e0;
-  --green:     #3a7a2c;
-  --green-lt:  #52a840;
-  --green-pale:#eaf5e6;
-  --terra:     #c94f1d;
-  --terra-pale:#fdeee8;
-  --blue:      #3949ab;
-  --blue-pale: #e8eaf6;
-  --muted:     #7a7060;
-  --muted2:    #a8a090;
-  --white:     #ffffff;
-  --r-sm: 8px; --r-md: 14px; --r-lg: 20px; --r-xl: 28px;
-  --shadow: 0 1px 3px rgba(13,16,8,.06), 0 4px 16px rgba(13,16,8,.08);
-  --shadow-md: 0 2px 8px rgba(13,16,8,.08), 0 8px 32px rgba(13,16,8,.10);
+  --primary: #0A6FA3;
+  --primary-dark: #085a85;
+  --secondary: #26F0F1;
+  --tertiary-dark: #202A25;
+  --tertiary-light: #CDC392;
+  --navy: #020d1f;
+  --white: #f8fafc;
+  --gray: #94a3b8;
+  --green: #10b981;
+  --ff-head: 'Syne', sans-serif;
+  --ff-body: 'DM Sans', sans-serif;
+  --ff-mono: 'DM Mono', monospace;
+  --r: 16px;
+  --r-sm: 10px;
+  --r-lg: 24px;
+  --shadow: 0 4px 24px rgba(10,111,163,0.12);
+  --shadow-up: 0 12px 40px rgba(10,111,163,0.22);
 }
 
+/* ──────────────────────────────────────────────────
+   RESET & BASE
+────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 15px; }
-
+html { scroll-behavior: smooth; }
 body {
-  background: var(--surface);
-  color: var(--ink);
-  font-family: 'Instrument Sans', sans-serif;
-  font-weight: 400;
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--ff-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
   min-height: 100vh;
-  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+button { font-family: inherit; }
+img, svg, video { max-width: 100%; height: auto; display: block; }
+html, body { max-width: 100vw; overflow-x: hidden; }
+
+/* ──────────────────────────────────────────────────
+   GLOBAL GRID BACKGROUND
+────────────────────────────────────────────────── */
 body::before {
   content: '';
-  position: fixed; inset: 0; z-index: 0;
+  position: fixed; inset: 0;
   background-image:
-    linear-gradient(rgba(200,134,10,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200,134,10,.04) 1px, transparent 1px);
+    linear-gradient(rgba(38,240,241,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(38,240,241,0.04) 1px, transparent 1px);
   background-size: 48px 48px;
   pointer-events: none;
+  z-index: 0;
 }
 
-/* ── LAYOUT ── */
-.shell { position: relative; z-index: 1; max-width: 1380px; margin: 0 auto; padding: 0 24px 60px; }
-
-/* ── TOPBAR ── */
-.topbar {
+/* ──────────────────────────────────────────────────
+   NAV
+────────────────────────────────────────────────── */
+nav.topnav {
+  position: sticky; top: 0;
+  z-index: 90;
+  background: rgba(2,13,31,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(205,195,146,0.15);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto;
+  padding: 0 24px; height: 68px;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 20px 0 0; flex-wrap: wrap; gap: 16px;
 }
-.brand { display: flex; align-items: center; gap: 12px; }
-.brand-dot {
-  width: 36px; height: 36px;
-  background: linear-gradient(135deg, var(--gold), var(--terra));
-  border-radius: 10px; display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
+.nav-brand {
+  display: flex; align-items: center; gap: 12px;
+  cursor: pointer; text-decoration: none;
 }
-.brand h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--ink); letter-spacing: -0.02em; }
-.brand span { font-weight: 400; font-size: 0.8rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-top: -2px; }
-.topbar-right { display: flex; align-items: center; gap: 12px; }
-
-.period-pill { display: flex; background: var(--card); border: 1px solid var(--border); border-radius: 50px; padding: 3px; gap: 2px; }
-.period-btn { padding: 5px 14px; border: none; border-radius: 50px; font-family: 'Instrument Sans', sans-serif; font-size: 0.78rem; font-weight: 500; color: var(--muted); background: none; cursor: pointer; transition: all 0.2s; letter-spacing: 0.04em; }
-.period-btn.active { background: var(--ink); color: var(--white); }
-
-.refresh-btn { display: flex; align-items: center; gap: 7px; padding: 8px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 50px; font-family: 'Instrument Sans', sans-serif; font-size: 0.78rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.2s; }
-.refresh-btn:hover { border-color: var(--green); color: var(--green); }
-.refresh-btn svg { width: 14px; height: 14px; }
-.last-updated { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted2); }
-
-/* ══════════════════════════════════════
-   TAB NAV (NEW)
-══════════════════════════════════════ */
-.tab-nav {
-  display: flex; gap: 0;
-  border-bottom: 1px solid var(--border);
-  margin: 24px 0 0;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+.nav-logo { height: 32px; width: auto; object-fit: contain; }
+.nav-logo-div { width: 1px; height: 20px; background: rgba(255,255,255,0.15); }
+.nav-name {
+  font-family: var(--ff-head);
+  font-weight: 700; font-size: 15px;
+  color: var(--white); line-height: 1.3;
 }
-.tab-nav::-webkit-scrollbar { display: none; }
+.nav-name span { color: var(--tertiary-light); }
 
-.tab-btn {
-  display: flex; align-items: center; gap: 8px;
-  padding: 11px 22px;
-  border: none; border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  background: none;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 0.82rem; font-weight: 500;
-  color: var(--muted); cursor: pointer;
+/* ──────────────────────────────────────────────────
+   HAMBURGER
+────────────────────────────────────────────────── */
+.hamburger {
+  background: none; border: none; cursor: pointer;
+  width: 44px; height: 44px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px;
+  border-radius: var(--r-sm);
+  transition: background 0.2s;
+  position: relative; z-index: 101;
+  padding: 8px;
+  -webkit-tap-highlight-color: transparent;
+}
+.hamburger:hover { background: rgba(10,111,163,0.25); }
+.h-line {
+  display: block; width: 20px; height: 2px;
+  background: var(--secondary); border-radius: 2px;
+  transition: transform 0.38s cubic-bezier(.4,0,.2,1), opacity 0.22s;
+  transform-origin: center;
+}
+.hamburger.open .h-line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.open .h-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open .h-line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* ──────────────────────────────────────────────────
+   MENU OVERLAY + PANEL
+────────────────────────────────────────────────── */
+.menu-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(3px);
+  z-index: 95;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.38s;
+}
+.menu-overlay.open { opacity: 1; pointer-events: all; }
+
+.menu-panel {
+  position: fixed; top: 0; left: 0;
+  width: min(340px, 88vw); height: 100vh;
+  background: var(--tertiary-dark);
+  z-index: 96;
+  transform: translateX(-100%);
+  transition: transform 0.42s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column;
+  border-right: 1px solid rgba(205,195,146,0.25);
+  box-shadow: 12px 0 60px rgba(0,0,0,0.3);
+  overflow-y: auto;
+}
+.menu-panel.open { transform: translateX(0); }
+
+.menu-panel-head {
+  padding: 24px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; gap: 12px;
+}
+.menu-panel-logo { height: 30px; width: auto; }
+.menu-panel-logo-div { width: 1px; height: 18px; background: rgba(255,255,255,0.15); }
+.menu-panel-label {
+  font-family: var(--ff-head);
+  font-weight: 700; font-size: 14px;
+  color: var(--white); line-height: 1.35;
+}
+.menu-panel-label span { color: var(--tertiary-light); }
+
+.menu-nav {
+  flex: 1; padding: 28px 20px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.menu-nav a {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--r-sm);
+  font-family: var(--ff-head);
+  font-weight: 600; font-size: 16px;
+  color: var(--gray); text-decoration: none; cursor: pointer;
+  transition: background 0.16s, color 0.16s, transform 0.18s;
+  min-height: 56px;
+}
+.menu-nav a:hover { background: rgba(10,111,163,0.25); color: var(--secondary); transform: translateX(4px); }
+.menu-nav a.active-link { background: rgba(10,111,163,0.3); color: var(--secondary); }
+.menu-nav-n {
+  font-family: var(--ff-mono);
+  font-size: 10px; color: var(--gray);
+  letter-spacing: 0.12em; flex-shrink: 0;
+}
+.menu-foot {
+  padding: 20px 24px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: auto;
+}
+.menu-foot p {
+  font-family: var(--ff-mono);
+  font-size: 10px; color: var(--gray);
+  letter-spacing: 0.12em; line-height: 1.8;
+}
+
+/* ──────────────────────────────────────────────────
+   PAGE SYSTEM
+────────────────────────────────────────────────── */
+.page { display: none; }
+.page.active { display: block; animation: pageIn 0.48s cubic-bezier(.4,0,.2,1) forwards; }
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ──────────────────────────────────────────────────
+   WRAPPER & HEADERS
+────────────────────────────────────────────────── */
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+.s-head { display: flex; align-items: center; gap: 14px; margin-bottom: 36px; }
+.s-tag  {
+  font-family: var(--ff-mono); font-size: 10px; letter-spacing: 0.2em;
+  color: var(--tertiary-light); text-transform: uppercase; white-space: nowrap;
+}
+.s-line { flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+
+/* ──────────────────────────────────────────────────
+   BUTTONS
+────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--tertiary-light); color: var(--tertiary-dark);
+  font-family: var(--ff-head); font-weight: 700; font-size: 15px;
+  padding: 14px 32px; border-radius: var(--r-sm);
+  border: none; cursor: pointer; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 4px 18px rgba(205,195,146,0.28); min-height: 48px;
+}
+.btn-primary:hover { background: var(--secondary); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(38,240,241,0.36); }
+.btn-outline {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: transparent; color: var(--white);
+  font-family: var(--ff-head); font-weight: 600; font-size: 15px;
+  padding: 13px 32px; border-radius: var(--r-sm);
+  border: 1.5px solid rgba(255,255,255,0.2); cursor: pointer; text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s; min-height: 48px;
+}
+.btn-outline:hover { background: rgba(38,240,241,0.08); border-color: var(--secondary); transform: translateY(-2px); }
+.bi { width: 15px; height: 15px; flex-shrink: 0; }
+
+/* ──────────────────────────────────────────────────
+   EYEBROW PILL
+────────────────────────────────────────────────── */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(38,240,241,0.12); border: 1px solid rgba(38,240,241,0.35);
+  color: var(--secondary); border-radius: 100px; padding: 6px 16px;
+  font-family: var(--ff-mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 24px;
+}
+.e-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green); flex-shrink: 0;
+  animation: pulse 1.6s ease infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.7)} }
+
+/* ──────────────────────────────────────────────────
+   HOME HERO
+────────────────────────────────────────────────── */
+.hero {
+  padding: 100px 0 80px;
+  position: relative; overflow: hidden;
+  text-align: center;
+}
+.hero h1 {
+  font-family: var(--ff-head); font-weight: 800;
+  font-size: clamp(36px, 6vw, 72px); line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--white); margin-bottom: 16px;
+}
+.hero h1 .highlight {
+  background: linear-gradient(90deg, var(--tertiary-light), var(--secondary));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  font-size: 18px; font-weight: 300; color: var(--gray);
+  margin-bottom: 12px; max-width: 560px; line-height: 1.7; margin-left: auto; margin-right: auto;
+}
+.hero-tagline {
+  font-family: var(--ff-mono); font-size: 12px;
+  color: rgba(205,195,146,0.75); letter-spacing: 0.08em; margin-bottom: 40px;
+}
+.hero-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ──────────────────────────────────────────────────
+   INTERACTIVE MASCOT (HOME)
+────────────────────────────────────────────────── */
+.mascot-home {
+  position: absolute;
+  right: clamp(10px, 5vw, 40px);
+  bottom: clamp(10px, 8vh, 50px);
+  width: clamp(120px, 35vw, 240px);
+  height: auto;
+  z-index: 2;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  animation: floatMascot 6s ease-in-out infinite;
+  filter: drop-shadow(0 4px 16px rgba(10,111,163,0.25));
+  transition: transform 0.15s ease;
+}
+.mascot-home:active { transform: scale(0.96); }
+.mascot-home.fly {
+  animation: flyUpAndBack 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes floatMascot {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(0.6deg); }
+}
+@keyframes flyUpAndBack {
+  0%   { transform: translateY(0) scale(1); }
+  35%  { transform: translateY(-40px) scale(1.06); }
+  65%  { transform: translateY(-40px) scale(1.04); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* Tap hint */
+.mascot-home::after {
+  content: 'Tap me 👆';
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  color: var(--secondary);
+  background: rgba(32,42,37,0.85);
+  padding: 4px 10px;
+  border-radius: 100px;
   white-space: nowrap;
-  transition: all 0.2s;
-  letter-spacing: 0.02em;
+  opacity: 0.9;
+  pointer-events: none;
+  animation: fadeInOut 4s ease forwards 3s;
 }
-.tab-btn:hover { color: var(--ink); }
-.tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); font-weight: 600; }
-.tab-btn .tab-badge {
-  background: var(--gold-pale); color: var(--gold);
-  font-size: 0.65rem; font-weight: 700;
-  padding: 1px 7px; border-radius: 50px;
-  font-family: 'DM Mono', monospace;
+@keyframes fadeInOut { 0%,70%{opacity:0.9} 100%{opacity:0} }
+
+/* ──────────────────────────────────────────────────
+   MASCOT (WHY PAGE)
+────────────────────────────────────────────────── */
+.mascot-why {
+  position: absolute;
+  right: max(3vw, 20px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(200px, 32vw);
+  height: auto;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.92;
+  filter: drop-shadow(0 6px 20px rgba(38,240,241,0.18));
+  animation: gentleBob 7s ease-in-out infinite;
 }
-.tab-btn .tab-badge.green { background: var(--green-pale); color: var(--green); }
-
-.tab-panel { display: none; padding-top: 28px; }
-.tab-panel.active { display: block; }
-
-/* ══════════════════════════════════════
-   LOADING / ERROR
-══════════════════════════════════════ */
-.state-overlay {
-  position: fixed; inset: 0; z-index: 100;
-  background: var(--surface);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+@keyframes gentleBob {
+  0%, 100% { transform: translateY(-50%) rotate(0deg); }
+  50% { transform: translateY(-58%) rotate(0.4deg); }
 }
-.state-overlay.hidden { display: none; }
-.loader-ring { width: 48px; height: 48px; border: 3px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.state-overlay h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--ink); }
-.state-overlay p { color: var(--muted); font-size: 0.9rem; text-align: center; max-width: 320px; }
-.retry-btn { padding: 10px 24px; background: var(--gold); color: var(--white); border: none; border-radius: 50px; font-family: 'Instrument Sans', sans-serif; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.2s; display: none; }
-.retry-btn:hover { background: var(--gold-lt); }
 
-/* ══════════════════════════════════════
-   KPI STRIP
-══════════════════════════════════════ */
-.kpi-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 24px; }
-.kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 22px 24px; position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
-.kpi-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-.kpi-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-.kpi-card.gold::after  { background: linear-gradient(90deg, var(--gold), var(--gold-lt)); }
-.kpi-card.green::after { background: linear-gradient(90deg, var(--green), var(--green-lt)); }
-.kpi-card.terra::after { background: linear-gradient(90deg, var(--terra), #e8722a); }
-.kpi-card.ink::after   { background: linear-gradient(90deg, var(--ink), #3a4020); }
-.kpi-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-.kpi-value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; color: var(--ink); line-height: 1; letter-spacing: -0.03em; }
-.kpi-value.mono { font-family: 'DM Mono', monospace; font-weight: 500; font-size: 1.7rem; }
-.kpi-sub { margin-top: 8px; font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-.kpi-sub .badge { font-size: 0.7rem; font-weight: 600; padding: 2px 7px; border-radius: 50px; }
-.badge.up   { background: var(--green-pale); color: var(--green); }
-.badge.down { background: var(--terra-pale); color: var(--terra); }
-.badge.flat { background: var(--gold-pale);  color: var(--gold); }
-.kpi-icon { position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
-.kpi-card.gold  .kpi-icon { background: var(--gold-pale); }
-.kpi-card.green .kpi-icon { background: var(--green-pale); }
-.kpi-card.terra .kpi-icon { background: var(--terra-pale); }
-.kpi-card.ink   .kpi-icon { background: #f0ede6; }
-
-/* ══════════════════════════════════════
-   CASH FLOW ROW (NEW)
-══════════════════════════════════════ */
-.cf-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 24px; }
-.cf-card {
-  background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg);
-  padding: 20px 22px; position: relative; overflow: hidden;
+/* ──────────────────────────────────────────────────
+   ABOUT PAGE
+────────────────────────────────────────────────── */
+.about-page { padding: 80px 0; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-top: 40px; }
+.about-text p { color: var(--gray); font-weight: 300; line-height: 1.8; margin-bottom: 20px; font-size: 15.5px; }
+.about-text p strong { color: var(--white); font-weight: 500; }
+.about-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.fact-card {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px; padding: 20px; transition: border-color 0.2s, background 0.2s;
 }
-.cf-card-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-.cf-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.cf-value { font-family: 'DM Mono', monospace; font-size: 1.55rem; font-weight: 500; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 6px; }
-.cf-sub { font-size: 0.76rem; color: var(--muted2); }
-.cf-bar-track { margin-top: 14px; height: 4px; background: var(--surface); border-radius: 50px; overflow: hidden; }
-.cf-bar-fill { height: 100%; border-radius: 50px; transition: width 1s cubic-bezier(.4,0,.2,1); }
+.fact-card:hover { border-color: rgba(205,195,146,0.3); background: rgba(205,195,146,0.06); }
+.fact-icon { font-size: 22px; margin-bottom: 10px; }
+.fact-value { font-family: var(--ff-head); font-size: 22px; font-weight: 800; color: var(--tertiary-light); line-height: 1; margin-bottom: 4px; }
+.fact-desc { font-size: 12px; color: var(--gray); font-family: var(--ff-mono); }
 
-/* ══════════════════════════════════════
-   CHARTS ROW
-══════════════════════════════════════ */
-.charts-row { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 24px; }
-.chart-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 24px; }
-.chart-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
-.chart-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--ink); }
-.chart-sub { font-size: 0.75rem; color: var(--muted); margin-top: 3px; }
-.chart-legend { display: flex; gap: 14px; flex-wrap: wrap; }
-.legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--muted); }
-.legend-dot { width: 8px; height: 8px; border-radius: 2px; }
-.chart-wrap { position: relative; height: 240px; }
-.chart-wrap.donut { height: 220px; }
-
-/* ── MID ROW ── */
-.mid-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-.product-bar-item { margin-bottom: 14px; }
-.product-bar-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
-.product-bar-name { font-size: 0.85rem; font-weight: 500; color: var(--ink); }
-.product-bar-val  { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--muted); }
-.product-bar-track { height: 8px; background: var(--surface); border-radius: 50px; overflow: hidden; }
-.product-bar-fill { height: 100%; border-radius: 50px; transition: width 1s cubic-bezier(0.4,0,0.2,1); width: 0; }
-.state-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
-.state-row:last-child { border-bottom: none; }
-.state-flag { width: 28px; height: 28px; border-radius: var(--r-sm); background: var(--gold-pale); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: var(--gold); flex-shrink: 0; }
-.state-name { font-size: 0.88rem; font-weight: 500; flex: 1; }
-.state-orders { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--muted); }
-.state-rev { font-family: 'DM Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--ink); }
-
-/* ══════════════════════════════════════
-   ORDERS TABLE
-══════════════════════════════════════ */
-.table-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; margin-bottom: 24px; }
-.table-topbar { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px 16px; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
-.table-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--ink); }
-.search-box { display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 50px; padding: 6px 14px; font-family: 'Instrument Sans', sans-serif; font-size: 0.82rem; color: var(--ink); }
-.search-box svg { width: 13px; height: 13px; stroke: var(--muted); flex-shrink: 0; }
-.search-box input { border: none; background: none; outline: none; font-family: inherit; font-size: inherit; color: inherit; width: 180px; }
-.search-box input::placeholder { color: var(--muted2); }
-.status-filter { display: flex; gap: 6px; flex-wrap: wrap; }
-.filter-chip { padding: 4px 12px; border: 1px solid var(--border); border-radius: 50px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); background: var(--card); cursor: pointer; transition: all 0.18s; }
-.filter-chip.active, .filter-chip:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
-.tbl { width: 100%; border-collapse: collapse; }
-.tbl thead tr { background: var(--surface); }
-.tbl th { padding: 10px 16px; text-align: left; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); white-space: nowrap; }
-.tbl td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 0.85rem; vertical-align: middle; }
-.tbl tbody tr:last-child td { border-bottom: none; }
-.tbl tbody tr { transition: background 0.15s; }
-.tbl tbody tr:hover { background: var(--surface); }
-.order-id { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--muted); }
-.customer-name { font-weight: 500; }
-.customer-phone { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
-.amount { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--ink); }
-.status-pill { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 50px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
-.status-pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: 0.7; }
-.status-pending    { background: var(--gold-pale);  color: var(--gold); }
-.status-completed  { background: var(--green-pale); color: var(--green); }
-.status-dispatched { background: var(--blue-pale);  color: var(--blue); }
-.status-test       { background: #f0ede6; color: var(--muted); }
-.status-cancelled  { background: var(--terra-pale); color: var(--terra); }
-.pay-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; }
-.pay-paystack { background: #e8f5e9; color: #2e7d32; }
-.pay-transfer { background: var(--gold-pale); color: var(--gold); }
-.pay-cash     { background: #f0ede6; color: var(--muted); }
-.pay-pos      { background: var(--blue-pale); color: var(--blue); }
-.items-cell { font-size: 0.78rem; color: var(--muted); max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.row-action { background: none; border: 1px solid var(--border); border-radius: var(--r-sm); padding: 4px 10px; font-family: 'Instrument Sans', sans-serif; font-size: 0.72rem; color: var(--muted); cursor: pointer; transition: all 0.18s; }
-.row-action:hover { border-color: var(--green); color: var(--green); }
-.table-footer { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 10px; }
-.table-info { font-size: 0.78rem; color: var(--muted); }
-.pagination { display: flex; gap: 4px; }
-.page-btn { width: 30px; height: 30px; border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--card); color: var(--muted); font-size: 0.78rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.18s; }
-.page-btn.active { background: var(--ink); color: var(--white); border-color: var(--ink); }
-.page-btn:hover:not(.active) { border-color: var(--green); color: var(--green); }
-.empty-row td { text-align: center; padding: 40px !important; color: var(--muted); font-size: 0.9rem; }
-
-/* ══════════════════════════════════════
-   DELIVERY TAB (NEW)
-══════════════════════════════════════ */
-.delivery-header {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+/* ──────────────────────────────────────────────────
+   WHY ATTEND PAGE
+────────────────────────────────────────────────── */
+.why-page { padding: 80px 0; background: rgba(32,42,37,0.4); position: relative; }
+.why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 40px; }
+.why-card {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px; padding: 28px; transition: all 0.2s;
 }
-.delivery-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--ink); }
-.delivery-sub { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+.why-card:hover { border-color: rgba(205,195,146,0.3); background: rgba(205,195,146,0.06); transform: translateY(-2px); }
+.why-num { font-family: var(--ff-head); font-size: 42px; font-weight: 800; color: rgba(205,195,146,0.2); line-height: 1; margin-bottom: 12px; letter-spacing: -0.03em; }
+.why-title { font-family: var(--ff-head); font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.why-desc { font-size: 14px; color: var(--gray); line-height: 1.7; font-weight: 300; }
 
-.slot-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 28px; }
-.slot-card {
-  background: var(--card); border: 2px solid var(--border); border-radius: var(--r-lg);
-  padding: 20px 22px; cursor: pointer; transition: all 0.2s;
+/* ──────────────────────────────────────────────────
+   REGISTER PAGE
+────────────────────────────────────────────────── */
+.reg-page { padding: 80px 0; }
+.page-header { max-width: 560px; margin: 0 auto 48px; text-align: center; }
+.page-header h2 {
+  font-family: var(--ff-head); font-weight: 800;
+  font-size: clamp(32px,5vw,48px); line-height: 1.1; letter-spacing: -0.015em; margin-bottom: 12px;
 }
-.slot-card:hover { border-color: var(--gold); box-shadow: var(--shadow); }
-.slot-card.active { border-color: var(--gold); background: var(--gold-pale); }
-.slot-day { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--ink); letter-spacing: -0.01em; }
-.slot-date { font-size: 0.75rem; color: var(--muted); margin-top: 2px; font-family: 'DM Mono', monospace; }
-.slot-count {
-  margin-top: 16px; display: flex; align-items: flex-end; justify-content: space-between;
+.page-header p { font-size: 16px; color: var(--gray); font-weight: 300; line-height: 1.7; }
+.form-card {
+  background: rgba(10,111,163,0.15); border: 1px solid rgba(205,195,146,0.2);
+  border-radius: var(--r-lg); padding: 48px 40px; max-width: 740px; margin: 0 auto;
+  position: relative; overflow: hidden;
 }
-.slot-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; line-height: 1; color: var(--ink); letter-spacing: -0.03em; }
-.slot-label { font-size: 0.72rem; color: var(--muted); margin-bottom: 4px; }
-.slot-indicator {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--border2); transition: background 0.2s;
+.form-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--primary-dark), var(--primary), var(--secondary));
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
 }
-.slot-card.active .slot-indicator { background: var(--gold); }
-.slot-card.has-orders .slot-indicator { background: var(--terra); }
-.slot-card.active.has-orders .slot-indicator { background: var(--gold); }
-
-.manifest-section {
-  background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg);
-  overflow: hidden;
+.form-row { margin-bottom: 20px; }
+.form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+label {
+  display: block; font-weight: 500; font-size: 12px;
+  color: var(--gray); margin-bottom: 6px; letter-spacing: 0.06em; text-transform: uppercase; font-family: var(--ff-mono);
 }
-.manifest-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 24px; border-bottom: 1px solid var(--border);
-  flex-wrap: wrap; gap: 10px;
+label .req { color: var(--tertiary-light); margin-left: 2px; }
+input[type="text"], input[type="email"], input[type="tel"], select {
+  width: 100%; padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--r-sm);
+  font-family: var(--ff-body); font-size: 14px;
+  color: var(--white); background: rgba(255,255,255,0.05);
+  outline: none; transition: border-color 0.2s, background 0.2s; min-height: 48px;
 }
-.manifest-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--ink); }
-.manifest-sub { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
-
-.batch-btn {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 18px; border: none; border-radius: 50px;
-  background: var(--green); color: var(--white);
-  font-family: 'Instrument Sans', sans-serif; font-size: 0.78rem; font-weight: 600;
-  cursor: pointer; transition: all 0.2s;
+input:focus, select:focus {
+  border-color: var(--secondary);
+  background: rgba(38,240,241,0.06);
 }
-.batch-btn:hover { background: var(--green-lt); }
-.batch-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-.batch-btn svg { width: 14px; height: 14px; }
-
-.manifest-item {
-  display: grid;
-  grid-template-columns: 40px 1fr 180px 120px 100px 90px;
-  align-items: center; gap: 12px;
-  padding: 14px 24px; border-bottom: 1px solid var(--border);
-  transition: background 0.15s;
+input::placeholder { color: rgba(255,255,255,0.25); }
+select {
+  appearance: none;
+  background-image: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394a3b8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
 }
-.manifest-item:last-child { border-bottom: none; }
-.manifest-item:hover { background: var(--surface); }
-
-.manifest-num {
-  width: 32px; height: 32px; border-radius: 50%;
-  background: var(--surface); border: 1px solid var(--border);
+select option { background: var(--tertiary-dark); color: var(--white); }
+#other-dept-group { display: none; }
+.form-submit {
+  width: 100%; padding: 16px;
+  background: var(--tertiary-light); color: var(--tertiary-dark);
+  font-family: var(--ff-head); font-size: 16px; font-weight: 700;
+  border: none; border-radius: 10px; cursor: pointer;
+  transition: all 0.2s; margin-top: 8px; min-height: 52px;
+}
+.form-submit:hover { background: var(--secondary); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(38,240,241,0.25); }
+.form-submit:disabled { opacity: 0.55; cursor: not-allowed; transform: none; box-shadow: none; }
+.form-note { text-align: center; margin-top: 16px; font-size: 12px; color: var(--gray); font-family: var(--ff-mono); }
+.form-note a { color: var(--tertiary-light); }
+.error-banner {
+  background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.35);
+  border-radius: 8px; padding: 11px 14px; font-size: 13px; color: #fecaca;
+  margin-bottom: 16px; display: none;
+}
+.success-state { display: none; text-align: center; padding: 40px 20px; }
+.success-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(16,185,129,0.18); border: 2px solid var(--green);
   display: flex; align-items: center; justify-content: center;
-  font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--muted);
-  flex-shrink: 0;
+  margin: 0 auto 20px; color: var(--green); font-size: 28px;
 }
-.manifest-customer { min-width: 0; }
-.manifest-name { font-weight: 500; font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.manifest-phone { font-size: 0.72rem; color: var(--muted); margin-top: 1px; }
-.manifest-address-text { font-size: 0.76rem; color: var(--muted); line-height: 1.4; }
-.manifest-items-text { font-size: 0.76rem; color: var(--muted); }
-.manifest-amount { font-family: 'DM Mono', monospace; font-size: 0.88rem; font-weight: 500; white-space: nowrap; }
-
-.manifest-empty { text-align: center; padding: 40px; color: var(--muted2); font-size: 0.88rem; }
-
-/* ══════════════════════════════════════
-   NEWSLETTER TAB (NEW)
-══════════════════════════════════════ */
-.nl-grid { display: grid; grid-template-columns: 380px 1fr; gap: 20px; align-items: start; }
-
-.nl-card {
-  background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg);
-  overflow: hidden;
+.success-state h3 { font-family: var(--ff-head); font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+.success-state p { color: var(--gray); font-size: 14px; line-height: 1.7; margin-bottom: 28px; }
+.success-actions { display: flex; flex-direction: column; gap: 12px; max-width: 320px; margin: 0 auto; }
+.btn-whatsapp {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: rgba(37,211,102,0.15); border: 1px solid rgba(37,211,102,0.35);
+  color: #25d366; font-family: var(--ff-head); font-weight: 700; font-size: 14px;
+  padding: 13px 24px; border-radius: 10px; cursor: pointer;
+  transition: all 0.2s; text-decoration: none; min-height: 48px;
 }
-.nl-card-header { padding: 18px 22px 16px; border-bottom: 1px solid var(--border); }
-.nl-card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--ink); }
-.nl-card-sub { font-size: 0.74rem; color: var(--muted); margin-top: 3px; }
-.nl-card-body { padding: 20px 22px; }
+.btn-whatsapp:hover { background: rgba(37,211,102,0.25); border-color: rgba(37,211,102,0.6); transform: translateY(-1px); }
+.btn-whatsapp svg { flex-shrink: 0; }
 
-.nl-field { margin-bottom: 14px; }
-.nl-label { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-.nl-input {
-  width: 100%;
-  background: var(--surface); border: 1px solid var(--border);
-  color: var(--ink); font-family: 'Instrument Sans', sans-serif;
-  font-size: 0.86rem; padding: 9px 12px; outline: none;
-  border-radius: var(--r-sm); transition: border-color 0.2s;
+/* ──────────────────────────────────────────────────
+   COLLABORATORS PAGE
+────────────────────────────────────────────────── */
+.collab-page { padding: 80px 0; }
+.collab-perks { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-bottom: 32px; }
+.perk-item { display: flex; gap: 12px; align-items: flex-start; }
+.perk-icon { font-size: 20px; color: var(--tertiary-light); flex-shrink: 0; margin-top: 2px; }
+.perk-text { font-size: 14px; color: var(--gray); }
+
+/* ──────────────────────────────────────────────────
+   FOOTER
+────────────────────────────────────────────────── */
+footer {
+  background: rgba(32,42,37,0.9); border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 48px 0 32px; margin-top: 0;
 }
-.nl-input:focus { border-color: var(--gold); }
-.nl-input::placeholder { color: var(--muted2); }
-.nl-input.textarea { resize: vertical; min-height: 140px; line-height: 1.6; }
-.nl-input.select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237a7060' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 30px; cursor: pointer; }
-
-.nl-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-
-.nl-submit {
-  width: 100%; padding: 11px;
-  background: var(--ink); color: var(--white);
-  border: none; border-radius: var(--r-sm);
-  font-family: 'Instrument Sans', sans-serif; font-size: 0.85rem; font-weight: 600;
-  cursor: pointer; transition: all 0.2s; letter-spacing: 0.02em;
-  margin-top: 4px;
+.footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.footer-top {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px; margin-bottom: 40px; align-items: start;
 }
-.nl-submit:hover { background: var(--gold); }
-.nl-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-
-.nl-feedback { margin-top: 10px; font-size: 0.78rem; text-align: center; min-height: 20px; }
-.nl-feedback.ok  { color: var(--green); }
-.nl-feedback.err { color: var(--terra); }
-
-/* Posts list */
-.nl-posts-wrap { overflow-x: auto; }
-.nl-posts-tbl { width: 100%; border-collapse: collapse; }
-.nl-posts-tbl th { padding: 9px 16px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); background: var(--surface); text-align: left; white-space: nowrap; }
-.nl-posts-tbl td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 0.84rem; vertical-align: middle; }
-.nl-posts-tbl tbody tr:last-child td { border-bottom: none; }
-.nl-posts-tbl tbody tr:hover { background: var(--surface); }
-
-.nl-post-title { font-weight: 500; }
-.nl-post-issue { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); }
-.nl-post-date  { font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
-
-.nl-status { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 50px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
-.nl-status::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
-.nl-status.published { background: var(--green-pale); color: var(--green); }
-.nl-status.draft     { background: var(--gold-pale);  color: var(--gold); }
-
-.nl-action { background: none; border: 1px solid var(--border); border-radius: 6px; padding: 3px 9px; font-family: 'Instrument Sans', sans-serif; font-size: 0.7rem; color: var(--muted); cursor: pointer; transition: all 0.18s; }
-.nl-action:hover { border-color: var(--green); color: var(--green); }
-.nl-action.danger:hover { border-color: var(--terra); color: var(--terra); }
-
-/* Subscribers card */
-.sub-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 18px 22px; }
-.sub-stat-item { padding: 14px; background: var(--surface); border-radius: var(--r-md); }
-.sub-stat-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.6rem; color: var(--ink); letter-spacing: -0.02em; }
-.sub-stat-label { font-size: 0.72rem; color: var(--muted); margin-top: 3px; }
-
-/* ══════════════════════════════════════
-   STATUS MODAL
-══════════════════════════════════════ */
-.modal-backdrop {
-  position: fixed; inset: 0; z-index: 200;
-  background: rgba(13,16,8,0.5); backdrop-filter: blur(4px);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none; transition: opacity 0.25s;
+.footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.footer-logo { height: 26px; width: auto; }
+.footer-logo-div { width: 1px; height: 18px; background: rgba(255,255,255,0.12); }
+.footer-org { font-family: var(--ff-head); font-weight: 700; font-size: 14px; color: var(--white); }
+.footer-org span { color: var(--tertiary-light); }
+.footer-tagline { font-size: 13px; color: var(--gray); font-weight: 300; line-height: 1.7; }
+.footer-col h4 {
+  font-family: var(--ff-mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--tertiary-light); margin-bottom: 14px;
 }
-.modal-backdrop.open { opacity: 1; pointer-events: all; }
-.modal {
-  background: var(--card); border: 1px solid var(--border); border-radius: var(--r-xl);
-  padding: 32px; width: min(480px, calc(100vw - 48px));
-  box-shadow: var(--shadow-md); transform: translateY(12px); transition: transform 0.25s;
+.footer-col nav { display: flex; flex-direction: column; gap: 8px; }
+.footer-col nav a {
+  font-size: 13px; color: var(--gray);
+  text-decoration: none; cursor: pointer; font-weight: 300;
+  transition: color 0.15s;
 }
-.modal-backdrop.open .modal { transform: translateY(0); }
-.modal h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 6px; color: var(--ink); }
-.modal-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 20px; }
-.modal-order-id { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--gold); }
-.status-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-.status-opt { padding: 12px 14px; border: 1.5px solid var(--border); border-radius: var(--r-md); cursor: pointer; transition: all 0.18s; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 500; }
-.status-opt:hover { border-color: var(--ink); }
-.status-opt.selected { border-color: var(--green); background: var(--green-pale); }
-.status-opt-dot { width: 8px; height: 8px; border-radius: 50%; }
-.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
-.btn-cancel { padding: 9px 20px; border: 1px solid var(--border); border-radius: 50px; background: var(--card); font-family: 'Instrument Sans', sans-serif; font-size: 0.82rem; color: var(--muted); cursor: pointer; transition: all 0.18s; }
-.btn-cancel:hover { border-color: var(--muted); color: var(--ink); }
-.btn-confirm { padding: 9px 20px; border: none; border-radius: 50px; background: var(--green); color: var(--white); font-family: 'Instrument Sans', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.18s; }
-.btn-confirm:hover { background: var(--green-lt); }
-.btn-confirm:disabled { opacity: 0.5; cursor: not-allowed; }
+.footer-col nav a:hover { color: var(--secondary); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 24px; display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.footer-copy { font-family: var(--ff-mono); font-size: 12px; color: var(--gray); }
+.ieee-badge {
+  background: var(--primary); color: white;
+  font-weight: 700; font-size: 11px; padding: 2px 7px;
+  border-radius: 4px; font-family: var(--ff-head);
+}
 
-/* ══════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════ */
-@media (max-width: 1100px) {
-  .charts-row { grid-template-columns: 1fr; }
-  .mid-row    { grid-template-columns: 1fr 1fr; }
-  .kpi-grid   { grid-template-columns: repeat(2,1fr); }
-  .cf-row     { grid-template-columns: 1fr 1fr; }
-  .nl-grid    { grid-template-columns: 1fr; }
+/* ──────────────────────────────────────────────────
+   ANIMATIONS
+────────────────────────────────────────────────── */
+.anim-in {
+  opacity: 0; transform: translateY(22px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
 }
-@media (max-width: 860px) {
-  .slot-cards { grid-template-columns: 1fr 1fr 1fr; }
-  .manifest-item { grid-template-columns: 32px 1fr 1fr 80px; }
-  .manifest-item > *:nth-child(n+5) { display: none; }
+.anim-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ──────────────────────────────────────────────────
+   MOBILE OPTIMIZATIONS
+────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; }
+  .nav-logo { height: 28px; }
+  .nav-name { font-size: 14px; }
+  .menu-panel { width: min(300px, 92vw); padding-top: 70px; }
+  .hero { padding: 70px 0 50px; }
+  .hero h1 { font-size: clamp(30px, 8vw, 42px); margin-bottom: 12px; }
+  .hero-sub { font-size: 16px; margin-bottom: 10px; }
+  .hero-tagline { font-size: 11px; margin-bottom: 28px; }
+  .hero-cta { flex-direction: column; align-items: center; gap: 10px; }
+  .btn-primary, .btn-outline { width: 100%; max-width: 280px; }
+  
+  .mascot-home { bottom: 15px; right: 15px; width: 130px; }
+  .mascot-why { display: none; }
+  
+  .s-head { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 24px; }
+  .s-line { width: 100%; }
+  .section-title { font-size: clamp(26px, 7vw, 36px) !important; }
+  
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-facts { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .fact-card { padding: 16px; }
+  
+  .why-grid { grid-template-columns: 1fr; gap: 16px; }
+  .why-card { padding: 22px; }
+  .why-num { font-size: 36px; }
+  
+  .form-card { padding: 32px 24px; border-radius: 20px; }
+  .form-2col { grid-template-columns: 1fr; gap: 12px; }
+  .form-row { margin-bottom: 16px; }
+  input, select { padding: 14px 16px; font-size: 16px; }
+  
+  .collab-perks { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; gap: 24px; text-align: center; }
+  .footer-brand { justify-content: center; }
+  .footer-col nav { align-items: center; }
+  .footer-bottom { flex-direction: column; text-align: center; }
 }
-@media (max-width: 700px) {
-  .kpi-grid   { grid-template-columns: 1fr 1fr; }
-  .cf-row     { grid-template-columns: 1fr; }
-  .mid-row    { grid-template-columns: 1fr; }
-  .slot-cards { grid-template-columns: 1fr; }
-  .status-options { grid-template-columns: 1fr; }
-  .tbl th:nth-child(n+5), .tbl td:nth-child(n+5) { display: none; }
-  .search-box input { width: 120px; }
+
+@media (max-width: 400px) {
+  .mascot-home { width: 110px; right: 10px; bottom: 10px; opacity: 0.85; }
+  .form-card { padding: 28px 20px; }
+  .btn-primary, .btn-outline, .btn-whatsapp, .form-submit { font-size: 14px; padding: 13px 20px; }
 }
-@media (max-width: 480px) {
-  .kpi-grid { grid-template-columns: 1fr; }
-  .topbar   { flex-direction: column; align-items: flex-start; }
+
+/* ──────────────────────────────────────────────────
+   ACCESSIBILITY & REDUCED MOTION
+────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .mascot-home::after { display: none; }
 }
 </style>
 </head>
 <body>
 
-<!-- ══ LOADING OVERLAY ══ -->
-<div class="state-overlay" id="loadingOverlay">
-  <div class="loader-ring"></div>
-  <h2>Loading dashboard…</h2>
-  <p>Fetching orders from Google Sheets</p>
-  <button class="retry-btn" id="retryBtn" onclick="loadData()">Try Again</button>
+<!-- NAV -->
+<nav class="topnav">
+  <div class="nav-inner">
+    <div class="nav-brand" onclick="navTo('home')" role="button" tabindex="0">
+      <img src="https://res.cloudinary.com/dc2gwj09q/image/upload/f_auto,q_auto/1003291447_884e7f98bc5c65bac74ba75d9c0ab22e-3_2_2026_8_40_50_AM_1_ha7b5r" alt="UNIBEN" class="nav-logo">
+      <div class="nav-logo-div"></div>
+      <img src="https://res.cloudinary.com/dc2gwj09q/image/upload/f_auto,q_auto/images__1_-removebg-preview_b40apw" alt="IEEE" class="nav-logo">
+      <span class="nav-name">IEEE <span>UNIBEN</span></span>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+      <span class="h-line"></span>
+      <span class="h-line"></span>
+      <span class="h-line"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MENU OVERLAY -->
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+<!-- MENU PANEL -->
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-panel-head">
+    <img src="https://res.cloudinary.com/dc2gwj09q/image/upload/f_auto,q_auto/1003291447_884e7f98bc5c65bac74ba75d9c0ab22e-3_2_2026_8_40_50_AM_1_ha7b5r" alt="UNIBEN" class="menu-panel-logo">
+    <div class="menu-panel-logo-div"></div>
+    <img src="https://res.cloudinary.com/dc2gwj09q/image/upload/f_auto,q_auto/images__1_-removebg-preview_b40apw" alt="IEEE" class="menu-panel-logo">
+    <div class="menu-panel-label">IEEE <span>UNIBEN</span></div>
+  </div>
+  <div class="menu-nav">
+    <a onclick="navTo('home')" id="link-home">
+      <span class="menu-nav-n">01</span> Home
+    </a>
+    <a onclick="navTo('about')" id="link-about">
+      <span class="menu-nav-n">02</span> About
+    </a>
+    <a onclick="navTo('why')" id="link-why">
+      <span class="menu-nav-n">03</span> Why Attend
+    </a>
+    <a onclick="navTo('register')" id="link-register">
+      <span class="menu-nav-n">04</span> Register
+    </a>
+    <a onclick="navTo('collaborators')" id="link-collaborators">
+      <span class="menu-nav-n">05</span> Collaborators
+    </a>
+  </div>
+  <div class="menu-foot">
+    <p>SPAx '26 · Student Professional Awareness Conference<br>IEEE UNIBEN Student Branch</p>
+  </div>
 </div>
 
-<!-- ══ MAIN SHELL ══ -->
-<div class="shell" id="mainShell" style="display:none">
 
-  <!-- TOPBAR -->
-  <div class="topbar">
-    <div class="brand">
-      <div class="brand-dot">🛢</div>
-      <div>
-        <h1>Synthova Oil</h1>
-        <span>Admin Dashboard</span>
+<!-- ════════════════════════════════════════════════
+     PAGE: HOME
+════════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">
+        <span class="e-dot"></span>
+        Registration Now Open
       </div>
-    </div>
-    <div class="topbar-right">
-      <div class="period-pill">
-        <button class="period-btn active" data-period="all">All Time</button>
-        <button class="period-btn" data-period="month">This Month</button>
-        <button class="period-btn" data-period="week">This Week</button>
-      </div>
-      <button class="refresh-btn" onclick="loadData()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
-          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
-        </svg>
-        Refresh
-      </button>
-      <span class="last-updated" id="lastUpdated">—</span>
-    </div>
-  </div>
-
-  <!-- TAB NAV -->
-  <nav class="tab-nav">
-    <button class="tab-btn active" data-tab="overview">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-      Overview
-    </button>
-    <button class="tab-btn" data-tab="orders">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-      Orders <span class="tab-badge" id="tabBadgeOrders">—</span>
-    </button>
-    <button class="tab-btn" data-tab="deliveries">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-      Deliveries <span class="tab-badge green" id="tabBadgeDeliveries">—</span>
-    </button>
-    <button class="tab-btn" data-tab="newsletter">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      Newsletter
-    </button>
-  </nav>
-
-  <!-- ═══ TAB: OVERVIEW ═══════════════════════════════════ -->
-  <div class="tab-panel active" id="tab-overview">
-
-    <!-- KPI STRIP -->
-    <div class="kpi-grid">
-      <div class="kpi-card gold">
-        <div class="kpi-icon">💰</div>
-        <div class="kpi-label">Total Revenue</div>
-        <div class="kpi-value mono" id="kpiRevenue">—</div>
-        <div class="kpi-sub"><span class="badge flat" id="kpiRevenueNote">—</span></div>
-      </div>
-      <div class="kpi-card green">
-        <div class="kpi-icon">📦</div>
-        <div class="kpi-label">Total Orders</div>
-        <div class="kpi-value" id="kpiOrders">—</div>
-        <div class="kpi-sub" id="kpiOrdersSub">—</div>
-      </div>
-      <div class="kpi-card terra">
-        <div class="kpi-icon">🛢</div>
-        <div class="kpi-label">Bottles Sold</div>
-        <div class="kpi-value" id="kpiBottles">—</div>
-        <div class="kpi-sub" id="kpiBottlesSub">—</div>
-      </div>
-      <div class="kpi-card ink">
-        <div class="kpi-icon">📊</div>
-        <div class="kpi-label">Avg Order Value</div>
-        <div class="kpi-value mono" id="kpiAov">—</div>
-        <div class="kpi-sub" id="kpiAovSub">—</div>
-      </div>
-    </div>
-
-    <!-- CASH FLOW ROW -->
-    <div class="cf-row">
-      <div class="cf-card">
-        <div class="cf-card-label">
-          <span class="cf-dot" style="background:var(--green)"></span>
-          Cash Collected
-        </div>
-        <div class="cf-value" id="cfCollected">—</div>
-        <div class="cf-sub" id="cfCollectedSub">from completed orders</div>
-        <div class="cf-bar-track">
-          <div class="cf-bar-fill" id="cfCollectedBar" style="width:0%;background:var(--green)"></div>
-        </div>
-      </div>
-      <div class="cf-card">
-        <div class="cf-card-label">
-          <span class="cf-dot" style="background:var(--gold)"></span>
-          Outstanding (Pending)
-        </div>
-        <div class="cf-value" id="cfPending">—</div>
-        <div class="cf-sub" id="cfPendingSub">awaiting collection</div>
-        <div class="cf-bar-track">
-          <div class="cf-bar-fill" id="cfPendingBar" style="width:0%;background:var(--gold)"></div>
-        </div>
-      </div>
-      <div class="cf-card">
-        <div class="cf-card-label">
-          <span class="cf-dot" style="background:var(--blue)"></span>
-          Delivery Fee Revenue
-        </div>
-        <div class="cf-value" id="cfDelivery">—</div>
-        <div class="cf-sub" id="cfDeliverySub">% of total revenue</div>
-        <div class="cf-bar-track">
-          <div class="cf-bar-fill" id="cfDeliveryBar" style="width:0%;background:var(--blue)"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CHARTS ROW -->
-    <div class="charts-row">
-      <div class="chart-card">
-        <div class="chart-header">
-          <div>
-            <div class="chart-title">Revenue Over Time</div>
-            <div class="chart-sub">Daily order totals</div>
-          </div>
-          <div class="chart-legend">
-            <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div> Revenue</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Orders</div>
-          </div>
-        </div>
-        <div class="chart-wrap"><canvas id="revenueChart"></canvas></div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-header">
-          <div>
-            <div class="chart-title">Payment Methods</div>
-            <div class="chart-sub">By order count</div>
-          </div>
-        </div>
-        <div class="chart-wrap donut"><canvas id="paymentChart"></canvas></div>
-      </div>
-    </div>
-
-    <!-- MID ROW -->
-    <div class="mid-row">
-      <div class="chart-card">
-        <div class="chart-header">
-          <div><div class="chart-title">Product Performance</div><div class="chart-sub">Units sold & revenue</div></div>
-        </div>
-        <div id="productBars" style="margin-top:8px"></div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-header">
-          <div><div class="chart-title">Orders by State</div><div class="chart-sub">Geographic distribution</div></div>
-        </div>
-        <div id="stateList" style="margin-top:4px"></div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-header">
-          <div><div class="chart-title">Order Volume by Hour</div><div class="chart-sub">When customers order</div></div>
-        </div>
-        <div class="chart-wrap" style="height:180px;margin-top:8px"><canvas id="hourChart"></canvas></div>
-      </div>
-    </div>
-
-  </div><!-- /tab-overview -->
-
-  <!-- ═══ TAB: ORDERS ══════════════════════════════════════ -->
-  <div class="tab-panel" id="tab-orders">
-    <div class="table-card">
-      <div class="table-topbar">
-        <div class="table-title">All Orders</div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-          <div class="search-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" id="searchInput" placeholder="Search name, phone, order ID…">
-          </div>
-          <div class="status-filter">
-            <button class="filter-chip active" data-status="all">All</button>
-            <button class="filter-chip" data-status="Pending">Pending</button>
-            <button class="filter-chip" data-status="Dispatched">Dispatched</button>
-            <button class="filter-chip" data-status="Completed">Completed</button>
-          </div>
-        </div>
-      </div>
-      <div style="overflow-x:auto">
-        <table class="tbl">
-          <thead>
-            <tr>
-              <th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th>
-              <th>Payment</th><th>State</th><th>Date</th><th>Status</th><th></th>
-            </tr>
-          </thead>
-          <tbody id="ordersTableBody"></tbody>
-        </table>
-      </div>
-      <div class="table-footer">
-        <span class="table-info" id="tableInfo">— orders</span>
-        <div class="pagination" id="pagination"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══ TAB: DELIVERIES ══════════════════════════════════ -->
-  <div class="tab-panel" id="tab-deliveries">
-
-    <div class="delivery-header">
-      <div>
-        <div class="delivery-title">Delivery Queue</div>
-        <div class="delivery-sub">Mon · Wed · Sat — Ugbowo, Benin City</div>
-      </div>
-    </div>
-
-    <!-- Next 3 delivery slot cards -->
-    <div class="slot-cards" id="slotCards"></div>
-
-    <!-- Manifest for selected slot -->
-    <div class="manifest-section" id="manifestSection">
-      <div class="manifest-header">
-        <div>
-          <div class="manifest-title" id="manifestTitle">Select a delivery slot above</div>
-          <div class="manifest-sub" id="manifestSub"></div>
-        </div>
-        <button class="batch-btn" id="batchDispatchBtn" onclick="batchDispatch()" style="display:none">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Mark All Dispatched
+      <h1>Student Professional<br><span class="highlight">Awareness Conference</span></h1>
+      <p class="hero-sub">SPAx '26 — Bridging the gap between classroom theory and professional excellence for engineering students.</p>
+      <p class="hero-tagline">IEEE UNIBEN Student Branch · University of Benin, Nigeria</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="navTo('register')">
+          Secure Your Spot
+          <svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
-      </div>
-      <div id="manifestBody">
-        <div class="manifest-empty">↑ Select a delivery slot to see the manifest</div>
+        <button class="btn-outline" onclick="navTo('about')">Learn More</button>
       </div>
     </div>
+    
+    <!-- 🤖 INTERACTIVE MASCOT (HOME PAGE) -->
+    <div class="mascot-home" id="homeMascot" aria-label="Tap the mascot to interact" role="button" tabindex="0">
+      <img src="https://res.cloudinary.com/dc2gwj09q/image/upload/v1778013862/82533-removebg-preview_2_npa7yn.png" alt="SPAx Robot Mascot" loading="lazy">
+    </div>
+  </section>
+</div>
 
-  </div>
 
-  <!-- ═══ TAB: NEWSLETTER ══════════════════════════════════ -->
-  <div class="tab-panel" id="tab-newsletter">
-
-    <div class="nl-grid">
-
-      <!-- Left: Publisher form + subscriber stats -->
-      <div style="display:flex;flex-direction:column;gap:16px">
-
-        <!-- Publish form -->
-        <div class="nl-card">
-          <div class="nl-card-header">
-            <div class="nl-card-title">Publish a Post</div>
-            <div class="nl-card-sub">Pushes live to The Drop newsletter channel</div>
+<!-- ════════════════════════════════════════════════
+     PAGE: ABOUT
+════════════════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <section class="about-page">
+    <div class="wrap">
+      <div class="s-head">
+        <span class="s-tag">01</span>
+        <div class="s-line"></div>
+        <span class="s-tag">About SPAx '26</span>
+      </div>
+      <h2 class="section-title" style="font-family:var(--ff-head);font-size:clamp(30px,4vw,48px);font-weight:800;line-height:1.1;margin-bottom:16px">Where ambition meets<br/>professional clarity.</h2>
+      <div class="about-grid">
+        <div class="about-text anim-in">
+          <p>The <strong>Student Professional Awareness Conference (SPAx '26)</strong> is IEEE UNIBEN's flagship career-development event — designed to equip engineering and technology students with the mindset, networks, and practical insights needed to thrive beyond graduation.</p>
+          <p>Through expert-led sessions on <strong>industry trends, professional ethics, emerging technologies,</strong> and <strong>career strategy</strong>, SPAx transforms academic knowledge into actionable professional advantage.</p>
+          <p>Whether you're exploring your first internship or preparing for graduate roles, SPAx '26 gives you the tools to navigate your path with confidence.</p>
+        </div>
+        <div class="about-facts anim-in">
+          <div class="fact-card">
+            <div class="fact-icon">🎓</div>
+            <div class="fact-value">Free Entry</div>
+            <div class="fact-desc">Open to all UNIBEN students</div>
           </div>
-          <div class="nl-card-body">
-            <div class="nl-row">
-              <div class="nl-field">
-                <label class="nl-label">Issue</label>
-                <input class="nl-input" type="text" id="nlIssue" placeholder="Issue 03">
-              </div>
-              <div class="nl-field">
-                <label class="nl-label">Date</label>
-                <input class="nl-input" type="date" id="nlDate">
-              </div>
+          <div class="fact-card">
+            <div class="fact-icon">📍</div>
+            <div class="fact-value">NAAT Hall</div>
+            <div class="fact-desc">University of Benin Campus</div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-icon">📅</div>
+            <div class="fact-value">May 29</div>
+            <div class="fact-desc">Friday · 2026</div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-icon">🌐</div>
+            <div class="fact-value">IEEE Global</div>
+            <div class="fact-desc">Access to 400,000+ professionals</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ════════════════════════════════════════════════
+     PAGE: WHY ATTEND
+════════════════════════════════════════════════ -->
+<div class="page" id="page-why">
+  <section class="why-page">
+    <div class="wrap">
+      <div class="s-head">
+        <span class="s-tag">02</span>
+        <div class="s-line"></div>
+        <span class="s-tag">Why Attend</span>
+      </div>
+      <h2 class="section-title" style="font-family:var(--ff-head);font-size:clamp(30px,4vw,48px);font-weight:800;line-height:1.1;margin-bottom:16px">Six reasons SPAx '26<br/>is worth your time.</h2>
+      <div class="why-grid">
+        <div class="why-card anim-in"><div class="why-num">01</div><div class="why-title">Professional Clarity</div><div class="why-desc">Understand the exact skills, certifications, and mindsets employers seek — straight from industry practitioners and IEEE leaders.</div></div>
+        <div class="why-card anim-in"><div class="why-num">02</div><div class="why-title">Global Network Access</div><div class="why-desc">Connect with IEEE members, alumni, and professionals worldwide. Your first professional connection starts here.</div></div>
+        <div class="why-card anim-in"><div class="why-num">03</div><div class="why-title">Real-World Insights</div><div class="why-desc">Sessions on embedded systems, AI, sustainability, and entrepreneurship — topics your curriculum hints at, we dive deep into.</div></div>
+        <div class="why-card anim-in"><div class="why-num">04</div><div class="why-title">Career Strategy</div><div class="why-desc">Learn how to build a standout portfolio, ace technical interviews, and leverage IEEE resources for internships and jobs.</div></div>
+        <div class="why-card anim-in"><div class="why-num">05</div><div class="why-title">It's Free & Inclusive</div><div class="why-desc">No fees. No barriers. Just high-value content designed for every student, regardless of department or level.</div></div>
+        <div class="why-card anim-in"><div class="why-num">06</div><div class="why-title">IEEE Certification</div><div class="why-desc">Receive an official IEEE UNIBEN certificate — a credible credential for your CV, LinkedIn, and graduate applications.</div></div>
+      </div>
+    </div>
+    
+    <!-- 🤖 WHY PAGE MASCOT -->
+    <div class="mascot-why" aria-hidden="true">
+      <img src="https://res.cloudinary.com/dc2gwj09q/image/upload/v1778011540/82534-removebg-preview_1_xx4hsu.png" alt="SPAx Mascot" loading="lazy">
+    </div>
+  </section>
+</div>
+
+
+<!-- ════════════════════════════════════════════════
+     PAGE: REGISTER
+════════════════════════════════════════════════ -->
+<div class="page" id="page-register">
+  <section class="reg-page">
+    <div class="wrap">
+      <div class="page-header">
+        <div class="eyebrow" style="margin-bottom:22px"><span class="e-dot"></span>Registration · SPAx '26</div>
+        <h2>Secure your spot.<br/>The path is open.</h2>
+        <p>Friday, May 29 · NAAT Hall, University of Benin. You'll receive a confirmation email shortly.</p>
+      </div>
+
+      <div class="form-card" id="regFormCard">
+        <form id="regForm" novalidate>
+          <div id="error-banner" class="error-banner"></div>
+          <div class="form-2col">
+            <div class="form-row">
+              <label for="f-fname">First Name <span class="req">*</span></label>
+              <input type="text" id="f-fname" name="fname" placeholder="First name" required>
             </div>
-            <div class="nl-field">
-              <label class="nl-label">Title</label>
-              <input class="nl-input" type="text" id="nlTitle" placeholder="Post headline…" maxlength="120">
+            <div class="form-row">
+              <label for="f-lname">Last Name <span class="req">*</span></label>
+              <input type="text" id="f-lname" name="lname" placeholder="Last name" required>
             </div>
-            <div class="nl-field">
-              <label class="nl-label">Image URL <span style="font-weight:400;text-transform:none;letter-spacing:0">(Cloudinary)</span></label>
-              <input class="nl-input" type="url" id="nlImage" placeholder="https://res.cloudinary.com/…">
-            </div>
-            <div class="nl-field">
-              <label class="nl-label">Content</label>
-              <textarea class="nl-input textarea" id="nlContent" placeholder="Write your post content here. Use blank lines to separate paragraphs." maxlength="4000"></textarea>
-            </div>
-            <div class="nl-field">
-              <label class="nl-label">Status</label>
-              <select class="nl-input select" id="nlStatus">
-                <option value="published">Published (live immediately)</option>
-                <option value="draft">Draft (save for later)</option>
+          </div>
+          <div class="form-row">
+            <label for="f-email">Email Address <span class="req">*</span></label>
+            <input type="email" id="f-email" name="email" placeholder="your.email@uniben.edu" required>
+          </div>
+          <div class="form-row">
+            <label for="f-phone">Phone Number <span class="req">*</span></label>
+            <input type="tel" id="f-phone" name="phone" placeholder="+234 800 000 0000" required>
+          </div>
+          <div class="form-2col">
+            <div class="form-row">
+              <label for="f-dept">Department <span class="req">*</span></label>
+              <select id="f-dept" name="dept" required onchange="handleDeptChange(this.value)">
+                <option value="" disabled selected>Select department</option>
+                <option>Electrical & Electronics Engineering</option>
+                <option>Computer Engineering</option>
+                <option>Mechatronics Engineering</option>
+                <option>Mechanical Engineering</option>
+                <option>Civil Engineering</option>
+                <option>Chemical Engineering</option>
+                <option>Agricultural Engineering</option>
+                <option>Computer Science</option>
+                <option>Physics</option>
+                <option>Mathematics</option>
+                <option>Science Laboratory Technology</option>
+                <option>Medicine / Biomedical Sciences</option>
+                <option>Business Administration</option>
+                <option>Law</option>
+                <option>Other</option>
               </select>
             </div>
-            <button class="nl-submit" id="nlSubmitBtn" onclick="publishPost()">Publish Post →</button>
-            <div class="nl-feedback" id="nlFeedback"></div>
-          </div>
-        </div>
-
-        <!-- Subscriber stats -->
-        <div class="nl-card" id="subscriberCard">
-          <div class="nl-card-header">
-            <div class="nl-card-title">Subscribers</div>
-            <div class="nl-card-sub" id="subCardSub">Loading from newsletter backend…</div>
-          </div>
-          <div class="sub-stats">
-            <div class="sub-stat-item">
-              <div class="sub-stat-val" id="subTotal">—</div>
-              <div class="sub-stat-label">Total subscribers</div>
-            </div>
-            <div class="sub-stat-item">
-              <div class="sub-stat-val" id="subActive">—</div>
-              <div class="sub-stat-label">Active (newsletter on)</div>
+            <div class="form-row">
+              <label for="f-level">Level <span class="req">*</span></label>
+              <select id="f-level" name="level" required>
+                <option value="" disabled selected>Select level</option>
+                <option>100 Level</option>
+                <option>200 Level</option>
+                <option>300 Level</option>
+                <option>400 Level</option>
+                <option>500 Level</option>
+                <option>600 Level</option>
+                <option>Postgraduate</option>
+                <option>Staff / Other</option>
+              </select>
             </div>
           </div>
-        </div>
-
-      </div>
-
-      <!-- Right: Published posts table -->
-      <div class="nl-card">
-        <div class="nl-card-header" style="display:flex;justify-content:space-between;align-items:flex-start">
-          <div>
-            <div class="nl-card-title">All Posts</div>
-            <div class="nl-card-sub" id="nlPostsCountLabel">Loading…</div>
+          <div class="form-row" id="other-dept-group">
+            <label for="f-dept-other">Please specify your department <span class="req">*</span></label>
+            <input type="text" id="f-dept-other" name="deptOther" placeholder="Enter your department">
           </div>
-          <button class="nl-action" onclick="loadNlPosts()" style="margin-top:2px">↻ Refresh</button>
+          <div class="form-row">
+            <label for="f-ieee">Are you an IEEE Member? <span class="req">*</span></label>
+            <select id="f-ieee" name="ieee" required>
+              <option value="" disabled selected>Select one</option>
+              <option>Yes — IEEE UNIBEN</option>
+              <option>Yes — other branch</option>
+              <option>No, but I'm interested in joining</option>
+              <option>No</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit" id="submit-btn">Register Now →</button>
+          <p class="form-note">Questions? Email <a href="mailto:olofinbiyiprecious1@gmail.com">olofinbiyiprecious1@gmail.com</a></p>
+        </form>
+      </div>
+
+      <div class="success-state" id="success-msg">
+        <div class="success-icon">✓</div>
+        <h3>You're registered!</h3>
+        <p>We've received your registration for SPAx '26.<br/>We'll see you at NAAT Hall, University of Benin.</p>
+        <div class="success-actions">
+          <a href="https://whatsapp.com/channel/0029VbBhvHw3WHTdjUVMH91z" target="_blank" rel="noopener" class="btn-whatsapp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Stay Updated
+          </a>
+          <a href="https://chat.whatsapp.com/L53RUAxibH2JNzx28SkQrt?mode=gi_t" target="_blank" rel="noopener" class="btn-whatsapp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Join the Community Group
+          </a>
         </div>
-        <div class="nl-posts-wrap">
-          <table class="nl-posts-tbl">
-            <thead>
-              <tr>
-                <th>Issue</th><th>Title</th><th>Date</th><th>Likes</th><th>Comments</th><th>Status</th><th></th>
-              </tr>
-            </thead>
-            <tbody id="nlPostsTableBody">
-              <tr><td colspan="7" style="text-align:center;padding:32px;color:var(--muted2);font-size:0.84rem">
-                Connect NEWSLETTER_SCRIPT_URL to see posts
-              </td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</div><!-- /shell -->
-
-<!-- STATUS UPDATE MODAL -->
-<div class="modal-backdrop" id="modalBackdrop">
-  <div class="modal">
-    <h3>Update Order Status</h3>
-    <div class="modal-sub">
-      <span class="modal-order-id" id="modalOrderId"></span>
-      &nbsp;·&nbsp; <span id="modalCustomer"></span>
-    </div>
-    <div class="status-options">
-      <div class="status-opt" data-val="Pending">
-        <div class="status-opt-dot" style="background:var(--gold)"></div> Pending
-      </div>
-      <div class="status-opt" data-val="Dispatched">
-        <div class="status-opt-dot" style="background:var(--blue)"></div> Dispatched
-      </div>
-      <div class="status-opt" data-val="Completed">
-        <div class="status-opt-dot" style="background:var(--green)"></div> Completed
-      </div>
-      <div class="status-opt" data-val="Cancelled">
-        <div class="status-opt-dot" style="background:var(--terra)"></div> Cancelled
       </div>
     </div>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-      <button class="btn-confirm" id="confirmBtn" onclick="confirmStatus()">Update Status</button>
-    </div>
-  </div>
+  </section>
 </div>
 
+
+<!-- ════════════════════════════════════════════════
+     PAGE: COLLABORATORS
+════════════════════════════════════════════════ -->
+<div class="page" id="page-collaborators">
+  <section class="collab-page">
+    <div class="wrap">
+      <div class="s-head">
+        <span class="s-tag">03</span>
+        <div class="s-line"></div>
+        <span class="s-tag">Partnerships</span>
+      </div>
+      <h2 class="section-title" style="font-family:var(--ff-head);font-size:clamp(30px,4vw,48px);font-weight:800;line-height:1.1;margin-bottom:16px;text-align:center">Collaborate with us</h2>
+      
+      <div class="form-card" style="max-width:740px;margin:48px auto 0">
+        <div class="collab-header" style="text-align:center;margin-bottom:36px">
+          <h2 style="font-family:var(--ff-head);font-size:28px;font-weight:800;margin-bottom:8px">Become a Sponsor or Collaborator</h2>
+          <p style="color:var(--gray);font-size:14px;font-weight:300">Help us empower the next generation of engineers. Partner with IEEE UNIBEN for SPAx '26.</p>
+        </div>
+        
+        <div class="collab-perks">
+          <div class="perk-item">
+            <div class="perk-icon">🤝</div>
+            <div class="perk-text">Brand visibility to 500+ high-potential engineering students and faculty</div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">🎯</div>
+            <div class="perk-text">Direct access to recruit top talent for internships, graduate programs, and projects</div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">🌍</div>
+            <div class="perk-text">Association with IEEE's global reputation for technical excellence and ethics</div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">📊</div>
+            <div class="perk-text">Custom activation: workshops, demo booths, speaking slots, or branded resources</div>
+          </div>
+        </div>
+
+        <form id="collab-form" novalidate>
+          <div id="collab-error" class="error-banner"></div>
+          <div class="form-2col">
+            <div class="form-row">
+              <label for="c-org">Organization / Company <span class="req">*</span></label>
+              <input type="text" id="c-org" name="org" placeholder="Your organization name" required>
+            </div>
+            <div class="form-row">
+              <label for="c-name">Contact Person <span class="req">*</span></label>
+              <input type="text" id="c-name" name="name" placeholder="Full name" required>
+            </div>
+          </div>
+          <div class="form-2col">
+            <div class="form-row">
+              <label for="c-email">Email <span class="req">*</span></label>
+              <input type="email" id="c-email" name="email" placeholder="contact@company.com" required>
+            </div>
+            <div class="form-row">
+              <label for="c-phone">Phone <span class="req">*</span></label>
+              <input type="tel" id="c-phone" name="phone" placeholder="+234 800 000 0000" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="c-type">Collaboration Type <span class="req">*</span></label>
+            <select id="c-type" name="type" required>
+              <option value="" disabled selected>Select type</option>
+              <option>Financial Sponsor</option>
+              <option>In-Kind Sponsor (Equipment/Services)</option>
+              <option>Media Partner</option>
+              <option>Technical Partner</option>
+              <option>Academic Collaborator</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="c-notes">Additional Notes (Optional)</label>
+            <input type="text" id="c-notes" name="notes" placeholder="Tell us about your interest...">
+          </div>
+          <button type="submit" class="form-submit" id="collab-submit">Submit Interest →</button>
+          <p class="form-note">We'll contact you within 48 hours. Questions? <a href="mailto:olofinbiyiprecious1@gmail.com">Email us</a></p>
+        </form>
+
+        <div class="success-state" id="collab-success" style="display:none">
+          <div class="success-icon">✓</div>
+          <h3>Thank you for your interest!</h3>
+          <p>We've received your collaboration request for SPAx '26.<br/>Our partnerships team will reach out to you shortly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <img src="https://res.cloudinary.com/dc2gwj09q/image/upload/f_auto,q_auto/1003291447_884e7f98bc5c65bac74ba75d9c0ab22e-3_2_2026_8_40_50_AM_1_ha7b5r" alt="UNIBEN" class="footer-logo">
+          <div class="footer-logo-div"></div>
+          <img src="https://res.cloudinary.com/dc2gwj09q/image/upload/f_auto,q_auto/images__1_-removebg-preview_b40apw" alt="IEEE" class="footer-logo">
+          <span class="footer-org">IEEE <span>UNIBEN</span></span>
+        </div>
+        <p class="footer-tagline">IEEE UNIBEN Student Branch (STB2521523)<br>University of Benin, Benin City, Nigeria</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <nav>
+          <a onclick="navTo('home')">Home</a>
+          <a onclick="navTo('about')">About SPAx '26</a>
+          <a onclick="navTo('why')">Why Attend</a>
+          <a onclick="navTo('register')">Register</a>
+          <a onclick="navTo('collaborators')">Collaborate</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <nav>
+          <a>Chair: Precious Olofinbiyi</a>
+          <a href="mailto:olofinbiyiprecious1@gmail.com">olofinbiyiprecious1@gmail.com</a>
+          <a>Vice Chair: Ebosetale Isesele</a>
+          <a href="mailto:ebosetale.isesele@eng.uniben.edu">ebosetale.isesele@eng.uniben.edu</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 IEEE UNIBEN Student Branch. All rights reserved.</span>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="ieee-badge">IEEE</span>
+        <span class="footer-copy">STB2521523 · Region 8 · Nigeria Section</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════ -->
 <script>
-/* ════════════════════════════════════════
-   CONFIG
-════════════════════════════════════════ */
-// Main orders/dashboard Apps Script URL
-const GAS_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYED_GAS_URL/exec';
+/* ─── CONFIG ───────────────────────────────────── */
+const REGISTRATION_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxXK8e9OraYhT-kUpbiodvayTFCCx809Bxz50IHoryLP-TcM_5l1DYqy-6mcXD9f9tT/exec';
+const COLLABORATION_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwkXZ4Y1teBGo2TrVRiC-JW3G3hLQOZRsJXqrildIGEhFpUquCudPzPeZFQiJFEdTUy/exec';
 
-// Newsletter Apps Script URL (from newsletter-Code.gs deployment)
-const NEWSLETTER_SCRIPT_URL = '';
+/* ─── PAGE ROUTING ─────────────────────────────── */
+function navTo(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  closeMenu();
+  document.querySelectorAll('.menu-nav a').forEach(a => a.classList.remove('active-link'));
+  const lnk = document.getElementById('link-' + id);
+  if (lnk) lnk.classList.add('active-link');
+  setTimeout(runAnimations, 100);
+}
 
-const PAGE_SIZE = 10;
+/* ─── MENU TOGGLE ─────────────────────────────── */
+function toggleMenu() {
+  const b  = document.getElementById('hamburger');
+  const p  = document.getElementById('menuPanel');
+  const ov = document.getElementById('menuOverlay');
+  const isOpen = p.classList.toggle('open');
+  b.classList.toggle('open');
+  ov.classList.toggle('open');
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
 
-/* ════════════════════════════════════════
-   STATE
-════════════════════════════════════════ */
-let allOrders    = [];
-let filtered     = [];
-let currentPage  = 1;
-let activePeriod = 'all';
-let activeStatus = 'all';
-let searchQuery  = '';
-let modalTarget  = null;
-let selectedStatus  = null;
-let selectedSlotIdx = 0;
-let deliverySlots   = [];
-let charts = {};
+/* ─── INTERACTIVE MASCOT ──────────────────────── */
+function initMascotInteraction() {
+  const mascot = document.getElementById('homeMascot');
+  if (!mascot) return;
+  
+  let isAnimating = false;
+  let hasInteracted = false;
+  
+  const triggerFlight = (e) => {
+    if (isAnimating) return;
+    e?.preventDefault();
+    isAnimating = true;
+    hasInteracted = true;
+    
+    mascot.classList.add('fly');
+    
+    // Clean up hint after first tap
+    mascot.style.removeProperty('::after');
+    
+    const reset = () => {
+      mascot.classList.remove('fly');
+      isAnimating = false;
+    };
+    
+    mascot.addEventListener('animationend', reset, { once: true });
+    setTimeout(reset, 800); // Fallback
+  };
+  
+  mascot.addEventListener('click', triggerFlight);
+  mascot.addEventListener('touchstart', triggerFlight, { passive: false });
+  mascot.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      triggerFlight(e);
+    }
+  });
+}
 
-/* ════════════════════════════════════════
-   BOOT
-════════════════════════════════════════ */
-document.addEventListener('DOMContentLoaded', () => {
-  loadData();
+/* ─── FORM HELPERS ────────────────────────────── */
+function handleDeptChange(val) {
+  const grp = document.getElementById('other-dept-group');
+  const inp = document.getElementById('f-dept-other');
+  if (val === 'Other') {
+    grp.style.display = 'block';
+    inp.focus();
+  } else {
+    grp.style.display = 'none';
+    inp.value = '';
+  }
+}
 
-  // Set today as default publish date
-  document.getElementById('nlDate').value = new Date().toISOString().slice(0,10);
+function showError(elId, msg) {
+  const el = document.getElementById(elId);
+  el.textContent = msg;
+  el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+function clearError(elId) {
+  const el = document.getElementById(elId);
+  el.textContent = '';
+  el.style.display = 'none';
+}
+function isValidPhone(p) {
+  return p.replace(/\D/g, '').length >= 7;
+}
 
-  // Tab switching
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      const panel = document.getElementById('tab-' + btn.dataset.tab);
-      if (panel) panel.classList.add('active');
+/* ─── REGISTRATION FORM ───────────────────────── */
+document.getElementById('regForm')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  clearError('error-banner');
 
-      if (btn.dataset.tab === 'newsletter') loadNlPosts();
-      if (btn.dataset.tab === 'deliveries') renderDeliveriesTab();
+  const f = e.target;
+  const fname = f.fname.value.trim();
+  const lname = f.lname.value.trim();
+  const email = f.email.value.trim();
+  const phone = f.phone.value.trim();
+  const deptSelect = f.dept.value;
+  const deptOther = document.getElementById('f-dept-other')?.value.trim() || '';
+  const dept = deptSelect === 'Other' ? (deptOther || '') : deptSelect;
+  const level = f.level.value;
+  const ieee  = f.ieee.value;
+
+  if (!fname || !lname) { showError('error-banner', 'Please enter your first and last name.'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('error-banner', 'Please enter a valid email address.'); return; }
+  if (!phone) { showError('error-banner', 'Please enter your phone number.'); return; }
+  if (!isValidPhone(phone)) { showError('error-banner', 'Please enter a valid phone number.'); return; }
+  if (!deptSelect) { showError('error-banner', 'Please select your department.'); return; }
+  if (deptSelect === 'Other' && !deptOther) { showError('error-banner', 'Please specify your department.'); return; }
+  if (!level) { showError('error-banner', 'Please select your level.'); return; }
+  if (!ieee) { showError('error-banner', 'Please indicate your IEEE membership status.'); return; }
+
+  const btn = document.getElementById('submit-btn');
+  const originalText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  try {
+    await fetch(REGISTRATION_SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fname, lname, email, phone, dept, level, ieee,
+        timestamp: new Date().toISOString()
+      }),
     });
-  });
-
-  // Period buttons
-  document.querySelectorAll('.period-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activePeriod = btn.dataset.period;
-      applyFilters();
-    });
-  });
-
-  // Status filter chips
-  document.querySelectorAll('.filter-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      activeStatus = chip.dataset.status;
-      currentPage = 1;
-      applyFilters();
-    });
-  });
-
-  // Search
-  document.getElementById('searchInput').addEventListener('input', e => {
-    searchQuery = e.target.value.toLowerCase();
-    currentPage = 1;
-    applyFilters();
-  });
-
-  // Modal status options
-  document.querySelectorAll('.status-opt').forEach(opt => {
-    opt.addEventListener('click', () => {
-      document.querySelectorAll('.status-opt').forEach(o => o.classList.remove('selected'));
-      opt.classList.add('selected');
-      selectedStatus = opt.dataset.val;
-    });
-  });
-
-  // Modal backdrop close
-  document.getElementById('modalBackdrop').addEventListener('click', e => {
-    if (e.target === document.getElementById('modalBackdrop')) closeModal();
-  });
+    
+    document.getElementById('regFormCard').style.display = 'none';
+    document.getElementById('success-msg').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.open('https://whatsapp.com/channel/0029VbBhvHw3WHTdjUVMH91z', '_blank');
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = originalText;
+    showError('error-banner', 'Submission failed. Please try again or email us directly.');
+    console.error('Registration error:', err);
+  }
 });
 
-/* ════════════════════════════════════════
-   DATA LOADING
-════════════════════════════════════════ */
-async function loadData() {
-  showLoading(true);
-  try {
-    const res  = await fetch(GAS_URL + '?action=getOrders');
-    const json = await res.json();
-    allOrders  = parseOrders(json.orders || json.data || []);
-    onDataLoaded();
-  } catch (err) {
-    allOrders = getDemoData();
-    onDataLoaded();
+/* ─── COLLABORATION FORM ──────────────────────── */
+document.getElementById('collab-form')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  clearError('collab-error');
+
+  const f = e.target;
+  const org = f.org.value.trim();
+  const name = f.name.value.trim();
+  const email = f.email.value.trim();
+  const phone = f.phone.value.trim();
+  const type = f.type.value;
+  const notes = f.notes.value.trim();
+
+  if (!org || !name || !email || !phone || !type) {
+    showError('collab-error', 'Please fill in all required fields.');
+    return;
   }
-}
-
-function onDataLoaded() {
-  showLoading(false);
-  document.getElementById('lastUpdated').textContent =
-    'Updated ' + new Date().toLocaleTimeString('en-NG', { hour:'2-digit', minute:'2-digit' });
-  applyFilters();
-  updateTabBadges();
-}
-
-/* ════════════════════════════════════════
-   PARSE
-════════════════════════════════════════ */
-function parseOrders(rows) {
-  return rows.map(r => ({
-    id:        r['Order ID']       || r[0] || '',
-    timestamp: r['Timestamp']      || r[1] || '',
-    name:      r['Customer Name']  || r[2] || '',
-    phone:     r['Phone']          || r[3] || '',
-    email:     r['Email']          || r[4] || '',
-    address:   r['Address']        || r[5] || '',
-    city:      r['City']           || r[6] || '',
-    state:     r['State']          || r[7] || '',
-    items:     r['Items']          || r[8] || '',
-    subtotal:  parseMoney(r['Subtotal'] || r[9]),
-    delivery:  parseMoney(r['Delivery'] || r[10]),
-    total:     parseMoney(r['Total']    || r[11]),
-    payment:   r['Payment Method'] || r[12] || '',
-    notes:     r['Notes']          || r[13] || '',
-    status:    r['Status']         || r[14] || 'Pending',
-    date:      new Date(r['Timestamp'] || r[1] || Date.now())
-  }));
-}
-
-function parseMoney(val) {
-  if (!val) return 0;
-  return parseFloat(String(val).replace(/[^0-9.]/g,'')) || 0;
-}
-
-function getDemoData() {
-  const raw = [
-    ['SYN-MP1QU30W-FHJR','2026-05-11T21:58:26.807Z','isesele ebosetale','2348158860731','iseseleebos221@gmail.com','2 Imariagbe cresent, off Igbinedion street, Isihor','Benin','Edo','Synthova Palm Oil - 75cl (x1); Synthova Palm Oil - 150cl (x2)','₦7,600','₦1,100','₦8,700','POS on Delivery','','Pending'],
-    ['SYN-MP1RVLWA-AOE8','2026-05-11T22:27:35.419Z','Ebosetale','2348025785351','iseseleebosetale@gmail.com','Tggttdff','Benin','Edo','Synthova Palm Oil - 75cl (x1); Synthova Palm Oil - 150cl (x1)','₦4,600','₦800','₦5,400','Cash on Delivery','','Pending'],
-    ['SYN-MP23X63L-SL5V','2026-05-12T04:04:47.258Z','Chioma Adeyemi','—','iseseleebos221@gmail.com','45 Royal Road','Benin City','Edo','Synthova Palm Oil - 150cl x2; Synthova Palm Oil - 75cl x1','₦7,600','₦500','₦8,100','Bank Transfer','','Test — please ignore'],
-    ['SYN-MP2403C7-E20G','2026-05-12T04:07:03.654Z','Chioma Adeyemi','—','iseseleebos221@gmail.com','45 Royal Road','Benin City','Edo','Synthova Palm Oil - 150cl x2; Synthova Palm Oil - 75cl x1','₦7,600','₦500','₦8,100','Paystack (Online)','TMP2403C7','Test — please ignore'],
-    ['SYN-MP250K3R-RV3E','2026-05-12T04:35:22.964Z','Ebosetale','—','iseseleebosetale@gmail.com','1 rahama street','benin city','Edo','Synthova Palm Oil - 75cl (x2); Synthova Palm Oil - 150cl (x1)','₦6,200','₦900','₦7,100','Bank Transfer','','Pending'],
-    ['SYN-MP25OUIT-LSB0','2026-05-12T04:54:15.780Z','isesele ebosetale','2348158860731','alixbc247@gmail.com','2 Imariagbe cresent, off Igbinedion street, Isihor','Benin','Edo','Synthova Palm Oil - 75cl (x8); Synthova Palm Oil - 150cl (x5)','₦27,800','₦2,900','₦30,700','Cash on Delivery','','Completed'],
-    ['SYN-MP25Z42S-HGK9','2026-05-12T05:02:15.264Z','test','—','aliixbc247@gmail.com','1 rahama street','benin cty','Edo','Synthova Palm Oil - 75cl (x1); Synthova Palm Oil - 150cl (x1)','₦4,600','₦700','₦5,300','Bank Transfer','','Pending'],
-    ['SYN-MP26GOZ4-3Q76','2026-05-12T05:15:54.418Z','isesele ebosetale','2348158860731','alixbc247@gmail.com','2 Imariagbe cresent, off Igbinedion street, Isihor','Benin','Edo','Synthova Palm Oil - 75cl (x8); Synthova Palm Oil - 150cl (x5)','₦27,800','₦2,900','₦30,700','Bank Transfer','','Dispatched'],
-    ['SYN-MP26QQ7E-TNNM','2026-05-12T05:23:43.678Z','Ebosetale isesele','23408158860731','iseseleosasuyi@gmail.com','1 rahama street','Benin city','Edo','Synthova Palm Oil - 150cl (x2)','₦6,000','₦700','₦6,700','Cash on Delivery','','Pending'],
-  ];
-  return raw.map(r => ({
-    id:r[0],timestamp:r[1],name:r[2],phone:r[3],email:r[4],
-    address:r[5],city:r[6],state:r[7],items:r[8],
-    subtotal:parseMoney(r[9]),delivery:parseMoney(r[10]),total:parseMoney(r[11]),
-    payment:r[12],notes:r[13],status:r[14],
-    date:new Date(r[1])
-  }));
-}
-
-/* ════════════════════════════════════════
-   FILTERS
-════════════════════════════════════════ */
-function applyFilters() {
-  const now = new Date(), start = new Date();
-  if (activePeriod === 'month') start.setDate(1), start.setHours(0,0,0,0);
-  if (activePeriod === 'week')  start.setDate(now.getDate()-6), start.setHours(0,0,0,0);
-
-  filtered = allOrders.filter(o => {
-    if (activePeriod !== 'all' && o.date < start) return false;
-    if (activeStatus !== 'all' && o.status !== activeStatus) return false;
-    if (searchQuery) {
-      const hay = [o.id,o.name,o.phone,o.email,o.items].join(' ').toLowerCase();
-      if (!hay.includes(searchQuery)) return false;
-    }
-    return true;
-  });
-
-  renderKPIs();
-  renderCashFlow();
-  renderCharts();
-  renderTable();
-  updateTabBadges();
-}
-
-function updateTabBadges() {
-  const real = allOrders.filter(o => !isTest(o));
-  const pending = real.filter(o => o.status === 'Pending').length;
-  const total   = real.length;
-  set('tabBadgeOrders', total);
-  set('tabBadgeDeliveries', pending);
-}
-
-/* ════════════════════════════════════════
-   KPIs
-════════════════════════════════════════ */
-function renderKPIs() {
-  const real = filtered.filter(o => !isTest(o));
-  const revenue = real.reduce((s,o) => s+o.total,0);
-  const bottles = countBottles(real);
-  const aov     = real.length ? revenue / real.length : 0;
-
-  set('kpiRevenue', '₦' + revenue.toLocaleString('en-NG'));
-  set('kpiOrders',  real.length);
-  set('kpiBottles', bottles.total);
-  set('kpiAov',     real.length ? '₦'+Math.round(aov).toLocaleString('en-NG') : '—');
-  set('kpiRevenueNote', activePeriod==='all'?'All time':activePeriod==='month'?'This month':'This week');
-  set('kpiOrdersSub', `${bottles.b75}× 75cl · ${bottles.b150}× 150cl`);
-  set('kpiBottlesSub', `₦${bottles.total?Math.round(revenue/bottles.total).toLocaleString('en-NG'):0} avg/bottle`);
-  set('kpiAovSub', `${real.length} orders included`);
-}
-
-function countBottles(orders) {
-  let b75=0,b150=0,b4L=0;
-  orders.forEach(o=>{
-    const m75  = o.items.match(/75cl.*?[x×](\d+)|(\d+).*?75cl/i);
-    const m150 = o.items.match(/150cl.*?[x×](\d+)|(\d+).*?150cl/i);
-    const m4L  = o.items.match(/4.*?litre.*?[x×](\d+)|(\d+).*?4.*?litre/i);
-    b75  += m75  ? parseInt(m75[1]||m75[2])||0 : 0;
-    b150 += m150 ? parseInt(m150[1]||m150[2])||0 : 0;
-    b4L  += m4L  ? parseInt(m4L[1]||m4L[2])||0 : 0;
-  });
-  return {b75,b150,b4L,total:b75+b150+b4L};
-}
-
-function isTest(o) {
-  return (o.notes||'').toLowerCase().includes('test') ||
-         (o.status||'').toLowerCase().includes('test') ||
-         (o.name||'').toLowerCase()==='test';
-}
-
-/* ════════════════════════════════════════
-   CASH FLOW (NEW)
-════════════════════════════════════════ */
-function renderCashFlow() {
-  const real       = filtered.filter(o => !isTest(o));
-  const collected  = real.filter(o=>o.status==='Completed').reduce((s,o)=>s+o.total,0);
-  const outstanding= real.filter(o=>o.status==='Pending'||o.status==='Dispatched').reduce((s,o)=>s+o.total,0);
-  const delivFees  = real.reduce((s,o)=>s+o.delivery,0);
-  const pipeline   = collected + outstanding;
-
-  set('cfCollected', '₦'+collected.toLocaleString('en-NG'));
-  set('cfPending',   '₦'+outstanding.toLocaleString('en-NG'));
-  set('cfDelivery',  '₦'+delivFees.toLocaleString('en-NG'));
-
-  const completedCount  = real.filter(o=>o.status==='Completed').length;
-  const pendingCount    = real.filter(o=>o.status==='Pending'||o.status==='Dispatched').length;
-  const delivPct        = real.length ? ((delivFees/(real.reduce((s,o)=>s+o.total,0)||1))*100).toFixed(1) : 0;
-
-  set('cfCollectedSub', `${completedCount} completed order${completedCount!==1?'s':''}`);
-  set('cfPendingSub',   `${pendingCount} order${pendingCount!==1?'s':''} awaiting collection`);
-  set('cfDeliverySub',  `${delivPct}% of total revenue`);
-
-  // Animate bars
-  requestAnimationFrame(() => {
-    const total = pipeline || 1;
-    setBarWidth('cfCollectedBar', (collected/total*100).toFixed(1));
-    setBarWidth('cfPendingBar',   (outstanding/total*100).toFixed(1));
-    setBarWidth('cfDeliveryBar',  Math.min((delivFees/(real.reduce((s,o)=>s+o.total,1))*100),100).toFixed(1));
-  });
-}
-
-function setBarWidth(id, pct) {
-  const el = document.getElementById(id);
-  if (el) el.style.width = pct + '%';
-}
-
-/* ════════════════════════════════════════
-   CHARTS (unchanged from original)
-════════════════════════════════════════ */
-const PALETTE = {
-  gold:'rgba(200,134,10,0.85)',goldBg:'rgba(200,134,10,0.12)',
-  green:'rgba(58,122,44,0.85)',greenBg:'rgba(58,122,44,0.12)',
-  terra:'rgba(201,79,29,0.85)',blue:'rgba(57,73,171,0.85)',
-  muted:'rgba(122,112,96,0.6)',border:'rgba(228,223,212,1)',
-};
-Chart.defaults.font.family = "'Instrument Sans', sans-serif";
-Chart.defaults.color = '#7a7060';
-
-function renderCharts() {
-  renderRevenueChart(); renderPaymentChart();
-  renderProductBars(); renderStateList(); renderHourChart();
-}
-
-function renderRevenueChart() {
-  const real=filtered.filter(o=>!isTest(o));
-  const byDay={};
-  real.forEach(o=>{const d=o.date.toISOString().slice(0,10);byDay[d]=byDay[d]||{rev:0,count:0};byDay[d].rev+=o.total;byDay[d].count+=1;});
-  const labels=Object.keys(byDay).sort();
-  const revs=labels.map(d=>byDay[d].rev);
-  const counts=labels.map(d=>byDay[d].count);
-  const display=labels.map(d=>{const dt=new Date(d+'T12:00:00Z');return dt.toLocaleDateString('en-NG',{day:'numeric',month:'short'});});
-  destroyChart('revenueChart');
-  charts.revenue=new Chart(document.getElementById('revenueChart'),{
-    type:'bar',
-    data:{labels:display,datasets:[
-      {label:'Revenue (₦)',data:revs,backgroundColor:PALETTE.goldBg,borderColor:PALETTE.gold,borderWidth:2,borderRadius:6,yAxisID:'y'},
-      {label:'Orders',data:counts,type:'line',borderColor:PALETTE.green,backgroundColor:'transparent',borderWidth:2.5,pointBackgroundColor:PALETTE.green,pointRadius:5,pointHoverRadius:7,tension:0.4,yAxisID:'y1'}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
-      plugins:{legend:{display:false},tooltip:{backgroundColor:'#fff',borderColor:PALETTE.border,borderWidth:1,titleColor:'#0d1008',bodyColor:'#7a7060',padding:12,callbacks:{label:ctx=>ctx.datasetIndex===0?'  Revenue: ₦'+ctx.parsed.y.toLocaleString('en-NG'):'  Orders: '+ctx.parsed.y}}},
-      scales:{x:{grid:{display:false},border:{display:false},ticks:{font:{size:11}}},y:{position:'left',grid:{color:PALETTE.border},border:{display:false,dash:[4,4]},ticks:{font:{size:11},callback:v=>'₦'+(v>=1000?(v/1000).toFixed(0)+'k':v)}},y1:{position:'right',grid:{display:false},border:{display:false},ticks:{font:{size:11},stepSize:1}}}}
-  });
-}
-
-function renderPaymentChart() {
-  const real=filtered.filter(o=>!isTest(o));
-  const counts={};
-  real.forEach(o=>{const m=(o.payment||'Unknown').replace(' on Delivery','').replace(' (Online)','');counts[m]=(counts[m]||0)+1;});
-  const labels=Object.keys(counts);const data=labels.map(l=>counts[l]);
-  const colors=[PALETTE.gold,PALETTE.green,PALETTE.terra,PALETTE.blue,PALETTE.muted];
-  destroyChart('paymentChart');
-  charts.payment=new Chart(document.getElementById('paymentChart'),{
-    type:'doughnut',
-    data:{labels,datasets:[{data,backgroundColor:colors.slice(0,labels.length),borderWidth:3,borderColor:'#fff',hoverOffset:6}]},
-    options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{position:'bottom',labels:{padding:16,font:{size:11},usePointStyle:true,pointStyleWidth:8}},tooltip:{backgroundColor:'#fff',borderColor:PALETTE.border,borderWidth:1,titleColor:'#0d1008',bodyColor:'#7a7060',padding:10,callbacks:{label:ctx=>`  ${ctx.label}: ${ctx.parsed} order${ctx.parsed!==1?'s':''}`}}}}
-  });
-}
-
-function renderProductBars() {
-  const real=filtered.filter(o=>!isTest(o));
-  const products={};
-  real.forEach(o=>{
-    const items=o.items.split(';');
-    items.forEach(item=>{
-      item=item.trim();
-      const name=item.match(/Synthova Palm Oil - (\w+)/i)?.[0]||item.split('(')[0].trim();
-      const qty=parseInt(item.match(/[x×](\d+)/i)?.[1]||'1');
-      const price=name.includes('150')?3000:1600;
-      if(!products[name])products[name]={units:0,revenue:0};
-      products[name].units+=qty;products[name].revenue+=qty*price;
-    });
-  });
-  const entries=Object.entries(products).sort((a,b)=>b[1].revenue-a[1].revenue);
-  const maxRev=Math.max(...entries.map(e=>e[1].revenue),1);
-  const colors=[PALETTE.gold,PALETTE.green,PALETTE.terra,PALETTE.blue];
-  const container=document.getElementById('productBars');
-  container.innerHTML=entries.map(([name,data],i)=>{
-    const pct=(data.revenue/maxRev*100).toFixed(1);
-    const short=name.replace('Synthova Palm Oil - ','');
-    return `<div class="product-bar-item"><div class="product-bar-header"><span class="product-bar-name">${short}</span><span class="product-bar-val">${data.units} units · ₦${data.revenue.toLocaleString('en-NG')}</span></div><div class="product-bar-track"><div class="product-bar-fill" style="width:0%;background:${colors[i%colors.length]}" data-width="${pct}%"></div></div></div>`;
-  }).join('')||'<p style="color:var(--muted2);font-size:0.85rem;padding:12px 0">No product data</p>';
-  requestAnimationFrame(()=>{document.querySelectorAll('.product-bar-fill').forEach(el=>{el.style.width=el.dataset.width;});});
-}
-
-function renderStateList() {
-  const real=filtered.filter(o=>!isTest(o));
-  const states={};
-  real.forEach(o=>{const s=(o.state||'Unknown').trim();states[s]=states[s]||{orders:0,revenue:0};states[s].orders++;states[s].revenue+=o.total;});
-  const entries=Object.entries(states).sort((a,b)=>b[1].revenue-a[1].revenue);
-  document.getElementById('stateList').innerHTML=entries.map(([state,data])=>`<div class="state-row"><div class="state-flag">${state.slice(0,2).toUpperCase()}</div><span class="state-name">${state}</span><span class="state-orders">${data.orders} order${data.orders!==1?'s':''}</span><span class="state-rev">₦${data.revenue.toLocaleString('en-NG')}</span></div>`).join('')||'<p style="color:var(--muted2);font-size:0.85rem;padding:12px 0">No data</p>';
-}
-
-function renderHourChart() {
-  const real=filtered.filter(o=>!isTest(o));
-  const hours=new Array(24).fill(0);
-  real.forEach(o=>{if(o.date)hours[o.date.getHours()]++;});
-  const labels=Array.from({length:24},(_,i)=>i===0?'12am':i<12?`${i}am`:i===12?'12pm':`${i-12}pm`);
-  destroyChart('hourChart');
-  charts.hour=new Chart(document.getElementById('hourChart'),{
-    type:'bar',
-    data:{labels,datasets:[{data:hours,backgroundColor:hours.map(v=>v>0?PALETTE.gold:PALETTE.goldBg),borderRadius:4,borderSkipped:false}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'#fff',borderColor:PALETTE.border,borderWidth:1,titleColor:'#0d1008',bodyColor:'#7a7060',padding:8,callbacks:{label:ctx=>`  ${ctx.parsed.y} order${ctx.parsed.y!==1?'s':''}`}}},scales:{x:{grid:{display:false},border:{display:false},ticks:{font:{size:10},maxRotation:0,callback:(v,i)=>[0,6,12,18,23].includes(i)?labels[i]:''}},y:{grid:{color:PALETTE.border},border:{display:false,dash:[4,4]},ticks:{font:{size:10},stepSize:1},beginAtZero:true}}}
-  });
-}
-
-/* ════════════════════════════════════════
-   ORDERS TABLE
-════════════════════════════════════════ */
-function renderTable() {
-  const start=(currentPage-1)*PAGE_SIZE;
-  const page=filtered.slice(start,start+PAGE_SIZE);
-  const tbody=document.getElementById('ordersTableBody');
-  if(filtered.length===0){tbody.innerHTML=`<tr class="empty-row"><td colspan="9">No orders match your filters</td></tr>`;renderPagination();set('tableInfo','0 orders');return;}
-  tbody.innerHTML=page.map(o=>{
-    const dateStr=o.date.toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'});
-    const payClass=o.payment.toLowerCase().includes('paystack')?'pay-paystack':o.payment.toLowerCase().includes('transfer')?'pay-transfer':o.payment.toLowerCase().includes('cash')?'pay-cash':'pay-pos';
-    const statusClass=o.status==='Completed'?'status-completed':o.status==='Cancelled'?'status-cancelled':o.status==='Dispatched'?'status-dispatched':isTest(o)?'status-test':'status-pending';
-    const statusLabel=isTest(o)?'Test':o.status;
-    const shortItems=o.items.replace(/Synthova Palm Oil - /gi,'').replace(/\s*;\s*/g,' · ');
-    return `<tr><td><div class="order-id">${o.id}</div></td><td><div class="customer-name">${esc(o.name)}</div><div class="customer-phone">${o.phone||'—'}</div></td><td><div class="items-cell" title="${esc(o.items)}">${esc(shortItems)}</div></td><td><span class="amount">₦${o.total.toLocaleString('en-NG')}</span></td><td><span class="pay-badge ${payClass}">${o.payment.replace(' on Delivery','').replace(' (Online)','')}</span></td><td>${esc(o.state)}</td><td style="font-size:0.8rem;color:var(--muted)">${dateStr}</td><td><span class="status-pill ${statusClass}">${statusLabel}</span></td><td><button class="row-action" onclick="openModal('${esc(o.id)}','${esc(o.name)}','${esc(o.status)}')">Update</button></td></tr>`;
-  }).join('');
-  const total=filtered.length,end=Math.min(start+PAGE_SIZE,total);
-  set('tableInfo',`Showing ${start+1}–${end} of ${total} order${total!==1?'s':''}`);
-  renderPagination();
-}
-
-function renderPagination() {
-  const pages=Math.ceil(filtered.length/PAGE_SIZE);
-  const pg=document.getElementById('pagination');
-  if(pages<=1){pg.innerHTML='';return;}
-  let html='';
-  for(let i=1;i<=pages;i++) html+=`<button class="page-btn${i===currentPage?' active':''}" onclick="goPage(${i})">${i}</button>`;
-  pg.innerHTML=html;
-}
-
-function goPage(n) {
-  currentPage=n;
-  renderTable();
-  document.querySelector('.table-card').scrollIntoView({behavior:'smooth',block:'start'});
-}
-
-/* ════════════════════════════════════════
-   STATUS MODAL
-════════════════════════════════════════ */
-function openModal(id, name, currentStatus) {
-  modalTarget=id; selectedStatus=currentStatus;
-  set('modalOrderId',id); set('modalCustomer',name);
-  document.querySelectorAll('.status-opt').forEach(o=>{o.classList.toggle('selected',o.dataset.val===currentStatus);});
-  document.getElementById('modalBackdrop').classList.add('open');
-}
-function closeModal() {
-  document.getElementById('modalBackdrop').classList.remove('open');
-  modalTarget=null; selectedStatus=null;
-}
-async function confirmStatus() {
-  if(!selectedStatus||!modalTarget)return;
-  const btn=document.getElementById('confirmBtn');
-  btn.disabled=true; btn.textContent='Updating…';
-  try {
-    await fetch(GAS_URL+'?action=updateStatus',{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({orderId:modalTarget,status:selectedStatus})});
-  } catch(e){}
-  const order=allOrders.find(o=>o.id===modalTarget);
-  if(order) order.status=selectedStatus;
-  closeModal();
-  applyFilters();
-  // Refresh delivery tab if open
-  const delivTab=document.getElementById('tab-deliveries');
-  if(delivTab&&delivTab.classList.contains('active')) renderDeliveriesTab();
-  btn.disabled=false; btn.textContent='Update Status';
-}
-
-/* ════════════════════════════════════════
-   DELIVERY TAB (NEW)
-════════════════════════════════════════ */
-function getNextDeliverySlots(count) {
-  // Delivery days: 1=Monday, 3=Wednesday, 6=Saturday
-  const DELIVERY_DAYS = [1, 3, 6];
-  const CUTOFF_HOUR   = 20; // 8pm: orders after this go to next slot
-  const now = new Date();
-  const slots = [];
-
-  let cursor = new Date(now);
-  let i = 0;
-  while (slots.length < count && i < 30) {
-    i++;
-    cursor.setDate(cursor.getDate() + 1);
-    cursor.setHours(0, 0, 0, 0);
-    if (DELIVERY_DAYS.includes(cursor.getDay())) {
-      slots.push(new Date(cursor));
-    }
-  }
-  return slots;
-}
-
-function getAssignedSlot(orderDate, slots) {
-  const DELIVERY_DAYS = [1, 3, 6];
-  const CUTOFF_HOUR   = 20;
-  const d = new Date(orderDate);
-  const effectiveDate = new Date(d);
-  if (d.getHours() >= CUTOFF_HOUR) effectiveDate.setDate(d.getDate() + 1);
-  effectiveDate.setHours(0, 0, 0, 0);
-
-  // Find the next delivery day on or after effectiveDate
-  for (let i = 0; i <= 7; i++) {
-    const check = new Date(effectiveDate);
-    check.setDate(effectiveDate.getDate() + i);
-    if (DELIVERY_DAYS.includes(check.getDay())) {
-      return check.toDateString();
-    }
-  }
-  return null;
-}
-
-function renderDeliveriesTab() {
-  deliverySlots = getNextDeliverySlots(3);
-  const real = allOrders.filter(o => !isTest(o) && (o.status === 'Pending' || o.status === 'Dispatched'));
-
-  // Build slot cards
-  const container = document.getElementById('slotCards');
-  container.innerHTML = deliverySlots.map((slot, idx) => {
-    const slotKey = slot.toDateString();
-    const count   = real.filter(o => getAssignedSlot(o.date, deliverySlots) === slotKey).length;
-    const dayName = slot.toLocaleDateString('en-NG', { weekday: 'long' });
-    const dateStr = slot.toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' });
-    const isActive = idx === selectedSlotIdx;
-    const hasOrders = count > 0;
-    return `
-      <div class="slot-card ${isActive ? 'active' : ''} ${hasOrders ? 'has-orders' : ''}"
-           onclick="selectSlot(${idx})">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start">
-          <div>
-            <div class="slot-day">${dayName}</div>
-            <div class="slot-date">${dateStr}</div>
-          </div>
-          <div class="slot-indicator"></div>
-        </div>
-        <div class="slot-count">
-          <div>
-            <div class="slot-num">${count}</div>
-            <div class="slot-label">pending order${count !== 1 ? 's' : ''}</div>
-          </div>
-        </div>
-      </div>`;
-  }).join('');
-
-  renderManifest(selectedSlotIdx);
-}
-
-function selectSlot(idx) {
-  selectedSlotIdx = idx;
-  document.querySelectorAll('.slot-card').forEach((c, i) => {
-    c.classList.toggle('active', i === idx);
-  });
-  renderManifest(idx);
-}
-
-function renderManifest(idx) {
-  const slot    = deliverySlots[idx];
-  if (!slot) return;
-  const slotKey = slot.toDateString();
-  const dayName = slot.toLocaleDateString('en-NG', { weekday: 'long' });
-  const dateStr = slot.toLocaleDateString('en-NG', { day: 'numeric', month: 'long', year: 'numeric' });
-  const real    = allOrders.filter(o => !isTest(o) && (o.status === 'Pending' || o.status === 'Dispatched'));
-  const orders  = real.filter(o => getAssignedSlot(o.date, deliverySlots) === slotKey);
-
-  set('manifestTitle', `${dayName} — ${dateStr}`);
-  set('manifestSub',   `${orders.length} order${orders.length !== 1 ? 's' : ''} · Ugbowo, Benin City`);
-
-  const batchBtn = document.getElementById('batchDispatchBtn');
-  const pendingInSlot = orders.filter(o => o.status === 'Pending').length;
-  batchBtn.style.display = pendingInSlot > 0 ? 'flex' : 'none';
-
-  const body = document.getElementById('manifestBody');
-  if (!orders.length) {
-    body.innerHTML = '<div class="manifest-empty">No pending orders for this slot</div>';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showError('collab-error', 'Please enter a valid email address.');
     return;
   }
 
-  body.innerHTML = orders.map((o, i) => {
-    const statusClass = o.status === 'Dispatched' ? 'status-dispatched' : 'status-pending';
-    const shortItems  = o.items.replace(/Synthova Palm Oil - /gi,'').replace(/\s*;\s*/g,' · ');
-    const payShort    = o.payment.replace(' on Delivery','').replace(' (Online)','');
-    return `
-      <div class="manifest-item">
-        <div class="manifest-num">${i+1}</div>
-        <div class="manifest-customer">
-          <div class="manifest-name">${esc(o.name)}</div>
-          <div class="manifest-phone">${o.phone || '—'}</div>
-        </div>
-        <div class="manifest-address-text">${esc(o.address)}${o.city ? ', '+esc(o.city) : ''}</div>
-        <div class="manifest-items-text">${esc(shortItems)}</div>
-        <div class="manifest-amount">₦${o.total.toLocaleString('en-NG')}<br><span style="font-size:0.7rem;color:var(--muted);font-family:'Instrument Sans',sans-serif">${payShort}</span></div>
-        <div style="display:flex;align-items:center;gap:6px">
-          <span class="status-pill ${statusClass}">${o.status}</span>
-          <button class="row-action" onclick="openModal('${esc(o.id)}','${esc(o.name)}','${esc(o.status)}')">↗</button>
-        </div>
-      </div>`;
-  }).join('');
-}
-
-function batchDispatch() {
-  if (!deliverySlots[selectedSlotIdx]) return;
-  const slotKey = deliverySlots[selectedSlotIdx].toDateString();
-  const toDispatch = allOrders.filter(o =>
-    !isTest(o) && o.status === 'Pending' &&
-    getAssignedSlot(o.date, deliverySlots) === slotKey
-  );
-  if (!toDispatch.length) return;
-  if (!confirm(`Mark ${toDispatch.length} order${toDispatch.length!==1?'s':''} as Dispatched?`)) return;
-
-  toDispatch.forEach(o => {
-    o.status = 'Dispatched';
-    if (GAS_URL && !GAS_URL.includes('YOUR_DEPLOYED')) {
-      fetch(GAS_URL+'?action=updateStatus',{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({orderId:o.id,status:'Dispatched'})}).catch(()=>{});
-    }
-  });
-  renderDeliveriesTab();
-  updateTabBadges();
-}
-
-/* ════════════════════════════════════════
-   NEWSLETTER TAB (NEW)
-════════════════════════════════════════ */
-
-// JSONP for newsletter Apps Script (CORS-safe)
-function nlFetch(url) {
-  return new Promise((resolve, reject) => {
-    const cb = '__nl_' + Date.now();
-    window[cb] = (d) => { resolve(d); delete window[cb]; const s=document.getElementById(cb); if(s)s.remove(); };
-    const script = document.createElement('script');
-    script.id = cb;
-    script.src = url + (url.includes('?')? '&':'?') + 'callback=' + cb;
-    script.onerror = () => { reject(new Error('Network error')); delete window[cb]; };
-    setTimeout(() => { reject(new Error('Timeout')); delete window[cb]; }, 8000);
-    document.head.appendChild(script);
-  });
-}
-
-async function loadNlPosts() {
-  const tbody = document.getElementById('nlPostsTableBody');
-
-  if (!NEWSLETTER_SCRIPT_URL) {
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:32px;color:var(--muted2);font-size:0.84rem">Paste NEWSLETTER_SCRIPT_URL in config to manage posts</td></tr>`;
-    set('nlPostsCountLabel', 'Not connected');
-    set('subTotal', '—'); set('subActive', '—');
-    set('subCardSub', 'Connect NEWSLETTER_SCRIPT_URL to see subscribers');
-    return;
-  }
-
-  tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--muted2)">Loading…</td></tr>`;
-  try {
-    const data = await nlFetch(NEWSLETTER_SCRIPT_URL + '?action=getAllPosts');
-    renderNlPosts(data.posts || []);
-    loadSubscribers();
-  } catch(e) {
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--terra);font-size:0.82rem">Failed to load posts. Check your NEWSLETTER_SCRIPT_URL and deployment settings.</td></tr>`;
-  }
-}
-
-function renderNlPosts(posts) {
-  const tbody = document.getElementById('nlPostsTableBody');
-  set('nlPostsCountLabel', `${posts.length} post${posts.length!==1?'s':''} total`);
-  if (!posts.length) {
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:32px;color:var(--muted2)">No posts yet. Publish your first above.</td></tr>`;
-    return;
-  }
-  tbody.innerHTML = posts.map(p => {
-    const statusClass = (p.status||'').toLowerCase() === 'published' ? 'published' : 'draft';
-    return `<tr>
-      <td><div class="nl-post-issue">${esc(p.issue||'—')}</div></td>
-      <td><div class="nl-post-title">${esc(p.title||'—')}</div></td>
-      <td><div class="nl-post-date">${esc(p.date||'—')}</div></td>
-      <td style="font-family:'DM Mono',monospace;font-size:0.78rem">${p.likes||0}</td>
-      <td style="font-family:'DM Mono',monospace;font-size:0.78rem">${p.commentCount||0}</td>
-      <td><span class="nl-status ${statusClass}">${p.status||'draft'}</span></td>
-      <td>
-        <div style="display:flex;gap:4px">
-          <button class="nl-action" onclick="togglePostStatus('${esc(p.id)}','${esc(p.status||'draft')}')">
-            ${(p.status||'').toLowerCase()==='published' ? 'Unpublish' : 'Publish'}
-          </button>
-        </div>
-      </td>
-    </tr>`;
-  }).join('');
-}
-
-async function togglePostStatus(postId, currentStatus) {
-  if (!NEWSLETTER_SCRIPT_URL) return;
-  const newStatus = (currentStatus||'').toLowerCase() === 'published' ? 'draft' : 'published';
-  try {
-    await nlFetch(NEWSLETTER_SCRIPT_URL + '?action=updatePostStatus&postId=' + encodeURIComponent(postId) + '&status=' + newStatus);
-    loadNlPosts();
-  } catch(e) { alert('Failed to update status. Try again.'); }
-}
-
-async function loadSubscribers() {
-  if (!NEWSLETTER_SCRIPT_URL) return;
-  try {
-    const data = await nlFetch(NEWSLETTER_SCRIPT_URL + '?action=getSubscribers');
-    const subs   = data.subscribers || [];
-    const active = subs.filter(s => (s.active||'').toLowerCase() !== 'false').length;
-    set('subTotal', subs.length);
-    set('subActive', active);
-    set('subCardSub', `Last updated ${new Date().toLocaleTimeString('en-NG',{hour:'2-digit',minute:'2-digit'})}`);
-  } catch(e) { set('subCardSub', 'Could not load subscriber data'); }
-}
-
-async function publishPost() {
-  const issue   = (document.getElementById('nlIssue').value   || '').trim();
-  const title   = (document.getElementById('nlTitle').value   || '').trim();
-  const date    = (document.getElementById('nlDate').value    || '').trim();
-  const image   = (document.getElementById('nlImage').value   || '').trim();
-  const content = (document.getElementById('nlContent').value || '').trim();
-  const status  = document.getElementById('nlStatus').value;
-
-  const feedback = document.getElementById('nlFeedback');
-  const btn      = document.getElementById('nlSubmitBtn');
-
-  if (!title || !content) {
-    feedback.textContent = 'Title and content are required.';
-    feedback.className = 'nl-feedback err';
-    return;
-  }
-
+  const btn = document.getElementById('collab-submit');
+  const originalText = btn.textContent;
   btn.disabled = true;
-  btn.textContent = 'Publishing…';
-  feedback.textContent = '';
-  feedback.className = 'nl-feedback';
-
-  // Auto-generate a post ID
-  const postId = 'post_' + Date.now();
-  const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'}) : new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-
-  if (!NEWSLETTER_SCRIPT_URL) {
-    // Demo mode feedback
-    setTimeout(() => {
-      feedback.textContent = '✓ Post saved (connect NEWSLETTER_SCRIPT_URL to push live)';
-      feedback.className = 'nl-feedback ok';
-      btn.disabled = false; btn.textContent = 'Publish Post →';
-    }, 600);
-    return;
-  }
+  btn.textContent = 'Submitting…';
 
   try {
-    await nlFetch(
-      NEWSLETTER_SCRIPT_URL +
-      '?action=createPost' +
-      '&postId=' + encodeURIComponent(postId) +
-      '&issue=' + encodeURIComponent(issue) +
-      '&title=' + encodeURIComponent(title) +
-      '&date='  + encodeURIComponent(formattedDate) +
-      '&imageUrl=' + encodeURIComponent(image) +
-      '&content='  + encodeURIComponent(content) +
-      '&status='   + encodeURIComponent(status)
-    );
-    feedback.textContent = status === 'published' ? '✓ Published! It\'s live on The Drop.' : '✓ Saved as draft.';
-    feedback.className = 'nl-feedback ok';
-    // Clear form
-    ['nlIssue','nlTitle','nlImage','nlContent'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
-    document.getElementById('nlDate').value = new Date().toISOString().slice(0,10);
-    loadNlPosts();
-  } catch(e) {
-    feedback.textContent = 'Failed to publish. Check your newsletter backend.';
-    feedback.className = 'nl-feedback err';
+    await fetch(COLLABORATION_SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        organization: org,
+        contactName: name,
+        email,
+        phone,
+        collabType: type,
+        notes,
+        timestamp: new Date().toISOString()
+      }),
+    });
+    
+    document.getElementById('collab-form').style.display = 'none';
+    document.getElementById('collab-success').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = originalText;
+    showError('collab-error', 'Submission failed. Please try again or email us directly.');
+    console.error('Collaboration error:', err);
   }
+});
 
-  btn.disabled = false; btn.textContent = 'Publish Post →';
+/* ─── ANIMATIONS ──────────────────────────────── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((en) => {
+    if (en.isIntersecting) {
+      const delay = parseInt(en.target.dataset.delay) || 0;
+      setTimeout(() => {
+        en.target.classList.add('visible');
+      }, delay);
+      observer.unobserve(en.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+function runAnimations() {
+  document.querySelectorAll('.anim-in:not(.visible)').forEach((el, i) => {
+    el.dataset.delay = i * 80;
+    observer.observe(el);
+  });
 }
 
-/* ════════════════════════════════════════
-   HELPERS
-════════════════════════════════════════ */
-function set(id, val) { const el=document.getElementById(id); if(el) el.textContent=val; }
-function esc(str) { return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function destroyChart(id) { const e=Chart.getChart(id); if(e) e.destroy(); }
-function showLoading(show) {
-  document.getElementById('loadingOverlay').classList.toggle('hidden',!show);
-  document.getElementById('mainShell').style.display=show?'none':'block';
-  if(!show) document.getElementById('retryBtn').style.display='none';
-}
+/* ─── INIT ────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  runAnimations();
+  document.getElementById('link-home')?.classList.add('active-link');
+  initMascotInteraction();
+});
+
+/* ─── KEYBOARD ACCESSIBILITY ──────────────────── */
+document.querySelector('.nav-brand')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    navTo('home');
+  }
+});
 </script>
 </body>
 </html>
